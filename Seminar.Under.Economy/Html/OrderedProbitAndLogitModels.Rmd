@@ -1,0 +1,46 @@
+---
+title: "Ordered Probit and Logit Models Page"
+author: "Kinito Solutions"
+date: "September 11, 2016"
+output: 
+  html_document: 
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE);
+library(rms);
+```
+
+# Ordered Probit and Logit Models
+
+The ordered probit and logit models have a dependent variable that are ordered categories.  Examples include rating systems (poor, fair, good excellent), opinion surveys from strongly disagree to strongly agree, grades, and bond ratings.
+
+# Ordered Probit and Logit Models Example
+
+```{r Ordered Probit and Logit Models example}
+myDataFrame<- read.csv("Data/ordered_health.csv")
+head(myDataFrame)
+attach(myDataFrame)
+Y <- cbind(healthstatus1)
+X <- cbind(age, logincome, numberdiseases)
+Xvar <- c("age", "logincome", "numberdiseases")
+# Descriptive statistics
+summary(Y)
+summary(X)
+table(Y)
+# Ordered logit model coefficients
+ddist <- datadist(Xvar)
+options(datadist='ddist')
+ologit <- lrm(Y ~ X, data=myDataFrame)
+print(ologit)
+# Ordered logit model odds ratio
+# summary(ologit)
+# Ordered logit predicted probabilities
+# xmeans <- colMeans(X)
+# newdata1 <- data.frame(t(xmeans))
+predictFitted <- predict(ologit, newdata=myDataFrame, type="fitted.ind")
+colMeans(predictFitted)
+```

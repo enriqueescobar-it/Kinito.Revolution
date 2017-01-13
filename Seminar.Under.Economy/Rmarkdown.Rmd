@@ -1,0 +1,61 @@
+---
+title: "Rmarkdown"
+author: "Kinito Solutions"
+date: "August 11, 2016"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE);
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+### R dygraphs
+
+```{r dygraphs}
+library(dygraphs);
+dygraph(nhtemp, main = "New Haven Temp") %>%
+  dyRangeSelector(dateWindow = c("1920-01-01","1960-01-01"));
+```
+
+### R d3heatmap
+
+```{r d3heatmap}
+library(d3heatmap);
+d3heatmap(mtcars, scale="column", colors = "Blues");
+```
+
+### R leaflet
+
+```{r leaflet, message=FALSE, warning=FALSE}
+library(leaflet);
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+m  # Print the map
+```
+
+```{r leaflet_, message=FALSE, warning=FALSE}
+library(leaflet);
+leaflet() %>% addTiles() %>%
+  addRectangles(
+    lng1=-118.456554, lat1=34.078039,
+    lng2=-118.436383, lat2=34.062717,
+    fillColor = "transparent"
+  );
+```
+
+```{r leaflet__, message=FALSE, warning=FALSE}
+library(leaflet);
+cities <- read.csv("Doc/cities.csv");
+leaflet(cities) %>% addTiles() %>%
+  addCircles(lng = ~Long, lat = ~Lat, weight = 1,
+    radius = ~sqrt(Pop) * 30, popup = ~City
+  );
+```
+

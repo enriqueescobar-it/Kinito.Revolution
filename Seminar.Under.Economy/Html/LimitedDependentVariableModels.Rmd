@@ -1,0 +1,55 @@
+---
+title: "Limited Dependent Varible Models Page"
+author: "Kinito Solutions"
+date: "September 11, 2016"
+output: 
+  html_document: 
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE);
+library(VGAM);
+library(AER);
+library(truncreg);
+library(censReg);
+```
+
+# Limited Dependent Varible Models
+
+A limited dependent variable means that there is a limit or boundary on the dependent variable and some of the observations “hit” this limit.   A limited dependent variable is a continuous variable with a lot of repeated observations at the lower or upper limit.  Examples include the quantity of a product consumed, the number of hours that women work, etc. 
+
+Limited dependent variable models address two issues: censoring and truncation.  Censoring is when the limit observations are in the sample and truncation is when the observations are not in the sample. 
+
+# Limited Dependent Varible Models Example
+
+```{r Limited Dependent Varible Models example}
+myDataFrame<- read.csv("Data/limdep_ambexp.csv")
+head(myDataFrame)
+attach(myDataFrame)
+# Define variables
+Y <- cbind(ambexp)
+X <- cbind(age, female, totchr)
+# Descriptive statistics
+summary(Y)
+summary(X)
+# Tobit model coefficients (sensoring from below at 0)
+myTobitModel <- tobit(Y ~ X, left=0, right=Inf, data=myDataFrame)
+summary(myTobitModel)
+myTobitCensored <- censReg(Y ~ X, left=0, right=Inf, data=myDataFrame)
+summary(myTobitCensored)
+# Tobit model marginal effects for the censored sample
+summary(margEff(myTobitCensored))
+# Probit model coefficients
+myProbitModel <- glm(I(Y > 0) ~ X, data = myDataFrame, family = binomial(link = "probit"))
+summary(myProbitModel)
+# Truncated regression coefficients
+myDataFrameSubset <- subset(myDataFrame, Y>0)
+#myLeftTruncatedRegression <- truncreg(Y ~ X, point = 0, direction = "left", data=myDataFrameSubset)
+#summary(myLeftTruncatedRegression)
+# Test for Tobit versus Probit and Truncated regression
+#lrtest <- 2*(logLik(myProbitModel) + logLik(myLeftTruncatedRegression) - logLik(myTobitModel))
+#lrtest
+```

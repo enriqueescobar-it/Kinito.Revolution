@@ -1,0 +1,7 @@
+Sectors	Sector1	Sector2	Sector3	CoumnTotal	ColumnCorrectTotal	ColumnBalancing
+Sector1	21.200	29.000	19.900	70.100	75.000	4.900
+Sector2	9.000	48.800	22.400	80.100	82.000	1.900
+Sector3	49.800	62.200	7.800	119.800	125.000	5.200
+RowTotal	80.000	140.000	50.000	0.000	0.000	0.000
+RowCorrectTotal	85.000	150.000	45.000	0.000	0.000	0.000
+RowBalancing	5.000	10.000	-5.000	0.000	0.000	0.000

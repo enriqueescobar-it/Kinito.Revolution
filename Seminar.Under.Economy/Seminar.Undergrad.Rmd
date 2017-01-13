@@ -1,0 +1,281 @@
+---
+title: "Home Page"
+author: "Kinito Solutions"
+date: "August 11, 2016"
+output: 
+  html_document: 
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R Introduction
+
+[link to Software Carpentry](http://resbaz.github.io/2014-r-materials/lessons/01-intro_r)
+
+## R Fundamentals
+
+```{r fundamentals}
+getwd();
+#setwd("~/Desktop");
+ls();
+#rm(list=ls());
+```
+
+## R data structures
+
+[link to pycon](https://ramnathv.github.io/pycon2014-r/learn/structures.html)
+
+### R variable
+
+```{r variable}
+my_number <- 42;
+print(my_number);
+chv1 <- "hello";
+print(chv1);
+x <- 6+4;
+print(x);
+y <- 4;
+x / y;
+```
+
+### R vector
+
+```{r vector}
+a <- c(1,2,5.3,6,-2,4); # numeric vector
+b <- c("one","two","three"); # character vector
+c <- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE); #logical vector
+v1 <- c(1, 5.5, 1e2);
+v2 <- c(0.14, 0, -2);
+v3 <- c(v1, v2);
+v3[2];
+v3_sub <- v3[c(2,3)];
+v1 %*% v2;
+```
+
+### R matrix
+
+```{r matrix}
+1:6;
+seq(from=1, to=12, by=4);
+ma <- matrix(1:6, nrow=3, ncol=2);
+ma;
+mb <- matrix(7:9, nrow=3, ncol=1);
+mb;
+rbind(ma, c(100, 200, 300));
+m <- cbind(ma, mb);
+m;
+ncol(m);
+nrow(m);
+dim(m);
+t(m);
+diag(m);
+#mymatrix <- matrix(vector, nrow=r, ncol=c, byrow=FALSE, dimnames=list(char_vector_rownames, char_vector_colnames));
+y<-matrix(1:20, nrow=5,ncol=4);
+cells <- c(1,26,24,68);
+rnames <- c("R1", "R2");
+cnames <- c("C1", "C2");
+mymatrix <- matrix(cells, nrow=2, ncol=2, byrow=TRUE, dimnames=list(rnames, cnames));
+```
+
+### R array or multidimensional matrix
+
+```{r}
+#help(array);
+```
+
+### R data frame
+
+```{r data frame}
+d <- c(1,2,3,4);
+e <- c("red", "white", "red", NA);
+f <- c(TRUE,TRUE,TRUE,FALSE);
+mydata <- data.frame(d,e,f);
+names(mydata) <- c("ID","Color","Passed");
+```
+
+### R list-ordered collection of objects (components), possibly unrelated
+
+```{r list}
+# example a string, a numeric vector, a matrix, and a scalar
+a <- c(1,2,5.3,6,-2,4);
+y <- matrix(1:20, nrow=5,ncol=4);
+w <- list(name="Fred", mynumbers=a, mymatrix=y, age=5.3);
+# example of a list containing two lists
+v <- c(w,list(1,2));
+```
+
+### R factor-nominal values (vector of integers) mapped to these integers
+
+```{r factor}
+# variable gender with 20 "male" entries and 30 "female" entries
+gender <- c(rep("male",20), rep("female", 30));
+gender <- factor(gender);
+# stores gender as 20 1s and 30 2s and associates 1=female, 2=male internally (alphabetically)
+# R now treats gender as a nominal variable
+# variable rating coded as "large", "medium", "small"
+rating <- ordered(factor("large", "medium", "small"));
+# recodes rating to 1,2,3 and associates 1=large, 2=medium, 3=small internally R now treats rating as ordinal
+```
+
+### R date
+
+```{r date}
+as.Date(NA);
+Sys.Date();
+date(); #datetime
+#Format
+#Convert
+#help(as.Date)
+#help(strftime)
+#help(ISOdatetime)
+```
+
+[link to Cyclismo Date](http://www.cyclismo.org/tutorial/R/time.html)
+
+### R HashMap
+
+[link to GitHub HashMap](https://github.com/nathan-russell/hashmap)
+
+[link to R Bloggers](https://www.r-bloggers.com/hash-table-performance-in-r-part-i/)
+
+### R NA, NULL
+
+```{r array}
+# NA for all
+# NULL only objects
+```
+
+## R goodies
+
+```{r goodies}
+#length(object);  # number of elements or components
+#str(object);	   # structure of an object
+#class(object);   # class or type of an object
+#names(object);   # names
+#c(object,object,...);   	# combine objects into a vector
+#cbind(object, object, ...); # combine objects as columns
+#rbind(object, object, ...); # combine objects as rows
+#object; 	      # prints the object
+#rm(object);     # delete an object
+#newobject <- edit(object); # edit copy and save as newobject
+#fix(object);    # edit in place
+```
+
+## R functions
+
+[link to Software Carpentry](http://resbaz.github.io/2014-r-materials/lessons/10-functions)
+
+[link to pycon](https://ramnathv.github.io/pycon2014-r/learn/functions.html)
+
+## R control flow
+
+[link to Software Carpentry](http://resbaz.github.io/2014-r-materials/lessons/30-control-flow)
+
+[link to Data Camp](https://www.datacamp.com/community/tutorials/tutorial-on-loops-in-r)
+
+[link to R bloggers](https://www.r-bloggers.com/control-structures-loops-in-r/)
+
+[link to pycon](https://ramnathv.github.io/pycon2014-r/learn/controls.html)
+
+## R Object Oriented
+
+[link to classes S3/ S4](http://www.cyclismo.org/tutorial/R/objectOriented.html)
+
+[link to classes R6 GitHub](https://github.com/wch/R6)
+
+[link to classes R6](http://www.orbifold.net/default/r6-classes/)
+
+[link to classes R6 Intro](https://cran.r-project.org/web/packages/R6/vignettes/Introduction.html)
+
+[link to classes R6 advanced](https://rpubs.com/wch/24456)
+
+[link to classes R6 super advanced](http://rpubs.com/sumprain/R6)
+
+[link to classes R6 & RC-Reference Class](https://cran.r-project.org/web/packages/R6/vignettes/Performance.html)
+
+## R repeat rearrange reuse
+
+[link to Software Carpentry](http://resbaz.github.io/2014-r-materials/lessons/40-repeating)
+
+[link to R bloggers](https://www.r-bloggers.com/r-tutorial-on-the-apply-family-of-functions/)
+
+[link to pycon](https://ramnathv.github.io/pycon2014-r/learn/subsetting.html)
+
+## R data reorganization
+
+[link to pycon](https://ramnathv.github.io/pycon2014-r/learn/subsetting.html)
+
+## R data import
+
+[link to R-Json](http://www.tutorialspoint.com/r/r_json_files.htm)
+
+## R data visualization
+
+### R data visualization base
+
+[link to pycon](https://ramnathv.github.io/pycon2014-r/visualize/base_graphics.html)
+
+### R data visualization grammar of graphics
+
+[link to pycon](https://ramnathv.github.io/pycon2014-r/visualize/ggplot2.html)
+
+[link to ggplot2](http://seananderson.ca/ggplot2-FISH554/)
+
+## R projects
+
+[link to Software Carpentry](http://resbaz.github.io/2014-r-materials/lessons/20-projects)
+
+## R testing
+
+[link to Software Carpentry](http://resbaz.github.io/2014-r-materials/lessons/45-testing)
+
+## R software carpentry
+
+[link to Software Carpentry](http://resbaz.github.io/2014-r-materials/lessons/50-principles-swc)
+
+## R web simulator
+
+[link to R-Fiddle](https://chrome.google.com/webstore/detail/r-fiddle/mbpmpbhpfcnemgcplhimlolikbljnmig?hl=en)
+
+[link to R simulator](http://intro-stats.com/)
+
+[link to SwiRl](http://swirlstats.com/students.html)
+
+## R Quesions
+
+[link to Google R Quesions](http://rseek.org/)
+
+[link to StackOverflow R Quesions](http://stackoverflow.com/questions/tagged/r)
+
+## R References
+
+[link to R Reference Card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf)
+
+[link to Quick R Reference](http://www.statmethods.net/)
+
+[link to R Cookbook Reference](http://www.cookbook-r.com/)
+
+[link to About R Reference](http://stackoverflow.com/tags/r/info)
+
+# R Stats for newbies
+
+![Stats for newbies](Doc/Stats-Test_mean.png)
+
+# Rmarkdown Examples
+
+[link to Rmarkdown examples](Rmarkdown.nb.html)
+
+# R variance
+
+## R 1-Sample
+
+[link to One Sample](SampleOfOne.html)
+
+## R 2-Samples
+
+## R 2-Plus-Samples

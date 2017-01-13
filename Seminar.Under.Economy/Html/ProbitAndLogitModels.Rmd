@@ -1,0 +1,69 @@
+---
+title: "Probit and Logit Models Page"
+author: "Kinito Solutions"
+date: "September 11, 2016"
+output: 
+  html_document: 
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE);
+```
+
+# Probit and Logit Models
+
+Probit and logit models are among the most popular models.  The dependent variable is a binary response, commonly coded as a 0 or 1 variable.  The decision/choice is whether or not to have, do, use, or adopt.  Examples include whether a consumer makes a purchase or not, and whether an individual participates in the labor market or not.
+
+# Probit and Logit Models Example
+
+```{r Probit and Logit Models example}
+myDataFrame<- read.csv("Data/probit_insurance.csv")
+head(myDataFrame)
+attach(myDataFrame)
+# Define variables
+Y <- cbind(ins)
+X <- cbind(retire, age, hstatusg, hhincome, educyear, married, hisp)
+# Descriptive statistics
+summary(Y)
+summary(X)
+table(Y)
+table(Y)/sum(table(Y))
+# Regression coefficients
+olsRegressionModel <- lm(Y ~ X)
+summary(olsRegressionModel)
+# Logit model coefficients
+logitModelCoefs <- glm(Y ~ X, family=binomial (link = "logit"))
+summary(logitModelCoefs) 
+# Logit model odds ratios
+exp(logitModelCoefs$coefficients)
+# Probit model coefficients
+probitModelCoefs <- glm(Y ~ X, family=binomial (link="probit"))
+summary(probitModelCoefs)
+# Regression marginal effects
+coef(olsRegressionModel)
+# Logit model average marginal effects
+LogitScalar <- mean(dlogis(predict(logitModelCoefs, type = "link")))
+LogitScalar * coef(logitModelCoefs)
+# Probit model average marginal effects
+ProbitScalar <- mean(dnorm(predict(probitModelCoefs, type = "link")))
+ProbitScalar * coef(probitModelCoefs)
+# Regression predicted probabilities
+olsRegressionProbs <- predict(olsRegressionModel)
+summary(olsRegressionProbs)
+# Logit model predicted probabilities
+logitModelProbs <- predict(logitModelCoefs, type="response")
+summary(logitModelProbs)
+# Probit model predicted probabilities
+probitModelProbs <- predict(probitModelCoefs, type="response")
+summary(probitModelProbs)
+# Percent correctly predicted values
+table(true = Y, pred = round(fitted(probitModelCoefs)))
+table(true = Y, pred = round(fitted(logitModelCoefs))) 
+# McFadden's Pseudo R-squared
+probitModelCoefsUpdate <-update(probitModelCoefs, formula= Y ~ 1)
+McFadden<- 1-as.vector(logLik(probitModelCoefs)/logLik(probitModelCoefsUpdate))
+McFadden
+```

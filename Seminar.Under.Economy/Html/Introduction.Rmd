@@ -1,0 +1,120 @@
+---
+title: "Introduction Page"
+author: "Kinito Solutions"
+date: "September 11, 2016"
+output: 
+  html_document: 
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE);
+```
+
+# Introduction
+
+R is a statistical software that is used for estimating econometrics models.  For more information, please check the Official R website.
+
+In this Introduction to R video, you will learn about how to use the R software to read data sets, do basic statistical analysis, and get familiar with the program so that we can use it for more sophisticated econometric models.  You will also learn about R studio, a user-friendly interface to use with R.
+
+R studio – R user interface
+Advantages and disadvantages of R
+Programs – R program file (.R)
+R Console – where commands are listed and results are shown
+Data files – csv files
+Importing data – read, attach
+Summarizing and analyzing data – summary, sort, table, cor
+Statistical analysis (t test, anova, regressions) – t.test, anova, olsreg
+Install and use packages
+Using help
+
+# Introduction Example
+
+This uses multiple independent variables in the lm-function. This is easily achieved by separating each exogenous variable that should enter the model with a plus sign (e.g. lm(colGPA ~ hsGPA + ACT)).
+
+```{r Introduction example}
+myDataFrame <- read.csv("Data/intro_auto.csv")
+head(myDataFrame)
+attach(myDataFrame)
+# List the variables
+names(myDataFrame)
+# Show first lines of data
+head(myDataFrame)
+myDataFrame[1:10,]
+# Descriptive statistics
+summary(mpg)
+sd(mpg)
+length(mpg)
+summary(price)
+sd(price)
+# Sort the data
+sort(make)
+# Frequency tables
+table(make)
+table(make, foreign)
+# Correlation among variables
+cor(price, mpg)
+# T-test for mean of one group
+t.test(mpg, mu=20)
+# linear model of 2 groups
+linearModel <- lm(mpg ~ factor(foreign))
+# ANOVA for equality of means for two groups
+anova(linearModel)
+# OLS regression - mpg (dependent variable) and weight, length and foreign (independent variables)
+olsreg <- lm(mpg ~ weight + length + foreign)
+summary(olsreg)
+# summary(lm(mpg ~ weight + length + foreign))
+# Plotting data
+plot (mpg ~ weight)
+olsreg1 <- lm(mpg ~ weight)
+abline(olsreg1)
+# Redefining variables 
+Y <- cbind(mpg)
+X <- cbind(weight, length, foreign)
+summary(Y)
+summary(X)
+olsreg <- lm(Y ~ X)
+summary(olsreg)
+```
+
+# Linear Regression
+
+[Linear Regression](LinearRegression.html)
+
+# Panel Data Models
+
+[Panel Data Models](PanelDataModels.html)
+
+# Probit and Logit Models
+
+[Probit and Logit Models](ProbitAndLogitModels.html)
+
+# Multinomial Probit and Logit Models
+
+[Multinomial Probit and Logit Models](MultinomialProbitAndLogitModels.html)
+
+# Ordered Probit and Logit Models
+
+[Ordered Probit and Logit Models](OrderedProbitAndLogitModels.html)
+
+# Limited Dependent Varible Models
+
+[Limited Dependent Varible Models](LimitedDependentVariableModels.html)
+
+# Count Data Models
+
+[Count Data Models](CountDataModels.html)
+
+# Survival Analysis
+
+[Survival Analysis](SurvivalAnalysis.html)
+
+# Spatial Econometrics
+
+[Spatial Econometrics](SpatialEconometrics.html)
+
+# Time Series ARIMA Models
+
+[Time Series ARIMA Models](TimeSeriesARIMAModels.html)

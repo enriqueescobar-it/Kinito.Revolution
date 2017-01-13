@@ -1,0 +1,139 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Sam.CrossEntropy", "Sam.CrossEntropy\Sam.CrossEntropy.rxproj", "{D730CB4D-7553-4F54-AFB9-B6FE0BE79EAD}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Sam.GPCEMA", "Sam.GPCEMA\Sam.GPCEMA.rxproj", "{613FD546-2846-48F7-A745-F6FD016FFD98}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Sam.RAS", "Sam.RAS\Sam.RAS.rxproj", "{6FA278D2-F6D5-43D0-BCB1-D8BBFAEA262D}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Sam.Balancing", "Sam.Balancing\Sam.Balancing.rxproj", "{B16C379C-D4C0-414D-8947-91896C72BA5A}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Forecast.Ciudatos", "Forecast.Ciudatos\Forecast.Ciudatos.rxproj", "{33F75628-24CB-4C2F-91C7-61E3E4C7E8B1}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "RobjHyndman.Hyndsight.MelburnTalk", "RobjHyndman.Hyndsight.MelburnTalk\RobjHyndman.Hyndsight.MelburnTalk.rxproj", "{7C0DA94F-E442-4033-AC4E-172C84504965}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "RCommon", "RCommon\RCommon.rxproj", "{D9D3B808-0F67-4B86-8449-8E51FE0B4E93}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Seminar.Undergrad", "Seminar.Undergrad\Seminar.Undergrad.rxproj", "{EF90965D-C3E0-460F-B843-AD648FC151B1}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Seminar.Under.Economy", "Seminar.Under.Economy\Seminar.Under.Economy.rxproj", "{D7F4DC7D-ABA8-48F4-B5A1-9AFAA3121C2C}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Icm.Microarray.Affymetrix", "Icm.Microarray.Affymetrix\Icm.Microarray.Affymetrix.rxproj", "{E911B7F0-6ADF-4459-980C-26431128D68C}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Icm.Microarray.RNASeq", "Icm.Microarray.RNASeq\Icm.Microarray.RNASeq.rxproj", "{2679E01D-FA3B-4262-962B-BAE573874E29}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "JoGEA.WorldBank", "JoGEA.WorldBank\JoGEA.WorldBank.rxproj", "{995453F9-44F3-45F7-B219-10454EBC54DA}"
+EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "AnomalyDetection", "AnomalyDetection\AnomalyDetection.rxproj", "{98C244A8-6DCA-4CE2-926E-6E9DA0BB9368}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D730CB4D-7553-4F54-AFB9-B6FE0BE79EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D730CB4D-7553-4F54-AFB9-B6FE0BE79EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D730CB4D-7553-4F54-AFB9-B6FE0BE79EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D730CB4D-7553-4F54-AFB9-B6FE0BE79EAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{613FD546-2846-48F7-A745-F6FD016FFD98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{613FD546-2846-48F7-A745-F6FD016FFD98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{613FD546-2846-48F7-A745-F6FD016FFD98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{613FD546-2846-48F7-A745-F6FD016FFD98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FA278D2-F6D5-43D0-BCB1-D8BBFAEA262D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FA278D2-F6D5-43D0-BCB1-D8BBFAEA262D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FA278D2-F6D5-43D0-BCB1-D8BBFAEA262D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FA278D2-F6D5-43D0-BCB1-D8BBFAEA262D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B16C379C-D4C0-414D-8947-91896C72BA5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B16C379C-D4C0-414D-8947-91896C72BA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B16C379C-D4C0-414D-8947-91896C72BA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B16C379C-D4C0-414D-8947-91896C72BA5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33F75628-24CB-4C2F-91C7-61E3E4C7E8B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33F75628-24CB-4C2F-91C7-61E3E4C7E8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33F75628-24CB-4C2F-91C7-61E3E4C7E8B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33F75628-24CB-4C2F-91C7-61E3E4C7E8B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C0DA94F-E442-4033-AC4E-172C84504965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C0DA94F-E442-4033-AC4E-172C84504965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C0DA94F-E442-4033-AC4E-172C84504965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C0DA94F-E442-4033-AC4E-172C84504965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9D3B808-0F67-4B86-8449-8E51FE0B4E93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9D3B808-0F67-4B86-8449-8E51FE0B4E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9D3B808-0F67-4B86-8449-8E51FE0B4E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9D3B808-0F67-4B86-8449-8E51FE0B4E93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF90965D-C3E0-460F-B843-AD648FC151B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF90965D-C3E0-460F-B843-AD648FC151B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF90965D-C3E0-460F-B843-AD648FC151B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF90965D-C3E0-460F-B843-AD648FC151B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F4DC7D-ABA8-48F4-B5A1-9AFAA3121C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F4DC7D-ABA8-48F4-B5A1-9AFAA3121C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F4DC7D-ABA8-48F4-B5A1-9AFAA3121C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F4DC7D-ABA8-48F4-B5A1-9AFAA3121C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E911B7F0-6ADF-4459-980C-26431128D68C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E911B7F0-6ADF-4459-980C-26431128D68C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E911B7F0-6ADF-4459-980C-26431128D68C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E911B7F0-6ADF-4459-980C-26431128D68C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2679E01D-FA3B-4262-962B-BAE573874E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2679E01D-FA3B-4262-962B-BAE573874E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2679E01D-FA3B-4262-962B-BAE573874E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2679E01D-FA3B-4262-962B-BAE573874E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{995453F9-44F3-45F7-B219-10454EBC54DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995453F9-44F3-45F7-B219-10454EBC54DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995453F9-44F3-45F7-B219-10454EBC54DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{995453F9-44F3-45F7-B219-10454EBC54DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98C244A8-6DCA-4CE2-926E-6E9DA0BB9368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C244A8-6DCA-4CE2-926E-6E9DA0BB9368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98C244A8-6DCA-4CE2-926E-6E9DA0BB9368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98C244A8-6DCA-4CE2-926E-6E9DA0BB9368}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 14
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://codecademy.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Sam.CrossEntropy\\Sam.CrossEntropy.rxproj
+		SccProjectName1 = Sam.CrossEntropy
+		SccLocalPath1 = Sam.CrossEntropy
+		SccProjectUniqueName2 = Sam.GPCEMA\\Sam.GPCEMA.rxproj
+		SccProjectName2 = Sam.GPCEMA
+		SccLocalPath2 = Sam.GPCEMA
+		SccProjectUniqueName3 = Sam.RAS\\Sam.RAS.rxproj
+		SccProjectName3 = Sam.RAS
+		SccLocalPath3 = Sam.RAS
+		SccProjectUniqueName4 = Sam.Balancing\\Sam.Balancing.rxproj
+		SccProjectName4 = Sam.Balancing
+		SccLocalPath4 = Sam.Balancing
+		SccProjectUniqueName5 = Forecast.Ciudatos\\Forecast.Ciudatos.rxproj
+		SccProjectName5 = Forecast.Ciudatos
+		SccLocalPath5 = Forecast.Ciudatos
+		SccProjectUniqueName6 = RobjHyndman.Hyndsight.MelburnTalk\\RobjHyndman.Hyndsight.MelburnTalk.rxproj
+		SccProjectName6 = RobjHyndman.Hyndsight.MelburnTalk
+		SccLocalPath6 = RobjHyndman.Hyndsight.MelburnTalk
+		SccProjectUniqueName7 = RCommon\\RCommon.rxproj
+		SccProjectName7 = RCommon
+		SccLocalPath7 = RCommon
+		SccProjectUniqueName8 = Seminar.Undergrad\\Seminar.Undergrad.rxproj
+		SccProjectName8 = Seminar.Undergrad
+		SccLocalPath8 = Seminar.Undergrad
+		SccProjectUniqueName9 = Seminar.Under.Economy\\Seminar.Under.Economy.rxproj
+		SccProjectName9 = Seminar.Under.Economy
+		SccLocalPath9 = Seminar.Under.Economy
+		SccProjectUniqueName10 = Icm.Microarray.Affymetrix\\Icm.Microarray.Affymetrix.rxproj
+		SccProjectName10 = Icm.Microarray.Affymetrix
+		SccLocalPath10 = Icm.Microarray.Affymetrix
+		SccProjectUniqueName11 = Icm.Microarray.RNASeq\\Icm.Microarray.RNASeq.rxproj
+		SccProjectName11 = Icm.Microarray.RNASeq
+		SccLocalPath11 = Icm.Microarray.RNASeq
+		SccProjectUniqueName12 = JoGEA.WorldBank\\JoGEA.WorldBank.rxproj
+		SccProjectName12 = JoGEA.WorldBank
+		SccLocalPath12 = JoGEA.WorldBank
+		SccProjectUniqueName13 = AnomalyDetection\\AnomalyDetection.rxproj
+		SccProjectName13 = AnomalyDetection
+		SccLocalPath13 = AnomalyDetection
+	EndGlobalSection
+EndGlobal

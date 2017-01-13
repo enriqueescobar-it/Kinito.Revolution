@@ -1,0 +1,121 @@
+"id","Indicador","anillo","tema","fuente","notas","unidad"
+"CIUDAD","CIUDAD","Indentificación Base de Datos","Indentificación Base de Datos",nan,nan,nan
+"ANIO","AÑO","Indentificación Base de Datos","Indentificación Base de Datos",nan,"Desde 2005 hasta 2014","Año"
+"LOCALIDAD","LOCALIDAD","Indentificación Base de Datos","Indentificación Base de Datos",nan,nan,nan
+"0-PO-27","Población Total","Escenarios Transversales","1. Población y Demografía","DANE",nan,"Número de personas"
+"0-PO-29","Porcentaje de población en el área Urbana","Escenarios Transversales","1. Población y Demografía","DANE",nan,nan
+"0-PD-6","Incidencia pobreza monetaria","Escenarios Transversales","2. Pobreza y desigualdad","DANE",nan,nan
+"0-PD-7","Incidencia pobreza monetaria extrema","Escenarios Transversales","2. Pobreza y desigualdad","DANE",nan,nan
+"0-PD-37","Variación porcentual en el Ingreso promedio del hogar","Escenarios Transversales","2. Pobreza y desigualdad","DANE",nan,nan
+"0-PD-4","coeficiente de Gini de los ingresos","Escenarios Transversales","2. Pobreza y desigualdad","DANE",nan,nan
+"0-PD-32","Tasa de cobertura del programa Unidos","Escenarios Transversales","2. Pobreza y desigualdad","DPS",nan,nan
+"0-PD-27","Porcentaje de familias promovidas en el programa Unidos","Escenarios Transversales","2. Pobreza y desigualdad","DPS",nan,nan
+"0-PD-33","Tasa de trabajo infantil","Escenarios Transversales","2. Pobreza y desigualdad","DANE",nan,nan
+"0-PD-34","Tasa de trabajo infantil ampliado","Escenarios Transversales","2. Pobreza y desigualdad","DANE",nan,nan
+"1-SA-36","Cobertura en aseguramiento","Activos de las personas","3. Salud","Ministerio de Salud",nan,nan
+"1-SA-37","Cobertura en aseguramiento DADIS  (Cartagena)","Activos de las personas","3. Salud","DADIS",nan,nan
+"1-SA-111","Porcentaje de población que requirió el servicio de salud y accedió al mismo","Activos de las personas","3. Salud","EPC-MCV",nan,nan
+"1-SA-183","Tasa de mortalidad general","Activos de las personas","3. Salud","DANE",nan,nan
+"1-SA-185","Tasa de mortalidad materna","Activos de las personas","3. Salud","DANE","Número de madres muertas / total Nacidos vivos *100.000 ",nan
+"1-SA-186","Tasa de mortalidad materna DADIS con ajuste DANE desde 2009 (Cartagena)","Activos de las personas","3. Salud","DADIS",nan,nan
+"1-SA-115","Prevalencia de bajo peso al nacer","Activos de las personas","3. Salud","DANE",nan,nan
+"1-SA-104","Porcentaje de nacidos vivos con bajo peso al nacer DADIS con ajuste DANE (Cartagena)","Activos de las personas","3. Salud","DADIS",nan,nan
+"1-SA-38","Cobertura en vacunación  DTP tercera dosis (menores de un año)","Activos de las personas","3. Salud","Ministerio de Salud",nan,nan
+"1-SA-39","Cobertura en vacunación TV (un año)","Activos de las personas","3. Salud","Ministerio de Salud",nan,nan
+"1-SA-181","Tasa de mortalidad en menores de 1 año","Activos de las personas","3. Salud","DANE",nan,nan
+"1-SA-182","Tasa de mortalidad en menores de 5 años","Activos de las personas","3. Salud","DANE",nan,nan
+"1-ED-12","Cobertura neta en educación inicial (prejardin y jardín)","Activos de las personas","4. Educación","Secretarías de educación de cada ciudad ",nan,nan
+"1-ED-160","Tasa de cobertura neta en preescolar ","Activos de las personas","4. Educación","Secretarías de educación de cada ciudad - Datos archivos ""COBERTURA EN CIFRAS"" cada ciudad, cálculos propios RCCV",nan,nan
+"1-ED-162","Tasa de cobertura neta en Primaria ","Activos de las personas","4. Educación","Secretarías de educación de cada ciudad",nan,nan
+"1-ED-163","Tasa de cobertura neta en Secundaria ","Activos de las personas","4. Educación","Secretarías de educación de cada ciudad",nan,nan
+"1-ED-159","Tasa de cobertura neta en Media ","Activos de las personas","4. Educación","Secretarías de educación de cada ciudad",nan,nan
+"1-ED-173","Tasa de deserción escolar - sector público","Activos de las personas","4. Educación","Secretaría de educación distrital",nan,nan
+"1-ED-53","Porcentaje de estudiantes de 5º con un nivel avanzado o satisfactorio en las pruebas estandarizadas nacionales de matemáticas","Activos de las personas","4. Educación","ICFES",nan,nan
+"1-ED-52","Porcentaje de estudiantes de 5º con un nivel avanzado o satisfactorio en las pruebas estandarizadas nacionales de lenguaje","Activos de las personas","4. Educación","ICFES",nan,nan
+"1-ED-55","Porcentaje de estudiantes de 9º con un nivel avanzado o satisfactorio en las pruebas estandarizadas nacionales de matemáticas","Activos de las personas","4. Educación","ICFES",nan,nan
+"1-ED-54","Porcentaje de estudiantes de 9º con un nivel avanzado o satisfactorio en las pruebas estandarizadas nacionales de lenguaje","Activos de las personas","4. Educación","ICFES",nan,nan
+"1-ED-48","Porcentaje de estudiantes de 11° con dominio del inglés con nivel B1 o B+","Activos de las personas","4. Educación","ICFES",nan,nan
+"1-ED-124","resultados prueba saber 11","Activos de las personas","4. Educación","Secretaria de educacion municipal de cada ciudad.",nan,nan
+"1-ML-55","Tasa global de participacion","Activos de las personas","5. Mercado laboral (Empleo)","DANE",nan,nan
+"1-ML-51","Tasa de ocupación ","Activos de las personas","5. Mercado laboral (Empleo)","DANE",nan,nan
+"1-ML-49","Tasa de informalidad","Activos de las personas","5. Mercado laboral (Empleo)","DANE",nan,nan
+"1-ML-41","Tasa de desempleo","Activos de las personas","5. Mercado laboral (Empleo)","DANE",nan,nan
+"1-ML-46","Tasa de desempleo juvenil (15  25 años)","Activos de las personas","5. Mercado laboral (Empleo)","DANE",nan,nan
+"1-SC-319","Porcentaje de la población que fue víctima de un delito en los últimos 12 meses","Activos de las personas","6. Seguridad ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"1-SC-315","Porcentaje de ciudadanos que fueron víctimas de algún delito y denunciaron el hecho","Activos de las personas","6. Seguridad ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"1-SC-317","Porcentaje de ciudadanos que se sienten seguros o muy seguros en la ciudad","Activos de las personas","6. Seguridad ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"1-SC-320","Porcentaje de victimas de hurto a personas en la vía pública","Activos de las personas","6. Seguridad ciudadana","DANE",nan,nan
+"1-SC-353","Tasa de Homicidios por cada 100 mil habitantes","Activos de las personas","6. Seguridad ciudadana","Instituto Nacional de Medicina Legal - Policia Nacional de la ciudad",nan,nan
+"1-SC-354","Tasa de Homicidios por cada 100 mil habitantes COSED (Cartagena)","Activos de las personas","6. Seguridad ciudadana","COSED",nan,nan
+"1-SC-358","Tasa de lesiones personales","Activos de las personas","6. Seguridad ciudadana","Instituto Nacional de Medicina Legal - Medicina legal suroccidente",nan,nan
+"1-SC-351","Tasa de homicidios de personas entre 15 y 24 años de edad  ","Activos de las personas","6. Seguridad ciudadana","Instituto Nacional de Medicina Legal - Policia Nacional de la ciudad",nan,nan
+"1-SC-352","Tasa de homicidios de personas entre 15 y 24 años de edad  COSED (Cartagena)","Activos de las personas","6. Seguridad ciudadana","Instituto Nacional de Medicina Legal - Policia Nacional de la ciudad",nan,nan
+"1-SC-339","Tasa de adolescentes capturados por cada mil adolescentes (14 a 17 años)","Activos de las personas","6. Seguridad ciudadana","ICBF",nan,nan
+"1-SC-161","Indice de intensidad (expulsión) del desplazamiento forzado","Activos de las personas","6. Seguridad ciudadana","DPS",nan,nan
+"1-SC-314","Porcentaje de ciudadanos que fue extorsionado o lo han intentado extorsionar","Activos de las personas","6. Seguridad ciudadana","DANE",nan,nan
+"1-SC-355","Tasa de hurto a automóviles","Activos de las personas","6. Seguridad ciudadana","Policía Nacional",nan,nan
+"1-SC-357","Tasa de hurto de motocicletas","Activos de las personas","6. Seguridad ciudadana","Policía Nacional",nan,nan
+"2-VI-1","% de personas que se encuentran satisfechas o muy satisfechas con la vivienda que habitan","Hábitat Urbano","7. Vivienda y Servicios públicos","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"2-VI-82","Participación porcentual de la VIS en total de unidades de vivienda licenciadas","Hábitat Urbano","7. Vivienda y Servicios públicos","DANE",nan,nan
+"2-VI-159","Tasa de cobertura del servicio de Acueducto","Hábitat Urbano","7. Vivienda y Servicios públicos","Empresas de Servicios Públicos de cada ciudad - EMCALI",nan,nan
+"2-VI-92","Porcentaje de población que manifiesta estar satisfecho o muy satisfecho con el servicio de Acueducto","Hábitat Urbano","7. Vivienda y Servicios públicos","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"2-VI-89","Porcentaje de agua tratada no contabilizada en facturación","Hábitat Urbano","7. Vivienda y Servicios públicos","Empresas de Servicios Públicos de cada ciudad",nan,nan
+"2-VI-160","Tasa de cobertura del servicio de Alcantarillado","Hábitat Urbano","7. Vivienda y Servicios públicos","Empresas de Servicios Públicos de cada ciudad",nan,nan
+"2-VI-93","Porcentaje de población que manifiesta estar satisfecho o muy satisfecho con el servicio de Alcantarillado","Hábitat Urbano","7. Vivienda y Servicios públicos","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"2-VI-161","Tasa de cobertura del servicio de Aseo","Hábitat Urbano","7. Vivienda y Servicios públicos","Empresas de Servicios Públicos de cada ciudad - servigenerales",nan,nan
+"2-VI-94","Porcentaje de población que manifiesta estar satisfecho o muy satisfecho con el servicio de Aseo","Hábitat Urbano","7. Vivienda y Servicios públicos","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"2-VI-162","Tasa de cobertura del servicio de Energía","Hábitat Urbano","7. Vivienda y Servicios públicos","Empresas de Servicios Públicos de cada ciudad",nan,nan
+"2-VI-95","Porcentaje de población que manifiesta estar satisfecho o muy satisfecho con el servicio de Energía","Hábitat Urbano","7. Vivienda y Servicios públicos","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"2-MA-17","Consumo anual de energía eléctrica por habitante","Hábitat Urbano","8. Medio ambiente","Superintendencia de Servicios públicos-SUI","Kw/hora al año",nan
+"2-MA-16","Consumo anual de agua por habitante","Hábitat Urbano","8. Medio ambiente","Superintendencia de Servicios públicos-SUI","Litros/día",nan
+"2-MA-186","Porcentaje de aguas residuales que reciben tratamiento de acuerdo a normas nacionales ","Hábitat Urbano","8. Medio ambiente","Empresa de Alcantarillado de cada ciudad",nan,nan
+"2-MA-31","Generación de residuos sólidos urbanos (Kg diarios por habitante)","Hábitat Urbano","8. Medio ambiente","Empresas de Servicios Públicos de cada ciudad","Kg diarios por habitante",nan
+"2-MA-30","Existencia, monitoreo y cumplimiento de regulaciones sobre polución acústica ","Hábitat Urbano","8. Medio ambiente","Autoridades ambientales de cada ciudad",nan,nan
+"2-MA-191","Porcentaje de población afectada por desastres naturales","Hábitat Urbano","8. Medio ambiente","Sistema Nacional de Atención y Prevención de Desastres",nan,nan
+"2-MO-213","Porcentaje de personas que se sienten satisfechas o muy satisfechas con el medio de transporte que utilizan habitualmente","Hábitat Urbano","9. Movilidad","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"2-MO-274","Variación en el número de pasajeros del tranporte público","Hábitat Urbano","9. Movilidad","DANE",nan,nan
+"2-MO-126","No. de automóviles por cada 100 hab.","Hábitat Urbano","9. Movilidad","Secretaria de Tránsito de cada ciudad",nan,nan
+"2-MO-127","No. de motos por cada 100 hab.","Hábitat Urbano","9. Movilidad","Secretaria de Tránsito de cada ciudad",nan,nan
+"2-MO-257","Tasa de mortalidad por accidentes de tránsito","Hábitat Urbano","9. Movilidad","Instituto Nacional de Medicina Legal",nan,nan
+"2-MO-258","Tasa de mortalidad por accidentes de tránsito COSED (Cartagena)","Hábitat Urbano","9. Movilidad","COSED",nan,nan
+"2-MO-255","Tasa de lesionados en accidentes tránsito","Hábitat Urbano","9. Movilidad","Instituto Nacional de Medicina Legal",nan,nan
+"2-MO-101","Kilómetros de ciclovías exclusivas existentes","Hábitat Urbano","9. Movilidad","Secretarías de tránsito de cada ciudad",nan,nan
+"2-MO-214","Porcentaje de víctimas conductores","Hábitat Urbano","9. Movilidad","Instituto Nacional de Medicina Legal",nan,nan
+"2-MO-216","Porcentaje de víctimas peatones","Hábitat Urbano","9. Movilidad","Instituto Nacional de Medicina Legal",nan,nan
+"2-MO-215","Porcentaje de víctimas pasajeros","Hábitat Urbano","9. Movilidad","Instituto Nacional de Medicina Legal",nan,nan
+"2-MO-209","Porcentaje de lesionados conductores","Hábitat Urbano","9. Movilidad","Instituto Nacional de Medicina Legal",nan,nan
+"2-MO-211","Porcentaje de lesionados peatones","Hábitat Urbano","9. Movilidad","Instituto Nacional de Medicina Legal",nan,nan
+"2-MO-210","Porcentaje de lesionados pasajeros","Hábitat Urbano","9. Movilidad","Instituto Nacional de Medicina Legal",nan,nan
+"2-EP-16","Metros cuadrados de espacio público efectivo por habitante(parques, plazas, plazoletas, zonas verdes)","Hábitat Urbano","10. Espacio público","Secretarías de Planeación de cada ciudad",nan,nan
+"3-CD-45","Porcentaje población que leyó por lo menos un libro","Buen Gobierno y Ciudadanía","11. Cultura, turismo, recreación y deporte","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CD-43","Porcentaje de población que participa de alguna actividad cultural","Buen Gobierno y Ciudadanía","11. Cultura, turismo, recreación y deporte","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CD-44","Porcentaje de población que participa en al menos una actividad deportiva o recreativa","Buen Gobierno y Ciudadanía","11. Cultura, turismo, recreación y deporte","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-31","Porcentaje de población que pertenece a alguna organización social","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-12","Porcentaje de participación electoral Cámara","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Registraduría Nacional",nan,nan
+"3-CC-1","% de población que considera que la ALCALDIA esta haciendo acciones por mejorar su calidad de vida","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-20","Porcentaje de población que considera que la CONCEJO esta haciendo acciones por mejorar su calidad de vida","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-22","Porcentaje de población que considera que la GOBIERNO NACIONAL esta haciendo acciones por mejorar su calidad de vida","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-21","Porcentaje de población que considera que la EMPRESA PRIVADA esta haciendo acciones por mejorar su calidad de vida","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-23","Porcentaje de población que considera que la LAS UNIVERSIDADES esta haciendo acciones por mejorar su calidad de vida","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-30","Porcentaje de población que considera que NINGUNA entidad esta haciendo acciones por mejorar su calidad de vida","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-24","Porcentaje de población que considera que los residentes de su ciudad se comportan bien o muy bien frente a CUIDADO Y USO DE LOS ESPACIOS PÚBLICOS","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-29","Porcentaje de población que considera que los residentes de su ciudad se comportan bien o muy bien frente al  CUMPLIMIENTO DE LAS NORMAS BÁSICAS DE TRÁNSITO","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-25","Porcentaje de población que considera que los residentes de su ciudad se comportan bien o muy bien frente a RESPETO DE LAS NORMAS AMBIENTALES","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-26","Porcentaje de población que considera que los residentes de su ciudad se comportan bien o muy bien frente a RESPETO POR LA VIDA","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-28","Porcentaje de población que considera que los residentes de su ciudad se comportan bien o muy bien frente a RESPETO POR LAS NIÑAS Y NIÑOS","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-27","Porcentaje de población que considera que los residentes de su ciudad se comportan bien o muy bien frente a RESPETO POR LAS MUJERES","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-17","Porcentaje de población que considera probable o muy probable ser castigado o amonestado por INFRINGIR LAS NORMAS Y SEÑALES DE TRÁNSITO","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-18","Porcentaje de población que considera probable o muy probable ser castigado o amonestado por NO PAGAR IMPUESTOS ","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-CC-19","Porcentaje de población que considera probable o muy probable ser castigado o amonestado por PORTAR ARMAS","Buen Gobierno y Ciudadanía","12. Participación y cultura ciudadana","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-GP-49","Índice de Gobierno Abierto","Buen Gobierno y Ciudadanía","13. Finanzas y gestión pública","Procuraduría General de Nación",nan,nan
+"3-GP-74","Ingresos propios como porcentaje de ingresos totales","Buen Gobierno y Ciudadanía","13. Finanzas y gestión pública","Contaduría General de la Nación-FUT",nan,nan
+"3-GP-87","Ingresos tributarios por habitante","Buen Gobierno y Ciudadanía","13. Finanzas y gestión pública","Contaduría General de la Nación-FUT - Secretaría de hacienda de cada ciudad ",nan,nan
+"3-GP-230","Transferencias totales como porcentaje del ingreso total","Buen Gobierno y Ciudadanía","13. Finanzas y gestión pública","Contaduría General de la Nación-FUT",nan,nan
+"3-GP-38","Gasto inversión como porcentaje del gasto total","Buen Gobierno y Ciudadanía","13. Finanzas y gestión pública","Contaduría General de la Nación-FUT",nan,nan
+"3-GP-143","Inversión total por habitante","Buen Gobierno y Ciudadanía","13. Finanzas y gestión pública","Contaduría General de la Nación-FUT",nan,nan
+"3-GP-209","Saldo de la deuda/ingresos corrientes (ley 358  1997","Buen Gobierno y Ciudadanía","13. Finanzas y gestión pública","SECRETARÍA DE HACIENDA MUNICIPAL",nan,nan
+"3-GP-183","Porcentaje de ciudadanos que se siente satisfecho o muy satisfechos con la forma como la alcaldía invierte los recursos","Buen Gobierno y Ciudadanía","13. Finanzas y gestión pública","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"3-GP-182","Porcentaje de ciudadanos que califica la gestión del alcalde con 4 o 5 en escala de 1 a 5","Buen Gobierno y Ciudadanía","13. Finanzas y gestión pública","Encuestas de Percepción Ciudadana, Cómo Vamos",nan,nan
+"4-EE-79","Tasa de inflación","Entorno económico y competitividad","14. Entorno económico","DANE",nan,nan
+"4-EE-83","Tasa de penetración de internet","Entorno económico y competitividad","14. Entorno económico","Ministerio de Tecnologías de la Información y las Comunicaciones",nan,nan
+"4-EE-66","Posición ocupada en ranking nacional del Doing Bussines","Entorno económico y competitividad","14. Entorno económico","Banco Mundial",nan,nan

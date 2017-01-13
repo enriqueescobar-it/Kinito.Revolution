@@ -1,0 +1,31 @@
+Cell culture & clinical materials
+NF-NoSE
+F-BRCA1
+F-BRCA2
+F-TOV1
+F-TOV2
+
+RNA extraction
+
+Reverse Transcription
+
+Microarray analysis
+Affymetrix HuFL GeneChip
+R
+BioconductoR
+NCB GEO Database GSE34928
+
+Supervised analysis
+NF-NoSE vs F-NoSE1
+NF-NoSE vs F-NoSE2
+F-NoSE1 vs F-NoSE2
+F-NoSEs vs F-TOVs
+
+Hierarchical clustering
+DEPS Differentially expressed probe sets
+hclust
+stats
+
+q-RT-PCR, BRCA1, BRCA2 & 4 candidate genes
+QuantiﬁcationofFILIP1L,SAA2,ANXA8L2,MPI,BRCA1, andBRCA2byq-RT-PC
+

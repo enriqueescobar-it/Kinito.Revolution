@@ -1,0 +1,1383 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<MINiML
+   xmlns="http://www.ncbi.nlm.nih.gov/geo/info/MINiML"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.ncbi.nlm.nih.gov/geo/info/MINiML http://www.ncbi.nlm.nih.gov/geo/info/MINiML.xsd"
+   version="0.5.0" >
+
+  <Contributor iid="contrib1">
+    <Person><First>Diala</First><Last>Abed-Rabbo</Last></Person>
+    <Email>diala.abd.rabbo@umontreal.ca</Email>
+    <Organization>Université de Montréal</Organization>
+    <Address>
+      <Line>C.P. 6128, succursale Centre-ville </Line>
+      <City>Montréal</City>
+      <Postal-Code>H3C 3J7</Postal-Code>
+      <Country>Canada</Country>
+    </Address>
+  </Contributor>
+
+  <Contributor iid="contrib2">
+    <Organization></Organization>
+    <Email>geo@ncbi.nlm.nih.gov, support@affymetrix.com</Email>
+    <Phone>888-362-2447</Phone>
+    <Organization>Affymetrix, Inc.</Organization>
+    <Address>
+      <City>Santa Clara</City>
+      <State>CA</State>
+      <Zip-Code>95051</Zip-Code>
+      <Country>USA</Country>
+    </Address>
+    <Web-Link>http://www.affymetrix.com/index.affx</Web-Link>
+  </Contributor>
+
+  <Contributor iid="contrib3">
+    <Person><First>Diala</First><Last>Abd-Rabbo</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib4">
+    <Person><First>Christine</First><Last>Abaji</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib5">
+    <Person><First>Guillaume</First><Middle>B</Middle><Last>Cardin</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib6">
+    <Person><First>Ali</First><Last>Filali-Mouhim</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib7">
+    <Person><First>Caroline</First><Last>Arous</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib8">
+    <Person><First>L</First><Last>Portelance</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib9">
+    <Person><First>D</First><Middle>E</Middle><Last>Escobar</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib10">
+    <Person><First>Sofie</First><Last>Cloutier</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib11">
+    <Person><First>Patricia</First><Middle>N</Middle><Last>Tonin</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib12">
+    <Person><First>Diane</First><Middle>M</Middle><Last>Provencher</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib13">
+    <Person><First>Anne</First><Middle>M</Middle><Last>Mes-Masson</Last></Person>
+  </Contributor>
+
+  <Contributor iid="contrib14">
+    <Person><First>Christine</First><Middle>M</Middle><Last>Maugard</Last></Person>
+  </Contributor>
+
+  <Database iid="GEO">
+    <Name>Gene Expression Omnibus (GEO)</Name>
+    <Public-ID>GEO</Public-ID>
+    <Organization>NCBI NLM NIH</Organization>
+    <Web-Link>http://www.ncbi.nlm.nih.gov/geo</Web-Link>
+    <Email>geo@ncbi.nlm.nih.gov</Email>
+  </Database>
+
+  <Platform iid="GPL80">
+    <Status database="GEO">
+      <Submission-Date>2002-02-19</Submission-Date>
+      <Release-Date>2002-03-11</Release-Date>
+      <Last-Update-Date>2016-07-08</Last-Update-Date>
+    </Status>
+    <Title>[Hu6800] Affymetrix Human Full Length HuGeneFL Array</Title>
+    <Accession database="GEO">GPL80</Accession>
+    <Technology>in situ oligonucleotide</Technology>
+    <Distribution>commercial</Distribution>
+    <Organism taxid="9606">Homo sapiens</Organism>
+    <Manufacturer>Affymetrix</Manufacturer>
+    <Manufacture-Protocol>
+see manufacturer's web site
+    </Manufacture-Protocol>
+    <Description>
+Affymetrix submissions are typically submitted to GEO using the GEOarchive method described at http://www.ncbi.nlm.nih.gov/projects/geo/info/geo_affy.html
+
+Has 7129 entries and was indexed 29-Jan-2002.
+Probes represent approximately 5,000 full-length human sequences.
+
+Keywords = high density oligonucleotide array
+July 08, 2016: annotation table updated with netaffx build 35
+    </Description>
+    <Web-Link>http://www.affymetrix.com/support/technical/byproduct.affx?product=hugenefl</Web-Link>
+    <Web-Link>http://www.affymetrix.com/analysis/index.affx</Web-Link>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID</Name>
+        <Description>Affymetrix Probe Set ID </Description>
+        <Link-Prefix>https://www.affymetrix.com/LinkServlet?array=HUGENEFL&amp;probeset=</Link-Prefix>
+      </Column>
+      <Column position="2">
+        <Name>GB_ACC</Name>
+        <Description>GenBank Accession Number </Description>
+        <Link-Prefix>http://www.ncbi.nlm.nih.gov/nuccore/?term=</Link-Prefix>
+      </Column>
+      <Column position="3">
+        <Name>SPOT_ID</Name>
+        <Description>identifies controls</Description>
+      </Column>
+      <Column position="4">
+        <Name>Species Scientific Name</Name>
+        <Description>The genus and species of the organism represented by the probe set.</Description>
+      </Column>
+      <Column position="5">
+        <Name>Annotation Date</Name>
+        <Description>The date that the annotations for this probe array were last updated. It will generally be earlier than the date when the annotations were posted on the Affymetrix web site.</Description>
+      </Column>
+      <Column position="6">
+        <Name>Sequence Type</Name>
+      </Column>
+      <Column position="7">
+        <Name>Sequence Source</Name>
+        <Description>The database from which the sequence used to design this probe set was taken.</Description>
+      </Column>
+      <Column position="8">
+        <Name>Target Description</Name>
+        <Description>GenBank description associated with the representative public identifier. Blank for some probe sets.</Description>
+      </Column>
+      <Column position="9">
+        <Name>Representative Public ID</Name>
+        <Description>The accession number of a representative sequence. Note that for consensus-based probe sets, the representative sequence is only one of several sequences (sequence sub-clusters) used to build the consensus sequence and it is not directly used to derive the probe sequences. The representative sequence is chosen during array design as a sequence that is best associated with the transcribed region being interrogated by the probe set. Refer to the &quot;Sequence Source&quot; field to determine the database used.</Description>
+      </Column>
+      <Column position="10">
+        <Name>Gene Title</Name>
+        <Description>Title of Gene represented by the probe set.</Description>
+      </Column>
+      <Column position="11">
+        <Name>Gene Symbol</Name>
+        <Description>A gene symbol, when one is available (from UniGene).</Description>
+      </Column>
+      <Column position="12">
+        <Name>ENTREZ_GENE_ID</Name>
+        <Description>Entrez Gene Database UID  </Description>
+        <Link-Prefix>http://www.ncbi.nlm.nih.gov/gene/</Link-Prefix>
+        <Link-Delimiter> /// </Link-Delimiter>
+      </Column>
+      <Column position="13">
+        <Name>RefSeq Transcript ID</Name>
+        <Description>References to multiple sequences in RefSeq. The field contains the ID and Description for each entry, and there can be multiple entries per ProbeSet.</Description>
+      </Column>
+      <Column position="14">
+        <Name>Gene Ontology Biological Process</Name>
+        <Description>Gene Ontology Consortium Biological Process derived from LocusLink.  Each annotation consists of three parts: &quot;Accession Number // Description // Evidence&quot;. The description corresponds directly to the GO ID. The evidence can be &quot;direct&quot;, or &quot;extended&quot;.</Description>
+      </Column>
+      <Column position="15">
+        <Name>Gene Ontology Cellular Component</Name>
+        <Description>Gene Ontology Consortium Cellular Component derived from LocusLink.  Each annotation consists of three parts: &quot;Accession Number // Description // Evidence&quot;. The description corresponds directly to the GO ID. The evidence can be &quot;direct&quot;, or &quot;extended&quot;.</Description>
+      </Column>
+      <Column position="16">
+        <Name>Gene Ontology Molecular Function</Name>
+        <Description>Gene Ontology Consortium Molecular Function derived from LocusLink.  Each annotation consists of three parts: &quot;Accession Number // Description // Evidence&quot;. The description corresponds directly to the GO ID. The evidence can be &quot;direct&quot;, or &quot;extended&quot;.</Description>
+      </Column>
+    <External-Data rows="7129">
+GPL80-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Platform>
+
+  <Sample iid="GSM857550">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>NM-3</Title>
+    <Accession database="GEO">GSM857550</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>NOV_116G</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age">
+51
+      </Characteristics>
+      <Characteristics tag="cancer history">
+No
+      </Characteristics>
+      <Characteristics tag="carrier">
+No
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="Stage">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="grade">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Morphologically normal ovarian surface epithelium cells
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+13
+      </Characteristics>
+      <Characteristics tag="class">
+NM
+      </Characteristics>
+      <Biomaterial-Provider>Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM)
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857550/GSM857550_NM_3.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857550-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857551">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>NM_5</Title>
+    <Accession database="GEO">GSM857551</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>NOV_504D</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age">
+37
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+No
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA1 2953del3+C
+      </Characteristics>
+      <Characteristics tag="Stage">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="grade">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Morphologically normal ovarian surface epithelium cells
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+8
+      </Characteristics>
+      <Characteristics tag="class">
+NM
+      </Characteristics>
+      <Biomaterial-Provider>Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857551/GSM857551_NM_5.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857551-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857552">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>NM_6</Title>
+    <Accession database="GEO">GSM857552</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>NOV_900G</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age">
+45
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+No
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA2 G6085T
+      </Characteristics>
+      <Characteristics tag="Stage">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="grade">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Morphologically normal ovarian surface epithelium cells
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+8
+      </Characteristics>
+      <Characteristics tag="class">
+NM
+      </Characteristics>
+      <Biomaterial-Provider>Biomaterial provider : Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM)
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857552/GSM857552_NM_6.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857552-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857553">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>NM_7</Title>
+    <Accession database="GEO">GSM857553</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>NOV_910G</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age">
+49
+      </Characteristics>
+      <Characteristics tag="cancer history">
+No
+      </Characteristics>
+      <Characteristics tag="carrier">
+No
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="Stage">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="grade">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Morphologically normal ovarian surface epithelium cells
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+5
+      </Characteristics>
+      <Characteristics tag="class">
+NM
+      </Characteristics>
+      <Biomaterial-Provider>Biomaterial provider : Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857553/GSM857553_NM_7.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857553-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857554">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>M1_9</Title>
+    <Accession database="GEO">GSM857554</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>NOV_319</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age">
+44
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+Yes
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA1 C4446T
+      </Characteristics>
+      <Characteristics tag="Stage">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="grade">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Morphologically normal ovarian surface epithelium cells
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+9
+      </Characteristics>
+      <Characteristics tag="class">
+M1
+      </Characteristics>
+      <Biomaterial-Provider>Biomaterial provider : Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857554/GSM857554_M1_9.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857554-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857555">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>M1_10</Title>
+    <Accession database="GEO">GSM857555</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>NOV_653G</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age">
+38
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+Yes
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA1 2953del3+C
+      </Characteristics>
+      <Characteristics tag="Stage">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="grade">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Morphologically normal ovarian surface epithelium cells
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+8
+      </Characteristics>
+      <Characteristics tag="class">
+M1
+      </Characteristics>
+      <Biomaterial-Provider>Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857555/GSM857555_M1_10.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857555-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857556">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>M2_12</Title>
+    <Accession database="GEO">GSM857556</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>NOV_848D</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age">
+50
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Colon cancer at the age of 47, breast cancer at the age of 49 and familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+Yes
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA2 G6085T
+      </Characteristics>
+      <Characteristics tag="Stage">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="grade">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Morphologically normal ovarian surface epithelium cells
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+4
+      </Characteristics>
+      <Characteristics tag="class">
+M2
+      </Characteristics>
+      <Biomaterial-Provider>Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857556/GSM857556_M2_12.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857556-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857557">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>M2_13</Title>
+    <Accession database="GEO">GSM857557</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>NOV_1181</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age">
+48
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+Yes
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA2 8765delAG
+      </Characteristics>
+      <Characteristics tag="Stage">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="grade">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Morphologically normal ovarian surface epithelium cells
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+6
+      </Characteristics>
+      <Characteristics tag="class">
+M2
+      </Characteristics>
+      <Biomaterial-Provider>Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857557/GSM857557_M2_13.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857557-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857558">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>M2_14</Title>
+    <Accession database="GEO">GSM857558</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>NOV_1275G</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age">
+43
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+Yes
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA2 8765delAG
+      </Characteristics>
+      <Characteristics tag="Stage">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="grade">
+Not Applicable
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Morphologically normal ovarian surface epithelium cells
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+4
+      </Characteristics>
+      <Characteristics tag="class">
+M2
+      </Characteristics>
+      <Biomaterial-Provider>Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857558/GSM857558_M2_14.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857558-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857559">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>TM1_19</Title>
+    <Accession database="GEO">GSM857559</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>EP-730</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age at surgery">
+40
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+Yes
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA1 4446C&gt;T
+      </Characteristics>
+      <Characteristics tag="Stage">
+IIIC
+      </Characteristics>
+      <Characteristics tag="grade">
+3
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Primary culture - Epiploon Cystadenocarcinoma Serous
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+11
+      </Characteristics>
+      <Characteristics tag="class">
+TM1
+      </Characteristics>
+      <Biomaterial-Provider>Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857559/GSM857559_TM1_19.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857559-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857560">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>TM1_20</Title>
+    <Accession database="GEO">GSM857560</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>OV-747</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age at surgery">
+60
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+Yes
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA1 4446C&gt;T
+      </Characteristics>
+      <Characteristics tag="Stage">
+IIIC
+      </Characteristics>
+      <Characteristics tag="grade">
+3
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Primary culture - Ascitis Cells Cystadenocarcinoma Serous
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+7
+      </Characteristics>
+      <Characteristics tag="class">
+TM1
+      </Characteristics>
+      <Biomaterial-Provider>Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857560/GSM857560_TM1_20.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857560-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857561">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>TM1_21</Title>
+    <Accession database="GEO">GSM857561</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>OV-893</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age at surgery">
+57
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+Yes
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA1 4446C&gt;T
+      </Characteristics>
+      <Characteristics tag="Stage">
+IV
+      </Characteristics>
+      <Characteristics tag="grade">
+3
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Primary culture - Ascitis cells - Cystadenocarcinoma Endometrioid
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+13
+      </Characteristics>
+      <Characteristics tag="class">
+TM1
+      </Characteristics>
+      <Biomaterial-Provider>Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857561/GSM857561_TM1_21.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857561-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Sample iid="GSM857562">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2012-06-15</Last-Update-Date>
+    </Status>
+    <Title>TM2_22</Title>
+    <Accession database="GEO">GSM857562</Accession>
+    <Type>RNA</Type>
+    <Channel-Count>1</Channel-Count>
+    <Channel position="1">
+      <Source>OV-552</Source>
+      <Organism taxid="9606">Homo sapiens</Organism>
+      <Characteristics tag="age at surgery">
+56
+      </Characteristics>
+      <Characteristics tag="cancer history">
+Familial cancer history
+      </Characteristics>
+      <Characteristics tag="carrier">
+Yes
+      </Characteristics>
+      <Characteristics tag="familial mutation">
+BRCA2 8765delAG
+      </Characteristics>
+      <Characteristics tag="Stage">
+IV
+      </Characteristics>
+      <Characteristics tag="grade">
+2
+      </Characteristics>
+      <Characteristics tag="cell origin">
+Primary culture - Ascitis cells - Cystadenocarcinoma Serous papillary
+      </Characteristics>
+      <Characteristics tag="culture medium">
+OSE
+      </Characteristics>
+      <Characteristics tag="passage">
+8
+      </Characteristics>
+      <Characteristics tag="class">
+TM2
+      </Characteristics>
+      <Biomaterial-Provider>Fonds de la recherche en santé du Québec (FRSQ) Cancer Research Network (RR-Cancer) Tumor Bank of the Centre hospitalier de l’Université de Montréal (CHUM).
+</Biomaterial-Provider>
+      <Treatment-Protocol>
+Morphologically normal surface epithelium cells were obtained by gently scraping, 2-3 times with a rubber scraper, the ovarian surface epithelium of the surgical specimen provided by the pathologist. The cells collected were then seeded in standard OSE medium consisting of 50:50 medium 199:105 (Sigma) supplemented with 15% fetal bovine serum (FBS), 2.5 µg/mL amphotericin B and 50 µg/mL gentamicin.
+      </Treatment-Protocol>
+      <Growth-Protocol>
+After rinsing, an explant of the surgical specimen was placed in 35-mm culture dishes, and held surface down so that the ovarian surface epithelium was maintained in a small amount of medium in contact with the bottom of the culture dishes, allowing the NOSEs to colonize the plastic. The cells were then passaged at 80% of confluence. A subgroup of NOSEs was cultivated in a modified medium (MM) i.e. the standard OSE medium supplemented with epidermal growth factor, hydrocortisone, insulin and bovine pituitary extract. Finally, tumors of ovaries (TOVs) were established in OSE medium supplemented with 10% FBS.
+      </Growth-Protocol>
+      <Molecule>total RNA</Molecule>
+      <Extract-Protocol>
+Total RNA was extracted with TRIzolTM reagent (Gibco/BRL, Life Technologies Inc., Burlington, ON, Canada). RNA was extracted directly from homogenized cells grown to 80% confluence in 100-mm Petri dishes. RNA quality was monitored with a 2100 Bioanalyzer and RNA 6000 Nano LabChip kit (Agilent Technologies, Missisauga, Ontario, Canada) according to the manufacturer’s protocol.
+      </Extract-Protocol>
+      <Label>Biotin</Label>
+      <Label-Protocol>
+Reverse Transcription was performed on 1 µg of total RNA with the SuperScriptTM First-Strand Synthesis System (Invitrogen Canada Inc., Burlington, Ontario, Canada) and random hexamers, according to the procedure recommended by the manufacturer. c-DNA samples were diluted at 1/3 or 1/6 in water prior to q-RT-PCR. Three µl of this dilution were used for each experiment. An in vitro transcription was performed on this cDNA and the resulting cRNA was biotinylated via incorporation of biotinylated dUTP and dCTP. DNA from samples was fragmented in 40mM Tris acetate, 100mM potassium acetate, and 30mM MgCl2 (pH 8.1) at 951C in order to reduce secondary structure.
+      </Label-Protocol>
+    </Channel>
+    <Hybridization-Protocol>
+A measure of 15 mg of cRNA was hybridized to an Affymetrix HuGeneFL microarray. Following hybridization, the arrays were washed and stained with streptavidin-phycoerythrin.
+    </Hybridization-Protocol>
+    <Scan-Protocol>
+Microarrays were scanned with a Hewlett Packard Gene Array scanner.
+    </Scan-Protocol>
+    <Data-Processing>
+Gene expression data were corrected for background using the Robust Multiarray Averaging (RMA) package, normalized using the Quantile method and summarized using the Median Polish method. Differentially-expressed probesets (DEPS) were identified on the basis of a moderated t-statistic computed with the Bioconductor Limma package for each contrast of two a priori classes of samples. The Benjamini and Hochberg (BH) correction method was applied to control the false discovery rate across all genes. DEPS retained as candidates correspond to probesets with q-value (adjusted BH p-values) ≤ 0.05 for most of the comparisons with the exception of the M1/2 vs. TM1/2 contrast where q-value was ≤ 0.2.
+    </Data-Processing>
+    <Platform-Ref ref="GPL80" />
+    <Contact-Ref ref="contrib1" />
+    <Supplementary-Data type="CEL">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/samples/GSM857nnn/GSM857562/GSM857562_TM2_22.CEL.gz
+    </Supplementary-Data>
+    <Data-Table>
+      <Column position="1">
+        <Name>ID_REF</Name>
+      </Column>
+      <Column position="2">
+        <Name>VALUE</Name>
+        <Description>RMA signal</Description>
+      </Column>
+    <External-Data rows="7129">
+GSM857562-tbl-1.txt
+    </External-Data>
+    </Data-Table>
+  </Sample>
+
+  <Series iid="GSE34928">
+    <Status database="GEO">
+      <Submission-Date>2012-01-08</Submission-Date>
+      <Release-Date>2012-06-15</Release-Date>
+      <Last-Update-Date>2016-07-08</Last-Update-Date>
+    </Status>
+    <Title>Gene Expression in Normal and Tumor Ovarian Epithelial Cells from Non-carriers and Heterozygous Carriers of a BRCA French Canadian Mutation.</Title>
+    <Accession database="GEO">GSE34928</Accession>
+    <Pubmed-ID>22401979</Pubmed-ID>
+    <Summary>
+We hypothesized that the transcriptome of primary cultures of morphologically normal ovarian surface epithelial cells could be altered by the presence of a heterozygous BRCA1 or BRCA2 mutation. We aimed to discover early events associated to ovarian carcinogenesis, which could represent putative targets for preventive strategies of this silent killer tumor. We identified the first molecular signature associated with French Canadian BRCA1 or BRCA2  founder mutations in morphologically normal ovarian epithelial cells. We discovered that wild-type and mutated BRCA2 allelic transcripts were expressed not only in morphologically normal but also in tumor cells from 8765delAG BRCA2 carriers.  Further analysis of morphologically normal ovarian and tumor cells from C4446T BRCA1 carriers lead to the same observation. Our data support the idea that one single hit in BRCA1 or BRCA2 is sufficient to alter the transcriptome of phenotypically normal ovarian epithelial cell. The highest level of BRCA2 mutated allele transcript expression was measured in cells originating from the most aggressive ovarian tumor. The penetrance of the mutation and the aggressiveness of the related tumor could depend on a dosage effect of the mutated allele transcript.
+    </Summary>
+    <Overall-Design>
+We studied the molecular profiles associated with 5 a priori classes of samples : 4 non-familial morphologically normal ovarian surface epithelium (NOSEs) : NM class, 2 BRCA1-mutated NOSEs : M1 class, 3 BRCA2-mutated NOSEs : M2 class, 3 BRCA1-mutated ovarian tumor cells (TOVs) : TM1 class and one BRCA2-mutated TOV :TM2 class. No technical replicates were included in this study. The following contrasts were computed : NM vs. M1, NM vs. M2, M1 vs. M2, M1 vs. TM1 and M (M1 union M2) vs. TM (TM1 union TM2).
+    </Overall-Design>
+    <Type>Expression profiling by array</Type>
+    <Contributor-Ref ref="contrib3" position="1" />
+    <Contributor-Ref ref="contrib4" position="2" />
+    <Contributor-Ref ref="contrib5" position="3" />
+    <Contributor-Ref ref="contrib6" position="4" />
+    <Contributor-Ref ref="contrib7" position="5" />
+    <Contributor-Ref ref="contrib8" position="6" />
+    <Contributor-Ref ref="contrib9" position="7" />
+    <Contributor-Ref ref="contrib10" position="8" />
+    <Contributor-Ref ref="contrib11" position="9" />
+    <Contributor-Ref ref="contrib12" position="10" />
+    <Contributor-Ref ref="contrib13" position="11" />
+    <Contributor-Ref ref="contrib14" position="12" />
+    <Contact-Ref ref="contrib1" />
+    <Sample-Ref ref="GSM857550" />
+    <Sample-Ref ref="GSM857551" />
+    <Sample-Ref ref="GSM857552" />
+    <Sample-Ref ref="GSM857553" />
+    <Sample-Ref ref="GSM857554" />
+    <Sample-Ref ref="GSM857555" />
+    <Sample-Ref ref="GSM857556" />
+    <Sample-Ref ref="GSM857557" />
+    <Sample-Ref ref="GSM857558" />
+    <Sample-Ref ref="GSM857559" />
+    <Sample-Ref ref="GSM857560" />
+    <Sample-Ref ref="GSM857561" />
+    <Sample-Ref ref="GSM857562" />
+    <Supplementary-Data type="TAR">
+ftp://ftp.ncbi.nlm.nih.gov/pub/geo/DATA/supplementary/series/GSE34928/GSE34928_RAW.tar
+    </Supplementary-Data>
+    <Relation type="BioProject" target="http://www.ncbi.nlm.nih.gov/bioproject/PRJNA150995" />
+  </Series>
+
+</MINiML>

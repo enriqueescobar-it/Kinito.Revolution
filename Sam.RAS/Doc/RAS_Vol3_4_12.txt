@@ -1,0 +1,5 @@
+"Agriculture"	"Industry"	"Service"	"ColumnTotal"
+"Crops"	21.2	29	19.9	70.1
+"Manufactures"	9	48.8	22.4	80.1
+"Services"	49.8	62.2	7.8	119.8
+"RowTotal"	80	140	50	0

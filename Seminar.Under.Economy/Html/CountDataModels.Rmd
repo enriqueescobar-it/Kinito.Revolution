@@ -1,0 +1,57 @@
+---
+title: "Count Data Models Page"
+author: "Kinito Solutions"
+date: "September 11, 2016"
+output: 
+  html_document: 
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE);
+library(MASS);
+library(pscl);
+library(AER);
+```
+
+# Count Data Models
+
+Count data models have a dependent variable that is counts (0, 1, 2, 3, and so on).  Most of the data are concentrated on a few small discrete values.  Examples include: the number of children a couple has, the number of doctors visits per year a person makes, and the number of trips per month that a person takes.
+
+# Count Data Models Example
+
+```{r Count Data Models example}
+myDataFrame<- read.csv("Data/count_docvisit.csv")
+head(myDataFrame)
+attach(myDataFrame)
+# Define variables
+Y <- cbind(docvis)
+X <- cbind(private, medicaid, age, educyr)
+X1 <- cbind(private, medicaid, age, educyr)
+# Descriptive statistics
+summary(Y)
+summary(X)
+# Poisson model coefficients
+poisson <- glm(Y ~ X, family = poisson)
+summary(poisson)
+# Test for overdispersion (dispersion and alpha parameters) from AER package
+dispersiontest(poisson)
+dispersiontest(poisson, trafo=2)
+# Negative binomial model coefficients
+negbin <- glm.nb(Y ~ X)
+summary(negbin)
+# Hurdle or truncated Poisson model coefficients
+hpoisson <- hurdle(Y ~ X | X1, link = "logit", dist = "poisson")
+summary(hpoisson)
+# Hurdle or truncated negative binonomial model coefficients
+hnegbin <- hurdle(Y ~ X | X1, link = "logit", dist = "negbin")
+summary(hnegbin)
+# Zero-inflated Poisson model coefficients
+zip <- zeroinfl(Y ~ X | X1, link = "logit", dist = "poisson")
+summary(zip)
+# Zero-inflated negative binomial model coefficients
+zinb <- zeroinfl(Y ~ X | X1, link = "logit", dist = "negbin")
+summary(zinb)
+```

@@ -1,0 +1,146 @@
+﻿'PAGE 277
+'RAS Macro
+Sheets("Sheet1").Select
+'1 Define the arrays and variables referred to in the RAS method.
+'=============Define arrays and variables ==============
+Static rn As Integer 'Row
+Static cn As Integer 'Column
+rn = 2
+cn = 3
+ReDim G(rn, cn)
+ReDim A(rn, cn)
+ReDim Row(rn)
+ReDim Col(cn)
+Dim ba As Double
+ba = 1
+'2 Import the initial matrix A0, row sum vector ROW, column sum vector COL,
+'and intermediate matrix A00 from the corresponding region of
+'Excel workbook "Sheet1".
+'====Import the row sum, initial matrix and intermediate matrix====
+For i = 1 To rn
+    Row(i) = Sheets("Sheet1").Cells(i + 1, cn + 3).Value
+    'cn+3 is the given column sum
+    For j = 1 To cn
+	G(i, j) = Cells(i + 1, j + 1).Value
+	A(i, j) = G(i, j)
+    Next j
+Next i
+'================Import the column sum==============
+For j = 1 To cn
+    Col(j) = Sheets("Sheet1").Cells(rn + 3, j + 1) 'rn+3 is the given row sum
+Next j
+'3 Check whether the summation of elements in the given vector COL or ROW
+'is equal with each other. If not, vector COL should be adjusted in proportion.
+'========= Check whether the summation of elements in the given========
+'PAGE 278
+'=========vector COL or ROW is equal with each other==============
+rsum = 0
+csum = 0
+For i = 1 To rn
+	rsum = rsum + Row(i)
+Next i
+For j = 1 To cn
+	csum = csum + Col(j)
+Next j
+'======= If vector COL or ROW is not equal with each other,=======
+'========= adjust vector COL in proportion===============
+If csum <> rsum Then
+    ba = rsum / csum
+    For j = 1 To cn
+	Col(j) = Col(j) * ba
+    Next j
+End If
+'4 Calculate the RAS iterative process.
+'======================RAS iterates==================
+    iter = 0
+Top:
+    iter = iter + 1
+    rdismax = 0
+    cdismax = 0
+'5 Use the multiplicator of column to multiply the intermediate matrix A00
+'in the right, and calculate the column sum gap between the obtained
+'matrix and the given matrix COL.
+'Use the multiplicator of column to multiply the intermediate matrix in the right
+For j = 1 To cn
+    csum = 0
+    For i = 1 To rn
+	csum = csum + A(i, j)
+    Next i
+    If (Abs(csum) > 0) Then
+	csum = Col(j) / csum
+    Else
+	csum = 0
+    End If
+    For i = 1 To rn
+	A(i, j) = A(i, j) * csum
+    Next i
+'====Calculate column sum gap between the obtained matrix=======
+'====and the given matrix===========================
+'PAGE 279
+    dis = Abs(csum - 1)
+    If (dis > cdismax) Then
+        cdismax = dis:
+        cis = csum - 1:
+        jmax = j
+    End If
+Next j
+'6 Use the multiplicator of row to multiply the intermediate matrix A00 in
+'the left, and calculate the row sum gap between the obtained matrix and
+'the given matrix ROW.
+'==Use the multiplicator of row to multiply the intermediate matrix in the left==
+For i = 1 To rn
+	rsum = 0
+	For j = 1 To cn
+	   rsum = rsum + A(i, j)
+	Next j
+	If (Abs(rsum) > 0) Then
+        rsum = Row(i) / rsum
+        Else: rsum = 0
+	End If
+	For j = 1 To cn
+	   A(i, j) = A(i, j) * rsum
+'==Calculate row sum gap between the obtained matrix and the given matrix==
+    dis = Abs(rsum - 1)
+    If (dis > rdismax) Then
+        rdismax = dis:
+        rdis = rsum - 1:
+        imax = i
+    End If
+Continue: Next i
+'7 Determine whether the iterations can be converged, and set the termination
+'conditions of iteration, which include two aspects,
+'First, the iterations cannot be infinite, here we set it as no more than 50,000;
+'Second, the row sum gap or column sum gap between the result matrix and
+'given matrix is small enough, here we set the error accuracy as 0.000001.
+'==========Determine whether the iterations converge=========
+If (cdismax > rdismax) Then
+    dismax = cdismax
+    Else: dismax = rdismax
+End If
+'===========Set the termination conditions of iteration========
+If (iter < 50000 And dismax > 0.000001) Then
+    dismax = cdismax
+    Else: dismax = rdismax
+End If
+'===========Set the termination conditions of iteration========
+If (iter < 50000 And dismax > 0.000001) Then
+'PAGE 280
+    GoTo Top
+    End If
+    If (dismax > 0.000001) Then
+        Beep
+    End If
+    Cells(rn + 5, 1) = ba
+    '8 Record the final result matrix obtained from the iterationsand export
+    'the structure to workbook "Sheet1" in the corresponding region.
+    '============Record the final result matrix============
+    For i = 1 To rn
+        For j = 1 To cn
+            If Row(i) = 0 Then
+                Cells(i + rn + 5, j + 1).Value = 0
+                Else: Cells(i + rn + 5, j + 1).Value = A(i, j) * ba
+            End If
+        Next j
+    Next i
+    Beep
+Worksheets ("Sheet1").Activate

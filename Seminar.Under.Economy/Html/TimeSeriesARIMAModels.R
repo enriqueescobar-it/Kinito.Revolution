@@ -1,0 +1,61 @@
+library(timeSeries)
+myDataFrame<- read.csv("Data/timeseries_ppi.csv")
+head(myDataFrame)
+attach(myDataFrame)
+# Defining variables
+Y <- ppi
+diffY <- diff(Y)
+t <- yearqrt
+# Descriptive statistics and plotting the data
+summary(Y)
+summary(diffY)
+plot(t,Y)
+plot(diffY)
+# Dickey-Fuller test for variable
+adf.test(Y, alternative="stationary", k=0)
+adf.test(Y, alternative="explosive", k=0)
+#summary(lm(dppi ~ lppi, na.action=na.omit))
+#summary(lm(dppi ~ lppi + trend, na.action=na.omit))
+# Augmented Dickey-Fuller test
+adf.test(Y, alternative="stationary")
+# DF and ADF tests for differenced variable
+adf.test(diffY, k=0)
+adf.test(diffY)
+# ACF and PACF
+acf(Y)
+pacf(Y)
+acf(diffY)
+pacf(diffY)
+# ARIMA(1,0,0) or AR(1)
+arima(Y, order = c(1,0,0))
+# ARIMA(2,0,0) or AR(2)
+arima(Y, order = c(2,0,0))
+# ARIMA(0,0,1) or MA(1)
+arima(Y, order = c(0,0,1))
+# ARIMA(1,0,1) or AR(1) MA(1)
+arima(Y, order = c(1,0,1))
+# ARIMA on differenced variable 
+# ARIMA(1,1,0)
+arima(diffY, order = c(1,0,0))
+# ARIMA(0,1,1)
+arima(diffY, order = c(0,0,1))
+# ARIMA(1,1,1)
+arima(diffY, order = c(1,0,1))
+# ARIMA(1,1,3)
+arima(diffY, order = c(1,0,3))
+# ARIMA(2,1,3)
+arima(diffY, order = c(2,0,3))
+# ARIMA(1,0,1) forecasting
+myARIMA101 <- arima(Y, order = c(1,0,1))
+myDataFrame.pred1 <- predict(myARIMA101, n.ahead=100)
+plot(Y)
+lines(myDataFrame.pred1$pred, col="blue")
+lines(myDataFrame.pred1$pred+2*myDataFrame.pred1$se, col="red")
+lines(myDataFrame.pred1$pred-2*myDataFrame.pred1$se, col="orange")
+# ARIMA(1,1,1) forecasting
+myARIMA111 <- arima(diffY, order = c(1,1,1))
+myDataFrame.pred1 <- predict(myARIMA111, n.ahead=100)
+plot(diffY)
+lines(myDataFrame.pred1$pred, col="blue")
+lines(myDataFrame.pred1$pred+2*myDataFrame.pred1$se, col="red")
+lines(myDataFrame.pred1$pred-2*myDataFrame.pred1$se, col="orange")

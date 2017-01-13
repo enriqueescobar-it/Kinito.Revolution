@@ -1,0 +1,51 @@
+library(spdep)
+
+data(columbus)
+myDataFrame <- columbus
+head(myDataFrame)
+attach(myDataFrame)
+Y <- cbind(CRIME)
+X <- cbind(INC, HOVAL)
+xy <- cbind(myDataFrame$X, myDataFrame$Y)
+neighborList <- col.gal.nb
+coordList <- coords
+# Neighbors summary
+summary(neighborList)
+plot(neighborList, coordList)
+# Descriptive statistics
+summary(Y)
+summary(X)
+# OLS regression
+olsreg <- lm(Y ~ X)
+summary(olsreg)
+## SPATIAL ANALYSIS BASED ON CONTIGUITY
+# Spatial weight matrix based on contiguity
+listw <- nb2listw(neighborList)
+summary(listw)
+# Moran's I test
+moran.test(CRIME, listw)
+moran.plot(CRIME, listw)
+# Lagrange multiplier test for spatial lag and spatial error dependencies
+lm.LMtests(olsreg, listw, test=c("LMlag", "LMerr"))
+# Spatial lag model
+spatial.lag <- lagsarlm(CRIME ~ INC + HOVAL, data = myDataFrame, listw)
+summary(spatial.lag)
+# Spatial error model
+spatial.error <- errorsarlm(CRIME ~ INC + HOVAL, data = myDataFrame, listw)
+summary(spatial.error)
+##  SPATIAL ANALYSIS BASED ON DISTANCE WEIGHT MATRIX
+# Spatial weight matrix based on distance (with lower and upper bounds for distance, d1 and d2)
+nb <- dnearneigh(xy, d1=0, d2=10)
+listw <- nb2listw(nb, style="W")
+summary(listw)
+# Moran's I test
+moran.test(CRIME, listw)
+moran.plot(CRIME, listw)
+# Lagrange multiplier test for spatial lag and spatial error dependencies
+lm.LMtests(olsreg, listw, test=c("LMlag", "LMerr"))
+# Spatial lag model
+spatial.lag1 <- lagsarlm(CRIME ~ INC + HOVAL, data = myDataFrame, listw)
+summary(spatial.lag1)
+# Spatial error model
+spatial.error1 <- errorsarlm(CRIME ~ INC + HOVAL, data = myDataFrame, listw)
+summary(spatial.error1)

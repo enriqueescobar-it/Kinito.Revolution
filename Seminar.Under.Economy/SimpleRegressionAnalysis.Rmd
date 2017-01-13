@@ -1,0 +1,104 @@
+---
+title: "Simple Regression Analysis Page"
+author: "Kinito Solutions"
+date: "September 11, 2016"
+output: 
+  html_document: 
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# OLS-Ordinary least squares
+
+Intuitivel, ordinary least squares, short OLS, lays a line through the points in the above figures, which fulfils certain mathematical conditions.
+
+# LinearModel Digression
+
+Note that the lm-function, basically, does nothing else than generating a vector of values of the dependent variable y and a matrix of explanatory variables x. If the model contains a constant, a vector of ones will be added to the matrix x. After that function uses the standard estimation formula (x'x)^{-1}x'y to estimate the coefficients.
+
+```{r linear_model digression}
+#, echo=FALSE}
+library("foreign");
+ceosal1 <- read.dta("Data/ceosal1.dta");
+print("LinearModel Digression");
+y <- matrix(ceosal1[,"salary"],ncol=1);
+x <- as.matrix(cbind(1,ceosal1[,"roe"]));
+solve(t(x)%*%x)%*%t(x)%*%y;
+```
+
+# LinearModel
+
+Now you can perform your first regression in R and estimate the effect of the return on equity on the salary of a CEO. For this purpose we use the lm function, where “lm” stands for “linear model”. Its first argument is the regression model followed by further options. The tilde between “salary” and “roe” indicates that salary is the dependent variable and roe is the independent variable, it indicates a “relation”. R automatically uses a constant, except you tell it not to do so by adding -1 to the formula.
+
+```{r linear_model}
+library("foreign");
+ceosal1 <- read.dta("Data/ceosal1.dta");
+linearModel <- lm(salary ~ roe, data=ceosal1);
+summary(linearModel);
+linearModel;
+names(linearModel);
+```
+
+# LinearModel Subset
+
+In order to make a table we generate a data frame with the first two colums containing the first 15 observersations from the original dataset and two additional columns into which we later will paste the estimated values. We define the data frame with:
+
+```{r linear_model subset}
+aDataFrame <- data.frame(roe=ceosal1$salary[1:15],
+                         salary=ceosal1$salary[1:15],
+                         salaryhat=NA,
+                         uhat=NA);
+aDataFrame <- tibble::as_data_frame(aDataFrame);
+head(aDataFrame);
+aDataFrame$salaryhat <- linearModel$fitted.values[1:15];
+aDataFrame$uhat <- linearModel$resid[1:15];
+aDataFrame;
+```
+
+# LinearModel Example
+
+```{r linear_model example}
+myDataFrame <- read.csv("Data/regression_auto.csv")
+head(myDataFrame)
+attach(myDataFrame)
+
+# Define variables
+Y <- cbind(mpg)
+X1 <- cbind(weight1)
+X <- cbind(weight1, price, foreign)
+
+# Descriptive statistics
+summary(Y)
+summary(X1)
+summary(X)
+
+# Correlation among variables
+cor(Y, X)
+
+# Plotting data on a scatter diagram
+plot(Y ~ X1, data = myDataFrame)
+
+# Simple linear regression 
+simpleLinearRegression <- lm(Y ~ X1)
+summary(simpleLinearRegression)
+confint(simpleLinearRegression, level=0.95)
+anova(simpleLinearRegression)
+
+# Plotting regression line
+abline(simpleLinearRegression)
+
+# Predicted values for dependent variable
+predValuesDepVarY <- fitted(simpleLinearRegression)
+summary(predValuesDepVarY)
+plot(predValuesDepVarY ~ X1)
+
+# Regression residuals
+regressionResiduals <- resid(simpleLinearRegression)
+summary(regressionResiduals)
+plot(regressionResiduals ~ X1)
+```

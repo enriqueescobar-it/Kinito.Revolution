@@ -1,0 +1,89 @@
+---
+title: "Linear Regression Page"
+author: "Kinito Solutions"
+date: "September 11, 2016"
+output: 
+  html_document: 
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE);
+```
+
+# Linear Regression
+
+![LinearRegression-model](Doc/LinearRegression-model.png)
+
+![LinearRegression-estimated](Doc/LinearRegression-estimated.png)
+
+![LinearRegression-error](Doc/LinearRegression-error.png)
+
+![LinearRegression-OLS](Doc/LinearRegression-OLS.png)
+
+# Linear Regression Example
+
+```{r Linear Regression example}
+myDataFrame <- read.csv("Data/regression_auto.csv")
+head(myDataFrame)
+attach(myDataFrame)
+
+# Define variables
+Y <- cbind(mpg)
+X1 <- cbind(weight1)
+X <- cbind(weight1, price, foreign)
+
+# Descriptive statistics
+summary(Y)
+summary(X1)
+summary(X)
+
+# Correlation among variables
+cor(Y, X)
+
+# Plotting data on a scatter diagram
+plot(Y ~ X1, data = myDataFrame)
+
+# Simple linear regression 
+simpleLinearRegression <- lm(Y ~ X1)
+summary(simpleLinearRegression)
+confint(simpleLinearRegression, level=0.95)
+anova(simpleLinearRegression)
+
+# Plotting regression line
+abline(simpleLinearRegression)
+
+# Predicted values for dependent variable
+predValuesDepVarY <- fitted(simpleLinearRegression)
+summary(predValuesDepVarY)
+plot(predValuesDepVarY ~ X1)
+
+# Regression residuals
+regressionResiduals <- resid(simpleLinearRegression)
+summary(regressionResiduals)
+plot(regressionResiduals ~ X1)
+
+# Multiple linear regression
+multipleLinearRegression <- lm(Y ~ X)
+summary(multipleLinearRegression)
+confint(multipleLinearRegression, level=0.95)
+anova(multipleLinearRegression)
+
+# Predicted values for dependent variable
+predValuesDepVarMultiY <- fitted(multipleLinearRegression)
+summary(predValuesDepVarMultiY)
+
+# Regression residuals
+regressionResidualsMulti <- resid(multipleLinearRegression)
+summary(regressionResidualsMulti)
+```
+
+# Simple Regresssion Analysis
+
+[Linear Regression Simple](SimpleRegressionAnalysis.html)
+
+# Multiple Regresssion Analysis
+
+[Linear Regression Multiple](MultipleRegressionAnalysis.html)

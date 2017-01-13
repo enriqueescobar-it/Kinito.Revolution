@@ -1,0 +1,105 @@
+TABLE SAM0(I,J)
+
+                 LDO       KDO     LANDO        RP        UP        RR
+LDO
+KDO
+LANDO
+RP             10575       324      1099
+UP             11351       998
+RR              2000       503      3496
+UR              2100      6003
+FIRM                      4496       471
+GOV                        180                  75       496       153
+ROW                         39       880
+AGR
+IND
+SER
+NTSER
+DAGR                                          6003      4246      2347
+DIND                                          3419      4421      1803
+DSER                                          2500      3335      1501
+DNTSER
+EAGR
+EIND
+ESER
+ACC                                                                205
+TOT            26026     12543      5946     11997     12498      6009
+
+
++                 UR      FIRM       GOV       ROW       AGR       IND
+LDO                                                    10175      2300
+KDO                                                     1868      6976
+LANDO                                                   5959
+RP
+UP                                   146
+RR
+UR                        1898
+FIRM
+GOV              502      1292                          1075      3476
+ROW                        374
+AGR
+IND
+SER
+NTSER
+DAGR            1653                                    2548      1302
+DIND            4851                                    2000      3604
+DSER            2175                                    1992      2858
+DNTSER                              8703
+EAGR                                          6891
+EIND                                          1161
+ESER                                          2203
+ACC              821      1411      1714      5422
+TOT            10002      4975     10563     15677     25617     20516
+
+
++                SER     NTSER      DAGR      DIND      DSER    DNTSER
+LDO             9597      3953
+KDO             3702
+LANDO
+RP
+UP
+RR
+UR
+FIRM
+GOV              706                 123      2576
+ROW                                 2381     10305      1705
+AGR                                18634
+IND                                          19350
+SER                                                    18508
+NTSER                                                             8700
+DAGR            1203        96
+DIND            1950      2351
+DSER            3551      2295
+DNTSER
+EAGR
+EIND
+ESER
+ACC
+TOT            20709      8695     21138     32231     20213      8700
+
+
++               EAGR      EIND      ESER       ACC       TOT
+LDO                                                    26025
+KDO                                                    12546
+LANDO                                                   5959
+RP                                                     11998
+UP                                                     12495
+RR                                                      5999
+UR                                                     10001
+FIRM                                                    4967
+GOV              -89                                   10565
+ROW                                                    15684
+AGR             6984                                   25618
+IND                       1158                         20508
+SER                                 2198               20706
+NTSER                                                   8700
+DAGR                                          1731     21129
+DIND                                          7831     32230
+DSER                                                   20207
+DNTSER                                                  8703
+EAGR                                                    6891
+EIND                                                    1161
+ESER                                                    2203
+ACC                                                     9573
+TOT             6895      1158      2198      9562
+;

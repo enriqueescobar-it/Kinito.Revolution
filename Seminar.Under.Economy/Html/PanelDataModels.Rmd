@@ -1,0 +1,56 @@
+---
+title: "Panel Data Models Page"
+author: "Kinito Solutions"
+date: "September 11, 2016"
+output: 
+  html_document: 
+    fig_height: 6
+    fig_width: 8
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE);
+library("foreign");
+library(plm);
+```
+
+# Panel Data Models
+
+Panel data models provide information on individual behavior, both across individuals and over time.  The data and models have both cross-sectional and time-series dimensions.  Panel data can be balanced when all individuals are observed in all time periods or unbalanced when individuals are not observed in all time periods. Examples include estimating the effect of education on income, with data across time and individuals; and estimating the effects of income on savings, with data across years and countries.
+
+# Panel Data Models Example
+
+```{r Panel Data Models example}
+myDataFrame <- read.csv("Data/panel_wage.csv")
+head(myDataFrame);
+attach(myDataFrame)
+Y <- cbind(lwage)
+X <- cbind(exp, exp2, wks, ed)
+# Set data as panel data
+myPanelData <- plm.data(myDataFrame, index=c("id","t"))
+# Descriptive statistics
+summary(Y)
+summary(X)
+# Pooled OLS estimator
+myPoolingOLSEstimator <- plm(Y ~ X, data=myPanelData, model= "pooling")
+summary(myPoolingOLSEstimator)
+# Between estimator
+myBetweenEstimator <- plm(Y ~ X, data=myPanelData, model= "between")
+summary(myBetweenEstimator)
+# First differences estimator
+myFirstDifferencesEstimator <- plm(Y ~ X, data=myPanelData, model= "fd")
+summary(myFirstDifferencesEstimator)
+# Fixed effects or within estimator
+myWithinEstimator <- plm(Y ~ X, data=myPanelData, model= "within")
+summary(myWithinEstimator)
+# Random effects estimator
+myRandomEstimator <- plm(Y ~ X, data=myPanelData, model= "random")
+summary(myRandomEstimator)
+# LM test for random effects versus OLS
+plmtest(myPoolingOLSEstimator)
+# LM test for fixed effects versus OLS
+pFtest(myWithinEstimator, myPoolingOLSEstimator)
+# Hausman test for fixed versus random effects model
+phtest(myRandomEstimator, myWithinEstimator)
+```
