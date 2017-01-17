@@ -1,6 +1,6 @@
-library(edgeR);
-#
-#
+require(edgeR);
+# loads library
+# limma
 #
 #' Title  GeneNameAndCountDGEList
 #'

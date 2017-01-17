@@ -17,10 +17,12 @@ head(df);
 names(df);
 geneColumns <- which(colnames(df) == "EntrezID" | colnames(df) == "Count");
 geneColumns;
+geneKeyType <- toupper(colnames(df)[1]);
 rm(df);
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("edgeR");
-# library(edgeR); # loads library(limma)
+# library(edgeR); loads library
+# limma
 # x <- edgeR::readDGE(files, columns=c(1, 3)) ;
 source(paste0("Lib/", "edgeR.Util.R"));
 x <- GeneNameAndCountDGEList(files, geneColumns);
@@ -31,24 +33,32 @@ colnames(x);
 samplenames <- substring(colnames(x), 17, nchar(colnames(x))) ; #12->17
 samplenames;
 colnames(x) <- samplenames;
+rm(samplenames);
 # col group & norm.factors preset to 1
 x$samples;
 ### group factor foreach-9
 group <- as.factor(c("LP", "ML", "Basal", "Basal", "ML", "LP", "Basal", "ML", "LP")) ;
 x$samples$group <- group;
 x$samples;
+rm(group);
 ### lane factor foreach-9
 lane <- as.factor(rep(c("L004","L006","L008"), c(3,4,2))) ;
 x$samples$lane <- lane;
 x$samples;
+rm(lane);
 ## Organising gene annotations
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("Mus.musculus");
 library(Mus.musculus);
+# loads library
+# AnnotationDbi, stats4, BiocGenerics, parallel, Biobase, IRanges, S4Vectors
+# OrganismDbi, GenomicFeatures, GenomeInfoDb, GenomicRanges, GO.db, org.Mm.eg.db,
+# TxDb.Mmusculus.UCSC.mm10.knownGene
 head(rownames(x), 10);
-geneid <- rownames(x) ;
+geneIdKey <- rownames(x) ;
 ### foearch rowname select cols in ENTREZID
-genes <- AnnotationDbi::select(Mus.musculus, keys=geneid, columns=c("SYMBOL", "TXCHROM"), keytype="ENTREZID");
+geneColumns <- c("SYMBOL", "TXCHROM");
+genes <- AnnotationDbi::select(Mus.musculus, keys = geneIdKey, columns = geneColumns, keytype = geneKeyType);
 dim(genes);
 colnames(genes);
 head(genes);
@@ -62,30 +72,30 @@ x$genes <- genes;
 x;
 # Data pre-processing
 ## Transformations from the raw-scale
-cpm <- cpm(x) ;
-lcpm <- cpm(x, log=TRUE);
+cpm <- edgeR::cpm(x) ;
+lcpm <- edgeR::cpm(x, log = TRUE);
 ## Removing genes that are lowly expressed
-table(rowSums(x$counts==0)==9);
-keep.exprs <- rowSums(cpm>1)>=3;
-x <- x[keep.exprs,, keep.lib.sizes=FALSE];
+table(rowSums(x$counts == 0) == 9);
+keep.exprs <- rowSums(cpm > 1) >= 3;
+x <- x[keep.exprs, , keep.lib.sizes = FALSE];
 dim(x);
 library(RColorBrewer);
 nsamples <- ncol(x);
-col <- brewer.pal(nsamples, "Paired");
-par(mfrow=c(1,2));
-plot(density(lcpm[,1]), col=col[1], lwd=2, ylim=c(0,0.21), las=2, main="", xlab="");
-title(main="A. Raw data", xlab="Log-cpm");
-abline(v=0, lty=3);
+col <- RColorBrewer::brewer.pal(nsamples, "Paired");
+par(mfrow = c(1,2));
+plot(density(lcpm[,1]), col = col[1], lwd = 2, ylim = c(0,0.21), las = 2, main = "", xlab = "");
+title(main = "A. Raw data", xlab = "Log-cpm");
+abline(v = 0, lty = 3);
 for (i in 2:nsamples){
   den <- density(lcpm[,i]);
-  lines(den$x, den$y, col=col[i], lwd=2);
+  lines(den$x, den$y, col = col[i], lwd = 2);
 }
-legend("topright", samplenames, text.col=col, bty="n");
+legend("topright", samplenames, text.col = col, bty = "n");
 
-lcpm <- cpm(x, log=TRUE);
-plot(density(lcpm[,1]), col=col[1], lwd=2, ylim=c(0,0.21), las=2, main="", xlab="");
-title(main="B. Filtered data", xlab="Log-cpm");
-abline(v=0, lty=3);
+lcpm <- edgeR::cpm(x, log = TRUE);
+plot(density(lcpm[,1]), col = col[1], lwd = 2, ylim = c(0,0.21), las = 2, main = "", xlab = "");
+title(main = "B. Filtered data", xlab = "Log-cpm");
+abline(v = 0, lty = 3);
 for (i in 2:nsamples){
   den <- density(lcpm[,i]);
   lines(den$x, den$y, col=col[i], lwd=2);
@@ -99,17 +109,17 @@ x2$samples$norm.factors <- 1;
 x2$counts[,1] <- ceiling(x2$counts[,1]*0.05);
 x2$counts[,2] <- x2$counts[,2]*5;
 par(mfrow=c(1,2));
-lcpm <- cpm(x2, log=TRUE);
+lcpm <- edgeR::cpm(x2, log=TRUE);
 boxplot(lcpm, las=2, col=col, main="");
 title(main="A. Example: Unnormalised data",ylab="Log-cpm");
 
 x2 <- calcNormFactors(x2);
 x2$samples$norm.factors;
-lcpm <- cpm(x2, log=TRUE);
+lcpm <- edgeR::cpm(x2, log=TRUE);
 boxplot(lcpm, las=2, col=col, main="");
 title(main="B. Example: Normalised data",ylab="Log-cpm");
 ## Unsupervised clustering of samples
-lcpm <- cpm(x, log=TRUE);
+lcpm <- edgeR::cpm(x, log=TRUE);
 par(mfrow=c(1,2));
 col.group <- group;
 levels(col.group) <- brewer.pal(nlevels(col.group), "Set1");
