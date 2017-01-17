@@ -15,18 +15,20 @@ files <- c("Data/GSM1545535_10_6_5_11.txt",
 df <- TxtFileToDataFrame(files[1]);
 head(df);
 names(df);
-geneColumns <- which(colnames(df)=="EntrezID" | colnames(df)=="Count");
+geneColumns <- which(colnames(df) == "EntrezID" | colnames(df) == "Count");
+geneColumns;
 rm(df);
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("edgeR");
-library(edgeR); # loads library(limma) source(paste0("Lib/", "edgeR.Util.R"));
-x <- edgeR::readDGE(files, columns=c(1, 3)) ;
-class(x); typeof(x);
-dim(x);
+# library(edgeR); # loads library(limma)
+# x <- edgeR::readDGE(files, columns=c(1, 3)) ;
+source(paste0("Lib/", "edgeR.Util.R"));
+x <- GeneNameAndCountDGEList(files, geneColumns);
+class(x); typeof(x); dim(x);
 ## Organising sample information
 ### shrink colnames
 colnames(x);
-samplenames <- substring(colnames(x), 12, nchar(colnames(x))) ;
+samplenames <- substring(colnames(x), 17, nchar(colnames(x))) ; #12->17
 samplenames;
 colnames(x) <- samplenames;
 ### add column: group
@@ -137,6 +139,8 @@ contr.matrix <- makeContrasts(
   levels = colnames(design));
 contr.matrix;
 ## Removing heteroscedascity from count data
+v <- voom(x, design, plot=TRUE);
+v;
 ## Fitting linear models for comparisons of interest
 vfit <- lmFit(v, design);
 vfit <- contrasts.fit(vfit, contrasts=contr.matrix);

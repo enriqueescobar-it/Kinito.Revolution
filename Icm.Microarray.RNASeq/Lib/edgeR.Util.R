@@ -13,7 +13,7 @@ library(edgeR);
 #' @examples TBD
 GeneNameAndCountDGEList <- function(filePathList = c("", "", ""), columnList = c(1,3)){
   
-  aDgeList <- edgeR::readDGE(filePathList, columns=columnList);
+  aDgeList <- edgeR::readDGE(filePathList, columns = columnList);
   
   return(aDgeList);
 }
