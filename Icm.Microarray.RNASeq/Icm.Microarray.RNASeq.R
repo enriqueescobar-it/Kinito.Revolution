@@ -26,16 +26,18 @@ source(paste0("Lib/", "edgeR.Util.R"));
 x <- GeneNameAndCountDGEList(files, geneColumns);
 class(x); typeof(x); dim(x);
 ## Organising sample information
-### shrink colnames
+### shrink colnames remove from start to first underscore
 colnames(x);
 samplenames <- substring(colnames(x), 17, nchar(colnames(x))) ; #12->17
 samplenames;
 colnames(x) <- samplenames;
-### add column: group
+# col group & norm.factors preset to 1
+x$samples;
+### group factor foreach-9
 group <- as.factor(c("LP", "ML", "Basal", "Basal", "ML", "LP", "Basal", "ML", "LP")) ;
 x$samples$group <- group;
 x$samples;
-### add column: lane
+### lane factor foreach-9
 lane <- as.factor(rep(c("L004","L006","L008"), c(3,4,2))) ;
 x$samples$lane <- lane;
 x$samples;
@@ -43,7 +45,7 @@ x$samples;
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("Mus.musculus");
 library(Mus.musculus);
-rownames(x);
+head(rownames(x), 10);
 geneid <- rownames(x) ;
 ### foearch rowname select cols in ENTREZID
 genes <- AnnotationDbi::select(Mus.musculus, keys=geneid, columns=c("SYMBOL", "TXCHROM"), keytype="ENTREZID");
