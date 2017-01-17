@@ -1,6 +1,7 @@
 # https://f1000research.com/articles/5-1408/v2
 # data packaging
 ## reading
+source(paste0("Lib/", projectName, ".Util.R"));
 files <- c("Data/GSM1545535_10_6_5_11.txt",
            "Data/GSM1545536_9_6_5_11.txt",
            "Data/GSM1545538_purep53.txt",
@@ -10,12 +11,16 @@ files <- c("Data/GSM1545535_10_6_5_11.txt",
            "Data/GSM1545542_JMS8-5.txt",
            "Data/GSM1545544_JMS9-P7c.txt",
            "Data/GSM1545545_JMS9-P8c.txt");
-read.delim(files[1], nrow=5);
+# gene names on col 1 and gene count on col 3
+df <- TxtFileToDataFrame(files[1]);
+head(df);
+names(df);
+geneColumns <- which(colnames(df)=="EntrezID" | colnames(df)=="Count");
+rm(df);
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("edgeR");
-library(limma);
-library(edgeR);
-x <- readDGE(files, columns=c(1,3)) ;
+library(edgeR); # loads library(limma) source(paste0("Lib/", "edgeR.Util.R"));
+x <- edgeR::readDGE(files, columns=c(1, 3)) ;
 class(x); typeof(x);
 dim(x);
 ## Organising sample information
@@ -39,7 +44,7 @@ library(Mus.musculus);
 rownames(x);
 geneid <- rownames(x) ;
 ### foearch rowname select cols in ENTREZID
-genes <- select(Mus.musculus, keys=geneid, columns=c("SYMBOL", "TXCHROM"), keytype="ENTREZID");
+genes <- AnnotationDbi::select(Mus.musculus, keys=geneid, columns=c("SYMBOL", "TXCHROM"), keytype="ENTREZID");
 dim(genes);
 colnames(genes);
 head(genes);

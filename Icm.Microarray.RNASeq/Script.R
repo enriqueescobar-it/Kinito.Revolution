@@ -36,4 +36,4 @@ search();
 # Create a listing of all objects in the "global environment". Look for "diamonds" in the results.
 ls();
 # load project
-source(paste0(projectName, ".R"));
+#source(paste0(projectName, ".R"));
