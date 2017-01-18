@@ -2,7 +2,7 @@
 # data packaging
 ## reading
 source(paste0("Lib/", projectName, ".Util.R"));
-files <- c("Data/GSM1545535_10_6_5_11.txt",
+fileList <- c("Data/GSM1545535_10_6_5_11.txt",
            "Data/GSM1545536_9_6_5_11.txt",
            "Data/GSM1545538_purep53.txt",
            "Data/GSM1545539_JMS8-2.txt",
@@ -12,20 +12,21 @@ files <- c("Data/GSM1545535_10_6_5_11.txt",
            "Data/GSM1545544_JMS9-P7c.txt",
            "Data/GSM1545545_JMS9-P8c.txt");
 # gene names on col 1 and gene count on col 3
-df <- TxtFileToDataFrame(files[1]);
+df <- TxtFileToDataFrame(fileList[1]);
 head(df);
 names(df);
 geneColumns <- which(colnames(df) == "EntrezID" | colnames(df) == "Count");
 geneColumns;
 geneKeyType <- toupper(colnames(df)[1]);
+geneKeyType;
 rm(df);
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("edgeR");
 # library(edgeR); loads library
 # limma
-# x <- edgeR::readDGE(files, columns=c(1, 3)) ;
+# x <- edgeR::readDGE(fileList, columns=c(1, 3)) ;
 source(paste0("Lib/", "edgeR.Util.R"));
-x <- GeneNameAndCountDGEList(files, geneColumns);
+x <- GeneNameAndCountDGEList(fileList, geneColumns);
 class(x); typeof(x); dim(x);
 ## Organising sample information
 ### shrink colnames remove from start to first underscore
@@ -49,20 +50,22 @@ rm(lane);
 ## Organising gene annotations
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("Mus.musculus");
-library(Mus.musculus);
+#library(Mus.musculus);
+source(paste0("Lib/", "Mus.musculus.Util.R"));
 # loads library
 # AnnotationDbi, stats4, BiocGenerics, parallel, Biobase, IRanges, S4Vectors
 # OrganismDbi, GenomicFeatures, GenomeInfoDb, GenomicRanges, GO.db, org.Mm.eg.db,
 # TxDb.Mmusculus.UCSC.mm10.knownGene
 head(rownames(x), 10);
-geneIdKey <- rownames(x) ;
+geneIdKeys <- rownames(x) ;
 ### foearch rowname select cols in ENTREZID
 geneColumns <- c("SYMBOL", "TXCHROM");
-genes <- AnnotationDbi::select(Mus.musculus, keys = geneIdKey, columns = geneColumns, keytype = geneKeyType);
+#genes <- AnnotationDbi::select(Mus.musculus, keys = geneIdKeys, columns = geneColumns, keytype = geneKeyType);
+genes <- EntrezIdSymbolChromosome(geneList = geneIdKeys, geneColumns = geneColumns, geneKeyType = geneKeyType);
 dim(genes);
 colnames(genes);
 head(genes);
-### rm duplites
+### rm duplicates
 genes <- genes[!duplicated(genes$ENTREZID),];
 dim(genes);
 colnames(genes);

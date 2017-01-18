@@ -1,7 +1,14 @@
-require(edgeR);
+if (!require(edgeR)) {
+  stop('The package <edgeR> was not installed');
+  source("https://bioconductor.org/biocLite.R");
+  biocLite("edgeR");
+}
 # loads library
 # limma
 #
+#
+#
+
 #' Title  GeneNameAndCountDGEList
 #'
 #' @param filePathList 
@@ -12,7 +19,6 @@ require(edgeR);
 #'
 #' @examples TBD
 GeneNameAndCountDGEList <- function(filePathList = c("", "", ""), columnList = c(1,3)){
-  
   aDgeList <- edgeR::readDGE(filePathList, columns = columnList);
   
   return(aDgeList);
