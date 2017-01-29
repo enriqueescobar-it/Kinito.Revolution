@@ -34,19 +34,19 @@ colnames(x);
 samplenames <- substring(colnames(x), 17, nchar(colnames(x))) ; #12->17
 samplenames;
 colnames(x) <- samplenames;
-rm(samplenames);
+#rm(samplenames);
 # col group & norm.factors preset to 1
 x$samples;
 ### group factor foreach-9
 group <- as.factor(c("LP", "ML", "Basal", "Basal", "ML", "LP", "Basal", "ML", "LP")) ;
 x$samples$group <- group;
 x$samples;
-rm(group);
+#rm(group);
 ### lane factor foreach-9
 lane <- as.factor(rep(c("L004","L006","L008"), c(3,4,2))) ;
 x$samples$lane <- lane;
 x$samples;
-rm(lane);
+#rm(lane);
 ## Organising gene annotations
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("Mus.musculus");
@@ -133,8 +133,8 @@ col.lane <- as.character(col.lane);
 plotMDS(lcpm, labels=group, col=col.group);
 title(main="A. Sample groups");
 
-plotMDS(lcpm, labels=lane, col=col.lane, dim=c(3,4))
-title(main="B. Sequencing lanes")
+plotMDS(lcpm, labels=lane, col=col.lane, dim=c(3,4));
+title(main="B. Sequencing lanes");
 ## http://bioinf.wehi.edu.au/folders/limmaWorkflow/glimma-plots/MDS-Plot.html
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("Glimma");

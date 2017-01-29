@@ -33,7 +33,7 @@ options(scipen = 100);
 sessionInfo();
 # attached
 search();
-# Create a listing of all objects in the "global environment". Look for "diamonds" in the results.
+# Create a listing of all objects in the "global environment".
 ls();
 # load project
 #source(paste0(projectName, ".R"));
