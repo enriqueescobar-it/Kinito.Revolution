@@ -125,15 +125,15 @@ title(main="B. Example: Normalised data",ylab="Log-cpm");
 lcpm <- edgeR::cpm(x, log=TRUE);
 par(mfrow=c(1,2));
 col.group <- group;
-levels(col.group) <- brewer.pal(nlevels(col.group), "Set1");
+levels(col.group) <- RColorBrewer::brewer.pal(nlevels(col.group), "Set1");
 col.group <- as.character(col.group);
 col.lane <- lane;
-levels(col.lane) <- brewer.pal(nlevels(col.lane), "Set2");
+levels(col.lane) <- RColorBrewer::brewer.pal(nlevels(col.lane), "Set2");
 col.lane <- as.character(col.lane);
-plotMDS(lcpm, labels=group, col=col.group);
+limma::plotMDS(lcpm, labels=group, col=col.group);
 title(main="A. Sample groups");
 
-plotMDS(lcpm, labels=lane, col=col.lane, dim=c(3,4));
+limma::plotMDS(lcpm, labels=lane, col=col.lane, dim=c(3,4));
 title(main="B. Sequencing lanes");
 ## http://bioinf.wehi.edu.au/folders/limmaWorkflow/glimma-plots/MDS-Plot.html
 #source("https://bioconductor.org/biocLite.R");
