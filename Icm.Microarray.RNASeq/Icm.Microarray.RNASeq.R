@@ -139,7 +139,7 @@ title(main="B. Sequencing lanes");
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("Glimma");
 library(Glimma);
-glMDSPlot(lcpm, labels = paste(group, lane, sep="_"), groups = x$samples[,c(2,5)], launch = FALSE);
+Glimma::glMDSPlot(lcpm, labels = paste(group, lane, sep="_"), groups = x$samples[,c(2,5)], launch = FALSE);
 # Differential expression analysis
 ## Creating a design matrix and contrasts
 design <- model.matrix(~0 + group + lane);
@@ -147,46 +147,46 @@ colnames(design) <- gsub("group", "", colnames(design));
 colnames(design);
 design;
 
-contr.matrix <- makeContrasts(
+contr.matrix <- limma::makeContrasts(
   BasalvsLP = Basal-LP,
   BasalvsML = Basal - ML, 
   LPvsML = LP - ML,
   levels = colnames(design));
 contr.matrix;
 ## Removing heteroscedascity from count data
-v <- voom(x, design, plot=TRUE);
+v <- limma::voom(x, design, plot=TRUE);
 v;
 ## Fitting linear models for comparisons of interest
-vfit <- lmFit(v, design);
-vfit <- contrasts.fit(vfit, contrasts=contr.matrix);
-efit <- eBayes(vfit);
-plotSA(efit);
+vfit <- limma::lmFit(v, design);
+vfit <- limma::contrasts.fit(vfit, contrasts=contr.matrix);
+efit <- limma::eBayes(vfit);
+limma::plotSA(efit);
 ## Examining the number of DE genes
-summary(decideTests(efit));
-tfit <- treat(vfit, lfc=1);
-dt <- decideTests(tfit);
+summary(limma::decideTests(efit));
+tfit <- limma::treat(vfit, lfc=1);
+dt <- limma::decideTests(tfit);
 summary(dt);
 de.common <- which(dt[,1]!=0 & dt[,2]!=0);
 length(de.common);
 head(tfit$genes$SYMBOL[de.common], n=20);
-vennDiagram(dt[,1:2], circle.col=c("turquoise", "salmon"));
+limma::vennDiagram(dt[,1:2], circle.col=c("turquoise", "salmon"));
 write.fit(tfit, dt, file="Doc/results.txt");
 ## Examining individual DE genes from top to bottom
-basal.vs.lp <- topTreat(tfit, coef=1, n=Inf);
-basal.vs.ml <- topTreat(tfit, coef=2, n=Inf);
+basal.vs.lp <- limma::topTreat(tfit, coef=1, n=Inf);
+basal.vs.ml <- limma::topTreat(tfit, coef=2, n=Inf);
 head(basal.vs.lp);
 head(basal.vs.ml);
 ## Useful graphical representations of differential expression results
-plotMD(tfit, column=1, status=dt[,1], main=colnames(tfit)[1], xlim=c(-8,13));
+limma::plotMD(tfit, column=1, status=dt[,1], main=colnames(tfit)[1], xlim=c(-8,13));
 
-glMDPlot(tfit, coef=1, status=dt, main=colnames(tfit)[1],
+limma::glMDPlot(tfit, coef=1, status=dt, main=colnames(tfit)[1],
          id.column="ENTREZID", counts=x$counts, groups=group, launch=FALSE);
 
 library(gplots);
 basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100];
 i <- which(v$genes$ENTREZID %in% basal.vs.lp.topgenes);
-mycol <- colorpanel(1000,"blue","white","red");
-heatmap.2(v$E[i,], scale = "row",
+mycol <- gplots::colorpanel(1000,"blue","white","red");
+gplots::heatmap.2(v$E[i,], scale = "row",
           labRow = v$genes$SYMBOL[i], labCol = group,
           col = mycol, trace = "none", density.info = "none", 
           margin = c(8,6), lhei = c(2,10), dendrogram = "column");
@@ -194,15 +194,15 @@ heatmap.2(v$E[i,], scale = "row",
 # http://bioinf.wehi.edu.au/software/MSigDB/
 # http://bioinf.wehi.edu.au/software/MSigDB/mouse_c2_v5p1.rdata : Mm.c2
 load(url("http://bioinf.wehi.edu.au/software/MSigDB/mouse_c2_v5p1.rdata")) ;
-idx <- ids2indices( Mm.c2, id = rownames( v )) ;
-cam.BasalvsLP <- camera( v, idx, design, contrast = contr.matrix[,1]) ;
+idx <- limma::ids2indices( Mm.c2, id = rownames( v )) ;
+cam.BasalvsLP <- limma::camera( v, idx, design, contrast = contr.matrix[,1]) ;
 head(cam.BasalvsLP,5);
-cam.BasalvsML <- camera(v,idx,design,contrast=contr.matrix[,2]) ;
+cam.BasalvsML <- limma::camera(v,idx,design,contrast=contr.matrix[,2]) ;
 head(cam.BasalvsML,5);
-cam.LPvsML <- camera(v,idx,design,contrast=contr.matrix[,3]) ;
+cam.LPvsML    <- limma::camera(v,idx,design,contrast=contr.matrix[,3]) ;
 head(cam.LPvsML,5);
 
-barcodeplot(efit$t[,3], index=idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
+limma::barcodeplot(efit$t[,3], index=idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
             index2=idx$LIM_MAMMARY_LUMINAL_MATURE_DN, main="LPvsML");
 # Software availability
 
