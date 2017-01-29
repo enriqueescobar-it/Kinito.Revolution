@@ -178,8 +178,8 @@ head(basal.vs.lp);
 head(basal.vs.ml);
 ## Useful graphical representations of differential expression results
 limma::plotMD(tfit, column=1, status=dt[,1], main=colnames(tfit)[1], xlim=c(-8,13));
-
-limma::glMDPlot(tfit, coef=1, status=dt, main=colnames(tfit)[1],
+#***
+Glimma::glMDPlot(tfit, coef=1, status=dt, main=colnames(tfit)[1],
          id.column="ENTREZID", counts=x$counts, groups=group, launch=FALSE);
 
 library(gplots);

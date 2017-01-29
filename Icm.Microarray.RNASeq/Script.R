@@ -36,7 +36,7 @@ search();
 # Create a listing of all objects in the "global environment".
 ls();
 # load project
-#source(paste0(projectName, ".R"));
+# source(paste0(projectName, ".R"));
 # files <- c("Data/GSM1545535_10_6_5_11.txt",
 #            "Data/GSM1545536_9_6_5_11.txt",
 #            "Data/GSM1545538_purep53.txt",
