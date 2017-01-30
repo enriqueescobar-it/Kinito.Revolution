@@ -23,3 +23,23 @@ GeneNameAndCountDGEList <- function(filePathList = c("", "", ""), columnList = c
   
   return(aDgeList);
 }
+
+#' Title  CountsPerMillion
+#'
+#' @param aDGEList
+#' @param IsLog
+#'
+#' @return matrix
+#' @export TBD
+#'
+#' @examples TBD
+CountsPerMillion <- function(aDGEList = NULL, IsLog = FALSE){
+  
+  if (IsLog == FALSE){
+    
+    return(edgeR::cpm(aDGEList));
+  } else {
+    
+    return(edgeR::cpm(aDGEList, log = IsLog));
+  }
+}

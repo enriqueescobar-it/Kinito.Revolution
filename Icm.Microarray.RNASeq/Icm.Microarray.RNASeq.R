@@ -75,32 +75,35 @@ x$genes <- genes;
 x;
 # Data pre-processing
 ## Transformations from the raw-scale
-cpm <- edgeR::cpm(x) ;
-lcpm <- edgeR::cpm(x, log = TRUE);
+#simpleCountsPerMillion <- edgeR::cpm(x) ;
+simpleCountsPerMillion <- CountsPerMillion(x);
+#logCountsPerMillion <- edgeR::cpm(x, log = TRUE);
+logCountsPerMillion <- CountsPerMillion(x, TRUE);
 ## Removing genes that are lowly expressed
 table(rowSums(x$counts == 0) == 9);
-keep.exprs <- rowSums(cpm > 1) >= 3;
+keep.exprs <- rowSums(simpleCountsPerMillion > 1) >= 3;
 x <- x[keep.exprs, , keep.lib.sizes = FALSE];
 dim(x);
 library(RColorBrewer);
 nsamples <- ncol(x);
 col <- RColorBrewer::brewer.pal(nsamples, "Paired");
 par(mfrow = c(1,2));
-plot(density(lcpm[,1]), col = col[1], lwd = 2, ylim = c(0,0.21), las = 2, main = "", xlab = "");
+plot(density(logCountsPerMillion[,1]), col = col[1], lwd = 2, ylim = c(0,0.21), las = 2, main = "", xlab = "");
 title(main = "A. Raw data", xlab = "Log-cpm");
 abline(v = 0, lty = 3);
 for (i in 2:nsamples){
-  den <- density(lcpm[,i]);
+  den <- density(logCountsPerMillion[,i]);
   lines(den$x, den$y, col = col[i], lwd = 2);
 }
 legend("topright", samplenames, text.col = col, bty = "n");
 
-lcpm <- edgeR::cpm(x, log = TRUE);
-plot(density(lcpm[,1]), col = col[1], lwd = 2, ylim = c(0,0.21), las = 2, main = "", xlab = "");
+#logCountsPerMillion <- edgeR::cpm(x, log = TRUE);
+logCountsPerMillion <- CountsPerMillion(x, TRUE);
+plot(density(logCountsPerMillion[,1]), col = col[1], lwd = 2, ylim = c(0,0.21), las = 2, main = "", xlab = "");
 title(main = "B. Filtered data", xlab = "Log-cpm");
 abline(v = 0, lty = 3);
 for (i in 2:nsamples){
-  den <- density(lcpm[,i]);
+  den <- density(logCountsPerMillion[,i]);
   lines(den$x, den$y, col=col[i], lwd=2);
 }
 legend("topright", samplenames, text.col=col, bty="n");
@@ -112,17 +115,20 @@ x2$samples$norm.factors <- 1;
 x2$counts[,1] <- ceiling(x2$counts[,1]*0.05);
 x2$counts[,2] <- x2$counts[,2]*5;
 par(mfrow=c(1,2));
-lcpm <- edgeR::cpm(x2, log=TRUE);
-boxplot(lcpm, las=2, col=col, main="");
+#logCountsPerMillion <- edgeR::cpm(x2, log=TRUE);
+logCountsPerMillion <- CountsPerMillion(x2, TRUE);
+boxplot(logCountsPerMillion, las=2, col=col, main="");
 title(main="A. Example: Unnormalised data",ylab="Log-cpm");
 
 x2 <- edgeR::calcNormFactors(x2);
 x2$samples$norm.factors;
-lcpm <- edgeR::cpm(x2, log=TRUE);
-boxplot(lcpm, las=2, col=col, main="");
+#logCountsPerMillion <- edgeR::cpm(x2, log=TRUE);
+logCountsPerMillion <- CountsPerMillion(x2, TRUE);
+boxplot(logCountsPerMillion, las=2, col=col, main="");
 title(main="B. Example: Normalised data",ylab="Log-cpm");
 ## Unsupervised clustering of samples
-lcpm <- edgeR::cpm(x, log=TRUE);
+#logCountsPerMillion <- edgeR::cpm(x, log=TRUE);
+logCountsPerMillion <- CountsPerMillion(x, TRUE);
 par(mfrow=c(1,2));
 col.group <- group;
 levels(col.group) <- RColorBrewer::brewer.pal(nlevels(col.group), "Set1");
@@ -130,16 +136,16 @@ col.group <- as.character(col.group);
 col.lane <- lane;
 levels(col.lane) <- RColorBrewer::brewer.pal(nlevels(col.lane), "Set2");
 col.lane <- as.character(col.lane);
-limma::plotMDS(lcpm, labels=group, col=col.group);
+limma::plotMDS(logCountsPerMillion, labels=group, col=col.group);
 title(main="A. Sample groups");
 
-limma::plotMDS(lcpm, labels=lane, col=col.lane, dim=c(3,4));
+limma::plotMDS(logCountsPerMillion, labels=lane, col=col.lane, dim=c(3,4));
 title(main="B. Sequencing lanes");
 ## http://bioinf.wehi.edu.au/folders/limmaWorkflow/glimma-plots/MDS-Plot.html
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("Glimma");
 library(Glimma);
-Glimma::glMDSPlot(lcpm, labels = paste(group, lane, sep="_"), groups = x$samples[,c(2,5)], launch = FALSE);
+Glimma::glMDSPlot(logCountsPerMillion, labels = paste(group, lane, sep="_"), groups = x$samples[,c(2,5)], launch = FALSE);
 # Differential expression analysis
 ## Creating a design matrix and contrasts
 design <- model.matrix(~0 + group + lane);
