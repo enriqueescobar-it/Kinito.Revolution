@@ -106,9 +106,9 @@ title(main = "B. Filtered data", xlab = "Log-cpm");
 abline(v = 0, lty = 3);
 for (i in 2:nsamples){
   den <- density(logCountsPerMillion[,i]);
-  lines(den$x, den$y, col=col[i], lwd=2);
+  lines(den$x, den$y, col = col[i], lwd = 2);
 }
-legend("topright", samplenames, text.col=col, bty="n");
+legend("topright", samplenames, text.col = col, bty = "n");
 ## Normalising gene expression distributions
 x <- edgeR::calcNormFactors(x, method = "TMM");
 x$samples$norm.factors;
@@ -116,22 +116,22 @@ x2 <- x
 x2$samples$norm.factors <- 1;
 x2$counts[,1] <- ceiling(x2$counts[,1]*0.05);
 x2$counts[,2] <- x2$counts[,2]*5;
-par(mfrow=c(1,2));
+par(mfrow = c(1,2));
 #logCountsPerMillion <- edgeR::cpm(x2, log=TRUE);
 logCountsPerMillion <- CountsPerMillion(x2, TRUE);
-boxplot(logCountsPerMillion, las=2, col=col, main="");
-title(main="A. Example: Unnormalised data",ylab="Log-cpm");
+boxplot(logCountsPerMillion, las = 2, col = col, main ="");
+title(main = "A. Example: Unnormalised data", ylab = "Log-cpm");
 
 x2 <- edgeR::calcNormFactors(x2);
 x2$samples$norm.factors;
 #logCountsPerMillion <- edgeR::cpm(x2, log=TRUE);
 logCountsPerMillion <- CountsPerMillion(x2, TRUE);
-boxplot(logCountsPerMillion, las=2, col=col, main="");
-title(main="B. Example: Normalised data",ylab="Log-cpm");
+boxplot(logCountsPerMillion, las = 2, col = col, main = "");
+title(main = "B. Example: Normalised data", ylab = "Log-cpm");
 ## Unsupervised clustering of samples
 #logCountsPerMillion <- edgeR::cpm(x, log=TRUE);
 logCountsPerMillion <- CountsPerMillion(x, TRUE);
-par(mfrow=c(1,2));
+par(mfrow = c(1,2));
 col.group <- group;
 #levels(col.group) <- RColorBrewer::brewer.pal(nlevels(col.group), "Set1");
 levels(col.group) <- ColorPalette(nlevels(col.group), "Set1");
@@ -142,10 +142,10 @@ col.lane <- lane;
 levels(col.lane) <- ColorPalette(nlevels(col.lane), "Set2");
 
 col.lane <- as.character(col.lane);
-limma::plotMDS(logCountsPerMillion, labels=group, col=col.group);
+limma::plotMDS(logCountsPerMillion, labels = group, col = col.group);
 title(main="A. Sample groups");
 
-limma::plotMDS(logCountsPerMillion, labels=lane, col=col.lane, dim=c(3,4));
+limma::plotMDS(logCountsPerMillion, labels = lane, col = col.lane, dim = c(3,4));
 title(main="B. Sequencing lanes");
 ## http://bioinf.wehi.edu.au/folders/limmaWorkflow/glimma-plots/MDS-Plot.html
 #source("https://bioconductor.org/biocLite.R");
@@ -166,33 +166,33 @@ contr.matrix <- limma::makeContrasts(
   levels = colnames(design));
 contr.matrix;
 ## Removing heteroscedascity from count data
-v <- limma::voom(x, design, plot=TRUE);
+v <- limma::voom(x, design, plot = TRUE);
 v;
 ## Fitting linear models for comparisons of interest
 vfit <- limma::lmFit(v, design);
-vfit <- limma::contrasts.fit(vfit, contrasts=contr.matrix);
+vfit <- limma::contrasts.fit(vfit, contrasts = contr.matrix);
 efit <- limma::eBayes(vfit);
 limma::plotSA(efit);
 ## Examining the number of DE genes
 summary(limma::decideTests(efit));
-tfit <- limma::treat(vfit, lfc=1);
+tfit <- limma::treat(vfit, lfc = 1);
 dt <- limma::decideTests(tfit);
 summary(dt);
-de.common <- which(dt[,1]!=0 & dt[,2]!=0);
+de.common <- which(dt[,1] != 0 & dt[,2] != 0);
 length(de.common);
-head(tfit$genes$SYMBOL[de.common], n=20);
-limma::vennDiagram(dt[,1:2], circle.col=c("turquoise", "salmon"));
-write.fit(tfit, dt, file="Doc/results.txt");
+head(tfit$genes$SYMBOL[de.common], n = 20);
+limma::vennDiagram(dt[,1:2], circle.col = c("turquoise", "salmon"));
+write.fit(tfit, dt, file = "Doc/results.txt");
 ## Examining individual DE genes from top to bottom
-basal.vs.lp <- limma::topTreat(tfit, coef=1, n=Inf);
-basal.vs.ml <- limma::topTreat(tfit, coef=2, n=Inf);
+basal.vs.lp <- limma::topTreat(tfit, coef = 1, n = Inf);
+basal.vs.ml <- limma::topTreat(tfit, coef = 2, n = Inf);
 head(basal.vs.lp);
 head(basal.vs.ml);
 ## Useful graphical representations of differential expression results
-limma::plotMD(tfit, column=1, status=dt[,1], main=colnames(tfit)[1], xlim=c(-8,13));
+limma::plotMD(tfit, column = 1, status = dt[,1], main = colnames(tfit)[1], xlim = c(-8,13));
 #***
-Glimma::glMDPlot(tfit, coef=1, status=dt, main=colnames(tfit)[1],
-         id.column="ENTREZID", counts=x$counts, groups=group, launch=FALSE);
+Glimma::glMDPlot(tfit, coef = 1, status = dt, main = colnames(tfit)[1],
+         id.column = "ENTREZID", counts = x$counts, groups = group, launch = FALSE);
 
 library(gplots);
 basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100];
@@ -206,15 +206,15 @@ gplots::heatmap.2(v$E[i,], scale = "row",
 # http://bioinf.wehi.edu.au/software/MSigDB/
 # http://bioinf.wehi.edu.au/software/MSigDB/mouse_c2_v5p1.rdata : Mm.c2
 load(url("http://bioinf.wehi.edu.au/software/MSigDB/mouse_c2_v5p1.rdata")) ;
-idx <- limma::ids2indices( Mm.c2, id = rownames( v )) ;
-cam.BasalvsLP <- limma::camera( v, idx, design, contrast = contr.matrix[,1]) ;
+idx <- limma::ids2indices(Mm.c2, id = rownames(v)) ;
+cam.BasalvsLP <- limma::camera(v, idx, design, contrast = contr.matrix[,1]) ;
 head(cam.BasalvsLP,5);
-cam.BasalvsML <- limma::camera(v,idx,design,contrast=contr.matrix[,2]) ;
+cam.BasalvsML <- limma::camera(v, idx, design, contrast = contr.matrix[,2]) ;
 head(cam.BasalvsML,5);
-cam.LPvsML    <- limma::camera(v,idx,design,contrast=contr.matrix[,3]) ;
+cam.LPvsML    <- limma::camera(v, idx, design, contrast = contr.matrix[,3]) ;
 head(cam.LPvsML,5);
 
-limma::barcodeplot(efit$t[,3], index=idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
-            index2=idx$LIM_MAMMARY_LUMINAL_MATURE_DN, main="LPvsML");
+limma::barcodeplot(efit$t[,3], index = idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
+            index2 = idx$LIM_MAMMARY_LUMINAL_MATURE_DN, main = "LPvsML");
 # Software availability
 
