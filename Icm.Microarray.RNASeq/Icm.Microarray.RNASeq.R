@@ -84,10 +84,10 @@ table(rowSums(x$counts == 0) == 9);
 keep.exprs <- rowSums(simpleCountsPerMillion > 1) >= 3;
 x <- x[keep.exprs, , keep.lib.sizes = FALSE];
 dim(x);
-library(RColorBrewer);
+#library(RColorBrewer);
 source(paste0("Lib/", "RColorBrewer.Util.R"));
 nsamples <- ncol(x);
-col <- RColorBrewer::brewer.pal(nsamples, "Paired");
+#col <- RColorBrewer::brewer.pal(nsamples, "Paired");
 col <- ColorPalette(nsamples, "Paired");
 par(mfrow = c(1,2));
 plot(density(logCountsPerMillion[,1]), col = col[1], lwd = 2, ylim = c(0,0.21), las = 2, main = "", xlab = "");
@@ -133,12 +133,12 @@ title(main="B. Example: Normalised data",ylab="Log-cpm");
 logCountsPerMillion <- CountsPerMillion(x, TRUE);
 par(mfrow=c(1,2));
 col.group <- group;
-levels(col.group) <- RColorBrewer::brewer.pal(nlevels(col.group), "Set1");
+#levels(col.group) <- RColorBrewer::brewer.pal(nlevels(col.group), "Set1");
 levels(col.group) <- ColorPalette(nlevels(col.group), "Set1");
 
 col.group <- as.character(col.group);
 col.lane <- lane;
-levels(col.lane) <- RColorBrewer::brewer.pal(nlevels(col.lane), "Set2");
+#levels(col.lane) <- RColorBrewer::brewer.pal(nlevels(col.lane), "Set2");
 levels(col.lane) <- ColorPalette(nlevels(col.lane), "Set2");
 
 col.lane <- as.character(col.lane);
