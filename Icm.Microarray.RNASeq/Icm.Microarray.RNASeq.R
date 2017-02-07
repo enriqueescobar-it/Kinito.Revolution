@@ -43,7 +43,7 @@ x$samples$group <- group;
 x$samples;
 #rm(group);
 ### lane factor foreach-9
-lane <- as.factor(rep(c("L004","L006","L008"), c(3,4,2))) ;
+lane <- as.factor(rep(c("L004", "L006", "L008"), c(3, 4, 2))) ;
 x$samples$lane <- lane;
 x$samples;
 #rm(lane);
@@ -86,41 +86,41 @@ x <- x[keep.exprs, , keep.lib.sizes = FALSE];
 dim(x);
 #library(RColorBrewer);
 source(paste0("Lib/", "RColorBrewer.Util.R"));
-nsamples <- ncol(x);
-#col <- RColorBrewer::brewer.pal(nsamples, "Paired");
-col <- ColorPalette(nsamples, "Paired");
-par(mfrow = c(1,2));
-plot(density(logCountsPerMillion[,1]), col = col[1], lwd = 2, ylim = c(0,0.21), las = 2, main = "", xlab = "");
+sampleCount <- ncol(x);
+#pairedColors <- RColorBrewer::brewer.pal(sampleCount, "Paired");
+pairedColors <- ColorPalette(sampleCount, "Paired");
+par(mfrow = c(1, 2));
+plot(density(logCountsPerMillion[, 1]), col = pairedColors[1], lwd = 2, ylim = c(0, 0.21), las = 2, main = "", xlab = "");
 title(main = "A. Raw data", xlab = "Log-cpm");
 abline(v = 0, lty = 3);
-for (i in 2:nsamples){
-  den <- density(logCountsPerMillion[,i]);
-  lines(den$x, den$y, col = col[i], lwd = 2);
+for (i in 2:sampleCount){
+  den <- density(logCountsPerMillion[, i]);
+  lines(den$x, den$y, col = pairedColors[i], lwd = 2);
 }
-legend("topright", samplenames, text.col = col, bty = "n");
+legend("topright", samplenames, text.col = pairedColors, bty = "n");
 
 #logCountsPerMillion <- edgeR::cpm(x, log = TRUE);
 logCountsPerMillion <- CountsPerMillion(x, TRUE);
-plot(density(logCountsPerMillion[,1]), col = col[1], lwd = 2, ylim = c(0,0.21), las = 2, main = "", xlab = "");
+plot(density(logCountsPerMillion[, 1]), col = pairedColors[1], lwd = 2, ylim = c(0, 0.21), las = 2, main = "", xlab = "");
 title(main = "B. Filtered data", xlab = "Log-cpm");
 abline(v = 0, lty = 3);
-for (i in 2:nsamples){
-  den <- density(logCountsPerMillion[,i]);
-  lines(den$x, den$y, col = col[i], lwd = 2);
+for (i in 2:sampleCount){
+  den <- density(logCountsPerMillion[, i]);
+  lines(den$x, den$y, col = pairedColors[i], lwd = 2);
 }
-legend("topright", samplenames, text.col = col, bty = "n");
+legend("topright", samplenames, text.col = pairedColors, bty = "n");
 ## Normalising gene expression distributions
 #x <- edgeR::calcNormFactors(x, method = "TMM");
 x <- CalculateNormalizationFactors(x, "TMM");
 x$samples$norm.factors;
 x2 <- x
 x2$samples$norm.factors <- 1;
-x2$counts[,1] <- ceiling(x2$counts[,1]*0.05);
-x2$counts[,2] <- x2$counts[,2]*5;
-par(mfrow = c(1,2));
+x2$counts[, 1] <- ceiling(x2$counts[, 1]*0.05);
+x2$counts[, 2] <- x2$counts[, 2]*5;
+par(mfrow = c(1, 2));
 #logCountsPerMillion <- edgeR::cpm(x2, log=TRUE);
 logCountsPerMillion <- CountsPerMillion(x2, TRUE);
-boxplot(logCountsPerMillion, las = 2, col = col, main ="");
+boxplot(logCountsPerMillion, las = 2, col = pairedColors, main ="");
 title(main = "A. Example: Unnormalised data", ylab = "Log-cpm");
 
 #x2 <- edgeR::calcNormFactors(x2);
@@ -128,7 +128,7 @@ x2 <- CalculateNormalizationFactors(x2);
 x2$samples$norm.factors;
 #logCountsPerMillion <- edgeR::cpm(x2, log=TRUE);
 logCountsPerMillion <- CountsPerMillion(x2, TRUE);
-boxplot(logCountsPerMillion, las = 2, col = col, main = "");
+boxplot(logCountsPerMillion, las = 2, col = pairedColors, main = "");
 title(main = "B. Example: Normalised data", ylab = "Log-cpm");
 ## Unsupervised clustering of samples
 #logCountsPerMillion <- edgeR::cpm(x, log=TRUE);
@@ -191,7 +191,7 @@ basal.vs.ml <- limma::topTreat(tfit, coef = 2, n = Inf);
 head(basal.vs.lp);
 head(basal.vs.ml);
 ## Useful graphical representations of differential expression results
-limma::plotMD(tfit, column = 1, status = dt[,1], main = colnames(tfit)[1], xlim = c(-8,13));
+limma::plotMD(tfit, column = 1, status = dt[, 1], main = colnames(tfit)[1], xlim = c(-8, 13));
 #***
 Glimma::glMDPlot(tfit, coef = 1, status = dt, main = colnames(tfit)[1],
          id.column = "ENTREZID", counts = x$counts, groups = group, launch = FALSE);
@@ -199,11 +199,11 @@ Glimma::glMDPlot(tfit, coef = 1, status = dt, main = colnames(tfit)[1],
 library(gplots);
 basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100];
 i <- which(v$genes$ENTREZID %in% basal.vs.lp.topgenes);
-mycol <- gplots::colorpanel(1000,"blue","white","red");
-gplots::heatmap.2(v$E[i,], scale = "row",
+mycol <- gplots::colorpanel(1000, "blue", "white", "red");
+gplots::heatmap.2(v$E[i, ], scale = "row",
           labRow = v$genes$SYMBOL[i], labCol = group,
           col = mycol, trace = "none", density.info = "none", 
-          margin = c(8,6), lhei = c(2,10), dendrogram = "column");
+          margin = c(8, 6), lhei = c(2, 10), dendrogram = "column");
 # Gene set testing with camera
 # http://bioinf.wehi.edu.au/software/MSigDB/
 # http://bioinf.wehi.edu.au/software/MSigDB/mouse_c2_v5p1.rdata : Mm.c2
