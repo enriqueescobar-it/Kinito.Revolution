@@ -110,7 +110,8 @@ for (i in 2:nsamples){
 }
 legend("topright", samplenames, text.col = col, bty = "n");
 ## Normalising gene expression distributions
-x <- edgeR::calcNormFactors(x, method = "TMM");
+#x <- edgeR::calcNormFactors(x, method = "TMM");
+x <- CalculateNormalizationFactors(x, "TMM");
 x$samples$norm.factors;
 x2 <- x
 x2$samples$norm.factors <- 1;
@@ -122,7 +123,8 @@ logCountsPerMillion <- CountsPerMillion(x2, TRUE);
 boxplot(logCountsPerMillion, las = 2, col = col, main ="");
 title(main = "A. Example: Unnormalised data", ylab = "Log-cpm");
 
-x2 <- edgeR::calcNormFactors(x2);
+#x2 <- edgeR::calcNormFactors(x2);
+x2 <- CalculateNormalizationFactors(x2);
 x2$samples$norm.factors;
 #logCountsPerMillion <- edgeR::cpm(x2, log=TRUE);
 logCountsPerMillion <- CountsPerMillion(x2, TRUE);

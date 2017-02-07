@@ -43,3 +43,23 @@ CountsPerMillion <- function(aDGEList = NULL, IsLog = FALSE){
     return(edgeR::cpm(aDGEList, log = IsLog));
   }
 }
+
+#' Title  CalculateNormalizationFactors
+#'
+#' @param obj 
+#' @param aMethod 
+#'
+#' @return DGEList
+#' @export TBD
+#'
+#' @examples TBD
+CalculateNormalizationFactors <- function(obj = NULL, aMethod = NULL){
+  
+  if (is.null(aMethod)) {
+    
+    return(edgeR::calcNormFactors(obj));
+  } else {
+    
+    return(edgeR::calcNormFactors(obj, method = aMethod));
+  }
+}
