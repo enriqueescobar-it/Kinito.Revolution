@@ -144,16 +144,18 @@ col.lane <- lane;
 levels(col.lane) <- ColorPalette(nlevels(col.lane), "Set2");
 
 col.lane <- as.character(col.lane);
-limma::plotMDS(logCountsPerMillion, labels = group, col = col.group);
+#limma::plotMDS(logCountsPerMillion, labels = group, col = col.group);
+PlotMultiDimensionalScaling(logCountsPerMillion, group, col.group);
 title(main="A. Sample groups");
 
-limma::plotMDS(logCountsPerMillion, labels = lane, col = col.lane, dim = c(3,4));
+#limma::plotMDS(logCountsPerMillion, labels = lane, col = col.lane, dim = c(3,4));
+PlotMultiDimensionalScalingFixed(logCountsPerMillion, lane, col.lane, c(3,4));
 title(main="B. Sequencing lanes");
 ## http://bioinf.wehi.edu.au/folders/limmaWorkflow/glimma-plots/MDS-Plot.html
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("Glimma");
 library(Glimma);
-Glimma::glMDSPlot(logCountsPerMillion, labels = paste(group, lane, sep="_"), groups = x$samples[,c(2,5)], launch = FALSE);
+Glimma::glMDSPlot(logCountsPerMillion, labels = paste(group, lane, sep = "_"), groups = x$samples[,c(2,5)], launch = FALSE);
 # Differential expression analysis
 ## Creating a design matrix and contrasts
 design <- model.matrix(~0 + group + lane);
@@ -161,24 +163,34 @@ colnames(design) <- gsub("group", "", colnames(design));
 colnames(design);
 design;
 
-contr.matrix <- limma::makeContrasts(
-  BasalvsLP = Basal-LP,
+# contr.matrix <- limma::makeContrasts(
+#   "BasalvsLP = Basal - LP,
+#   BasalvsML = Basal - ML, 
+#   LPvsML = LP - ML",
+#   levels = colnames(design));
+contr.matrix <- GetContrastsFrom(
+  "BasalvsLP = Basal - LP,
   BasalvsML = Basal - ML, 
-  LPvsML = LP - ML,
-  levels = colnames(design));
+  LPvsML = LP - ML", colnames(design))
 contr.matrix;
 ## Removing heteroscedascity from count data
-v <- limma::voom(x, design, plot = TRUE);
+#v <- limma::voom(x, design, plot = TRUE);
+v <- PlotRNASeqDataReadyLinearModel(x, design);
 v;
 ## Fitting linear models for comparisons of interest
-vfit <- limma::lmFit(v, design);
-vfit <- limma::contrasts.fit(vfit, contrasts = contr.matrix);
-efit <- limma::eBayes(vfit);
-limma::plotSA(efit);
+#vfit <- limma::lmFit(v, design);
+uArrayLinearModelFit <- LinearModelFitToDesign(v, design);
+#uArrayLinearModelContrast <- limma::contrasts.fit(uArrayLinearModelFit, contrasts = contr.matrix);
+uArrayLinearModelContrast <- LinearModelFitToContrast(uArrayLinearModelFit, contr.matrix);
+uArrayLinearModelebayes <- LinearModelFitToEmpBayes(uArrayLinearModelContrast);
+PlotMicroArrayLinearModelSigmaVsAverageLogExpression(uArrayLinearModelebayes);
 ## Examining the number of DE genes
-summary(limma::decideTests(efit));
-tfit <- limma::treat(vfit, lfc = 1);
-dt <- limma::decideTests(tfit);
+#summary(limma::decideTests(uArrayLinearModelebayes));
+DifferentialExpressionSum(uArrayLinearModelebayes);
+#tfit <- limma::treat(uArrayLinearModelContrast, lfc = 1);
+tfit <- LinearModelTreatment(uArrayLinearModelContrast);
+#dt <- limma::decideTests(tfit);
+dt <- ClassifyTtestGenesAcross(tfit);
 summary(dt);
 de.common <- which(dt[,1] != 0 & dt[,2] != 0);
 length(de.common);
@@ -216,7 +228,7 @@ head(cam.BasalvsML,5);
 cam.LPvsML    <- limma::camera(v, idx, design, contrast = contr.matrix[,3]) ;
 head(cam.LPvsML,5);
 
-limma::barcodeplot(efit$t[,3], index = idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
+limma::barcodeplot(uArrayLinearModelebayes$t[,3], index = idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
             index2 = idx$LIM_MAMMARY_LUMINAL_MATURE_DN, main = "LPvsML");
 # Software availability
 
