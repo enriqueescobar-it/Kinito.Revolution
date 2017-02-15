@@ -144,6 +144,8 @@ col.lane <- lane;
 levels(col.lane) <- ColorPalette(nlevels(col.lane), "Set2");
 
 col.lane <- as.character(col.lane);
+#library(limma)
+source(paste0("Lib/", "limma.Util.R"));
 #limma::plotMDS(logCountsPerMillion, labels = group, col = col.group);
 PlotMultiDimensionalScaling(logCountsPerMillion, group, col.group);
 title(main="A. Sample groups");
@@ -163,15 +165,11 @@ colnames(design) <- gsub("group", "", colnames(design));
 colnames(design);
 design;
 
-# contr.matrix <- limma::makeContrasts(
-#   "BasalvsLP = Basal - LP,
-#   BasalvsML = Basal - ML, 
-#   LPvsML = LP - ML",
-#   levels = colnames(design));
-contr.matrix <- GetContrastsFrom(
-  "BasalvsLP = Basal - LP,
-  BasalvsML = Basal - ML, 
-  LPvsML = LP - ML", colnames(design))
+contr.matrix <- limma::makeContrasts(
+  BasalvsLP = Basal - LP,
+  BasalvsML = Basal - ML,
+  LPvsML = LP - ML,
+  levels = colnames(design));
 contr.matrix;
 ## Removing heteroscedascity from count data
 #v <- limma::voom(x, design, plot = TRUE);
@@ -181,7 +179,7 @@ v;
 #vfit <- limma::lmFit(v, design);
 uArrayLinearModelFit <- LinearModelFitToDesign(v, design);
 #uArrayLinearModelContrast <- limma::contrasts.fit(uArrayLinearModelFit, contrasts = contr.matrix);
-uArrayLinearModelContrast <- LinearModelFitToContrast(uArrayLinearModelFit, contr.matrix);
+uArrayLinearModelContrast <- LinearModelFitToContrast(uArrayLinearModelFit, contrastMatrix = contr.matrix);
 uArrayLinearModelebayes <- LinearModelFitToEmpBayes(uArrayLinearModelContrast);
 PlotMicroArrayLinearModelSigmaVsAverageLogExpression(uArrayLinearModelebayes);
 ## Examining the number of DE genes
@@ -195,14 +193,18 @@ summary(dt);
 de.common <- which(dt[,1] != 0 & dt[,2] != 0);
 length(de.common);
 head(tfit$genes$SYMBOL[de.common], n = 20);
-limma::vennDiagram(dt[,1:2], circle.col = c("turquoise", "salmon"));
-write.fit(tfit, dt, file = "Doc/results.txt");
+#limma::vennDiagram(dt[,1:2], circle.col = c("turquoise", "salmon"));
+TwoGroupVennDiagram(dt[,1:2]);
+#limma::write.fit(tfit, dt, file = "Doc/results.txt");
+MArrayLMToFile(tfit, aTestResults = dt, filePath = "Doc/results.txt");
 ## Examining individual DE genes from top to bottom
-basal.vs.lp <- limma::topTreat(tfit, coef = 1, n = Inf);
-basal.vs.ml <- limma::topTreat(tfit, coef = 2, n = Inf);
+#basal.vs.lp <- limma::topTreat(tfit, coef = 1, n = Inf);
+basal.vs.lp <- LinearModelFitToTopGenes(tfit, coefficient = 1);
 head(basal.vs.lp);
+#basal.vs.ml <- limma::topTreat(tfit, coef = 2, n = Inf);
+basal.vs.ml <- LinearModelFitToTopGenes(tfit, coefficient = 2);
 head(basal.vs.ml);
-## Useful graphical representations of differential expression results
+## Useful graphical representations of differential expression results BasalvsLP
 limma::plotMD(tfit, column = 1, status = dt[, 1], main = colnames(tfit)[1], xlim = c(-8, 13));
 #***
 Glimma::glMDPlot(tfit, coef = 1, status = dt, main = colnames(tfit)[1],
