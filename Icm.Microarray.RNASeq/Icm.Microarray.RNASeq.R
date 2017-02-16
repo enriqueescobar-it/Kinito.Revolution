@@ -170,6 +170,9 @@ contr.matrix <- limma::makeContrasts(
   BasalvsML = Basal - ML,
   LPvsML = LP - ML,
   levels = colnames(design));
+columnBasalvsLP <- 1;
+columnBasalvsML <- 2;
+columnLPvsML <- 3;
 contr.matrix;
 ## Removing heteroscedascity from count data
 #v <- limma::voom(x, design, plot = TRUE);
@@ -190,24 +193,25 @@ tfit <- LinearModelTreatment(uArrayLinearModelContrast);
 #dt <- limma::decideTests(tfit);
 dt <- ClassifyTtestGenesAcross(tfit);
 summary(dt);
-de.common <- which(dt[,1] != 0 & dt[,2] != 0);
+de.common <- which(dt[, columnBasalvsLP] != 0 & dt[, columnBasalvsML] != 0);
 length(de.common);
 head(tfit$genes$SYMBOL[de.common], n = 20);
 #limma::vennDiagram(dt[,1:2], circle.col = c("turquoise", "salmon"));
-TwoGroupVennDiagram(dt[,1:2]);
+TwoGroupVennDiagram(dt[, columnBasalvsLP:columnBasalvsML]);
 #limma::write.fit(tfit, dt, file = "Doc/results.txt");
 MArrayLMToFile(tfit, aTestResults = dt, filePath = "Doc/results.txt");
 ## Examining individual DE genes from top to bottom
 #basal.vs.lp <- limma::topTreat(tfit, coef = 1, n = Inf);
-basal.vs.lp <- LinearModelFitToTopGenes(tfit, coefficient = 1);
+basal.vs.lp <- LinearModelFitToTopGenes(tfit, coefficient = columnBasalvsLP);
 head(basal.vs.lp);
 #basal.vs.ml <- limma::topTreat(tfit, coef = 2, n = Inf);
-basal.vs.ml <- LinearModelFitToTopGenes(tfit, coefficient = 2);
+basal.vs.ml <- LinearModelFitToTopGenes(tfit, coefficient = columnBasalvsML);
 head(basal.vs.ml);
 ## Useful graphical representations of differential expression results BasalvsLP
-limma::plotMD(tfit, column = 1, status = dt[, 1], main = colnames(tfit)[1], xlim = c(-8, 13));
+#limma::plotMD(tfit, column = columnBasalvsLP, status = dt[, columnBasalvsLP], main = colnames(tfit)[columnBasalvsLP], xlim = c(-8, 13));
+PlotMeanDifferenceExpression(tfit, aColumn = columnBasalvsLP, aTestResults = dt);
 #***
-Glimma::glMDPlot(tfit, coef = 1, status = dt, main = colnames(tfit)[1],
+Glimma::glMDPlot(tfit, coef = columnBasalvsLP, status = dt, main = colnames(tfit)[columnBasalvsLP],
          id.column = "ENTREZID", counts = x$counts, groups = group, launch = FALSE);
 
 library(gplots);
@@ -221,16 +225,18 @@ gplots::heatmap.2(v$E[i, ], scale = "row",
 # Gene set testing with camera
 # http://bioinf.wehi.edu.au/software/MSigDB/
 # http://bioinf.wehi.edu.au/software/MSigDB/mouse_c2_v5p1.rdata : Mm.c2
-load(url("http://bioinf.wehi.edu.au/software/MSigDB/mouse_c2_v5p1.rdata")) ;
-idx <- limma::ids2indices(Mm.c2, id = rownames(v)) ;
-cam.BasalvsLP <- limma::camera(v, idx, design, contrast = contr.matrix[,1]) ;
+#load(url("http://bioinf.wehi.edu.au/software/MSigDB/mouse_c2_v5p1.rdata")) ;
+load("Data/mouse_c2_v5p1.Rdata");
+#idx <- limma::ids2indices(Mm.c2, identifiers = rownames(v)) ;
+idx <- GeneIdsToGeneSets(Mm.c2, ids = rownames(v));
+cam.BasalvsLP <- limma::camera(v, idx, design, contrast = contr.matrix[, columnBasalvsLP]) ;
 head(cam.BasalvsLP,5);
-cam.BasalvsML <- limma::camera(v, idx, design, contrast = contr.matrix[,2]) ;
+cam.BasalvsML <- limma::camera(v, idx, design, contrast = contr.matrix[, columnBasalvsML]) ;
 head(cam.BasalvsML,5);
-cam.LPvsML    <- limma::camera(v, idx, design, contrast = contr.matrix[,3]) ;
+cam.LPvsML    <- limma::camera(v, idx, design, contrast = contr.matrix[, columnLPvsML]) ;
 head(cam.LPvsML,5);
 
-limma::barcodeplot(uArrayLinearModelebayes$t[,3], index = idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
+limma::barcodeplot(uArrayLinearModelebayes$t[, columnLPvsML], index = idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
             index2 = idx$LIM_MAMMARY_LUMINAL_MATURE_DN, main = "LPvsML");
 # Software availability
 

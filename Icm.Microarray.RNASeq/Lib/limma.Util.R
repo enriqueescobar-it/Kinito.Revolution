@@ -148,7 +148,7 @@ ClassifyTtestGenesAcross <- function(mArrayLM = limma::as.data.frame.MArrayLM(NU
 #' @export
 #'
 #' @examples
-DifferentialExpressionSum <- function(mArrayLM = limma::as.data.frame.MArrayLM(NULL)){
+DifferentialExpressionSum <- function(mArrayLM = NULL){
   
   return(summary(ClassifyTtestGenesAcross(mArrayLM)));
 }
@@ -169,3 +169,15 @@ LinearModelFitToTopGenes <- function(aMArrayLM = NULL, coefficient = 0){
   
   return(limma::topTreat(aMArrayLM, coef = coefficient, n = Inf));
 }
+
+PlotMeanDifferenceExpression <- function(aMArrayLM = NULL, aColumn = 0, aTestResults = NULL){
+  
+  limma::plotMD(aMArrayLM, column = aColumn, status = aTestResults[, aColumn],
+                main = colnames(aMArrayLM)[aColumn], xlim = c(-8, 13));
+}
+
+GeneIdsToGeneSets <- function(geneSets = list(), ids = NULL){
+  
+  return(limma::ids2indices(geneSets, identifiers = ids));
+}
+
