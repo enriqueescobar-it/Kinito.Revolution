@@ -29,6 +29,8 @@ Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "JoGEA.WorldBank", "JoGEA.Wo
 EndProject
 Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "AnomalyDetection", "AnomalyDetection\AnomalyDetection.rxproj", "{98C244A8-6DCA-4CE2-926E-6E9DA0BB9368}"
 EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Daen.Export.Indicators", "Daen.Export.Indicators\Daen.Export.Indicators.rxproj", "{9F4A1BA3-A33E-47E2-93CC-945164D41176}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,50 +92,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 14
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://codecademy.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Sam.CrossEntropy\\Sam.CrossEntropy.rxproj
-		SccProjectName1 = Sam.CrossEntropy
-		SccLocalPath1 = Sam.CrossEntropy
-		SccProjectUniqueName2 = Sam.GPCEMA\\Sam.GPCEMA.rxproj
-		SccProjectName2 = Sam.GPCEMA
-		SccLocalPath2 = Sam.GPCEMA
-		SccProjectUniqueName3 = Sam.RAS\\Sam.RAS.rxproj
-		SccProjectName3 = Sam.RAS
-		SccLocalPath3 = Sam.RAS
-		SccProjectUniqueName4 = Sam.Balancing\\Sam.Balancing.rxproj
-		SccProjectName4 = Sam.Balancing
-		SccLocalPath4 = Sam.Balancing
-		SccProjectUniqueName5 = Forecast.Ciudatos\\Forecast.Ciudatos.rxproj
-		SccProjectName5 = Forecast.Ciudatos
-		SccLocalPath5 = Forecast.Ciudatos
-		SccProjectUniqueName6 = RobjHyndman.Hyndsight.MelburnTalk\\RobjHyndman.Hyndsight.MelburnTalk.rxproj
-		SccProjectName6 = RobjHyndman.Hyndsight.MelburnTalk
-		SccLocalPath6 = RobjHyndman.Hyndsight.MelburnTalk
-		SccProjectUniqueName7 = RCommon\\RCommon.rxproj
-		SccProjectName7 = RCommon
-		SccLocalPath7 = RCommon
-		SccProjectUniqueName8 = Seminar.Undergrad\\Seminar.Undergrad.rxproj
-		SccProjectName8 = Seminar.Undergrad
-		SccLocalPath8 = Seminar.Undergrad
-		SccProjectUniqueName9 = Seminar.Under.Economy\\Seminar.Under.Economy.rxproj
-		SccProjectName9 = Seminar.Under.Economy
-		SccLocalPath9 = Seminar.Under.Economy
-		SccProjectUniqueName10 = Icm.Microarray.Affymetrix\\Icm.Microarray.Affymetrix.rxproj
-		SccProjectName10 = Icm.Microarray.Affymetrix
-		SccLocalPath10 = Icm.Microarray.Affymetrix
-		SccProjectUniqueName11 = Icm.Microarray.RNASeq\\Icm.Microarray.RNASeq.rxproj
-		SccProjectName11 = Icm.Microarray.RNASeq
-		SccLocalPath11 = Icm.Microarray.RNASeq
-		SccProjectUniqueName12 = JoGEA.WorldBank\\JoGEA.WorldBank.rxproj
-		SccProjectName12 = JoGEA.WorldBank
-		SccLocalPath12 = JoGEA.WorldBank
-		SccProjectUniqueName13 = AnomalyDetection\\AnomalyDetection.rxproj
-		SccProjectName13 = AnomalyDetection
-		SccLocalPath13 = AnomalyDetection
 	EndGlobalSection
 EndGlobal
