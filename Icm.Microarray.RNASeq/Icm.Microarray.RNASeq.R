@@ -61,6 +61,7 @@ geneIdKeys <- rownames(x) ;
 ### foearch rowname select cols in ENTREZID
 geneColumns <- c("SYMBOL", "TXCHROM");
 #genes <- AnnotationDbi::select(Mus.musculus, keys = geneIdKeys, columns = geneColumns, keytype = geneKeyType);
+# select() returned 1:many mapping between keys and columns
 genes <- EntrezIdSymbolChromosome(geneList = geneIdKeys, geneColumns = geneColumns, geneKeyType = geneKeyType);
 dim(genes);
 colnames(genes);
@@ -170,10 +171,10 @@ contr.matrix <- limma::makeContrasts(
   BasalvsML = Basal - ML,
   LPvsML = LP - ML,
   levels = colnames(design));
+contr.matrix;
 columnBasalvsLP <- 1;
 columnBasalvsML <- 2;
 columnLPvsML <- 3;
-contr.matrix;
 ## Removing heteroscedascity from count data
 #v <- limma::voom(x, design, plot = TRUE);
 v <- PlotRNASeqDataReadyLinearModel(x, design);
@@ -208,7 +209,8 @@ head(basal.vs.lp);
 basal.vs.ml <- LinearModelFitToTopGenes(tfit, coefficient = columnBasalvsML);
 head(basal.vs.ml);
 ## Useful graphical representations of differential expression results BasalvsLP
-#limma::plotMD(tfit, column = columnBasalvsLP, status = dt[, columnBasalvsLP], main = colnames(tfit)[columnBasalvsLP], xlim = c(-8, 13));
+#limma::plotMD(tfit, column = columnBasalvsLP, status = dt[, columnBasalvsLP],
+# main = colnames(tfit)[columnBasalvsLP], xlim = c(-8, 13));
 PlotMeanDifferenceExpression(tfit, aColumn = columnBasalvsLP, aTestResults = dt);
 #***
 Glimma::glMDPlot(tfit, coef = columnBasalvsLP, status = dt, main = colnames(tfit)[columnBasalvsLP],
@@ -229,14 +231,23 @@ gplots::heatmap.2(v$E[i, ], scale = "row",
 load("Data/mouse_c2_v5p1.Rdata");
 #idx <- limma::ids2indices(Mm.c2, identifiers = rownames(v)) ;
 idx <- GeneIdsToGeneSets(Mm.c2, ids = rownames(v));
-cam.BasalvsLP <- limma::camera(v, idx, design, contrast = contr.matrix[, columnBasalvsLP]) ;
+# <- limma::camera(v, index = idx, design, contrast = contr.matrix[, columnBasalvsLP]) ;
+cam.BasalvsLP <- TestAccountingIntergeneCorrelation(anElist = v, indexList = idx, designMatrix = design,
+                                                    contrastMatrix = contr.matrix[, columnBasalvsLP]);
 head(cam.BasalvsLP,5);
-cam.BasalvsML <- limma::camera(v, idx, design, contrast = contr.matrix[, columnBasalvsML]) ;
+# <- limma::camera(v, index = idx, design, contrast = contr.matrix[, columnBasalvsML]) ;
+cam.BasalvsML <- TestAccountingIntergeneCorrelation(anElist = v, indexList = idx, designMatrix = design,
+                                                    contrastMatrix = contr.matrix[, columnBasalvsML]);
 head(cam.BasalvsML,5);
-cam.LPvsML    <- limma::camera(v, idx, design, contrast = contr.matrix[, columnLPvsML]) ;
+# <- limma::camera(v, index = idx, design, contrast = contr.matrix[, columnLPvsML]) ;
+cam.LPvsML    <- TestAccountingIntergeneCorrelation(anElist = v, indexList = idx, designMatrix = design,
+                                                    contrastMatrix = contr.matrix[, columnLPvsML]);
 head(cam.LPvsML,5);
 
-limma::barcodeplot(uArrayLinearModelebayes$t[, columnLPvsML], index = idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
-            index2 = idx$LIM_MAMMARY_LUMINAL_MATURE_DN, main = "LPvsML");
+# limma::barcodeplot(uArrayLinearModelebayes$t[, columnLPvsML], index = idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
+#             index2 = idx$LIM_MAMMARY_LUMINAL_MATURE_DN, main = "LPvsML");
+PlotBarcodeEnrichment(statsVector = uArrayLinearModelebayes$t[, columnLPvsML],
+                      indexVector = idx$LIM_MAMMARY_LUMINAL_MATURE_UP,
+                      indexNegVector = idx$LIM_MAMMARY_LUMINAL_MATURE_DN, mainTile = "LPvsML");
 # Software availability
 
