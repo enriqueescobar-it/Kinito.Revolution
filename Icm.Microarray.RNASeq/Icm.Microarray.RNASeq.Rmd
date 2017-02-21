@@ -204,19 +204,156 @@ title(main = "B. Example: Normalised data", ylab = "Log-cpm");
 
 ## Unsupervised clustering of samples
 
-# Differential expression analysis
+```{r clustering-unsupervised, echo=TRUE}
+#logCountsPerMillion <- edgeR::cpm(x, log=TRUE);
+logCountsPerMillion <- CountsPerMillion(x, TRUE);
+par(mfrow = c(1,2));
+col.group <- group;
+#levels(col.group) <- RColorBrewer::brewer.pal(nlevels(col.group), "Set1");
+levels(col.group) <- ColorPalette(nlevels(col.group), "Set1");
+
+col.group <- as.character(col.group);
+col.lane <- lane;
+#levels(col.lane) <- RColorBrewer::brewer.pal(nlevels(col.lane), "Set2");
+levels(col.lane) <- ColorPalette(nlevels(col.lane), "Set2");
+
+col.lane <- as.character(col.lane);
+#library(limma)
+source(paste0("Lib/", "limma.Util.R"));
+#limma::plotMDS(logCountsPerMillion, labels = group, col = col.group);
+PlotMultiDimensionalScaling(logCountsPerMillion, group, col.group);
+title(main="A. Sample groups");
+
+#limma::plotMDS(logCountsPerMillion, labels = lane, col = col.lane, dim = c(3,4));
+PlotMultiDimensionalScalingFixed(logCountsPerMillion, lane, col.lane, c(3,4));
+title(main="B. Sequencing lanes");
+## http://bioinf.wehi.edu.au/folders/limmaWorkflow/glimma-plots/MDS-Plot.html
+#source("https://bioconductor.org/biocLite.R");
+#biocLite("Glimma");
+library(Glimma);
+Glimma::glMDSPlot(logCountsPerMillion, labels = paste(group, lane, sep = "_"), groups = x$samples[,c(2,5)], launch = FALSE);
+```
+
+# Differential Expression *DE* analysis
+
 
 ## Creating a design matrix and contrasts
 
+```{r de-analysis, echo=TRUE}
+## Creating a design matrix and contrasts
+design <- model.matrix(~0 + group + lane);
+colnames(design) <- gsub("group", "", colnames(design));
+colnames(design);
+design;
+
+contr.matrix <- limma::makeContrasts(
+  BasalvsLP = Basal - LP,
+  BasalvsML = Basal - ML,
+  LPvsML = LP - ML,
+  levels = colnames(design));
+contr.matrix;
+columnBasalvsLP <- 1;
+columnBasalvsML <- 2;
+columnLPvsML <- 3;
+```
+
 ## Removing heteroscedascity from count data
+
+```{r de-rm-hetero, echo=TRUE}
+#v <- limma::voom(x, design, plot = TRUE);
+v <- PlotRNASeqDataReadyLinearModel(x, design);
+v;
+```
 
 ## Fitting linear models for comparisons of interest
 
+```{r de-fit-lm-comp, echo=TRUE}
+## Fitting linear models for comparisons of interest
+#vfit <- limma::lmFit(v, design);
+uArrayLinearModelFit <- LinearModelFitToDesign(v, design);
+#uArrayLinearModelContrast <- limma::contrasts.fit(uArrayLinearModelFit, contrasts = contr.matrix);
+uArrayLinearModelContrast <- LinearModelFitToContrast(uArrayLinearModelFit, contrastMatrix = contr.matrix);
+uArrayLinearModelebayes <- LinearModelFitToEmpBayes(uArrayLinearModelContrast);
+PlotMicroArrayLinearModelSigmaVsAverageLogExpression(uArrayLinearModelebayes);
+```
+
+## Examining the number of *DE* genes
+
+```{r de-nb-genes, echo=TRUE}
 ## Examining the number of DE genes
+#summary(limma::decideTests(uArrayLinearModelebayes));
+DifferentialExpressionSum(uArrayLinearModelebayes);
+#tfit <- limma::treat(uArrayLinearModelContrast, lfc = 1);
+tfit <- LinearModelTreatment(uArrayLinearModelContrast);
+#dt <- limma::decideTests(tfit);
+dt <- ClassifyTtestGenesAcross(tfit);
+summary(dt);
+de.common <- which(dt[, columnBasalvsLP] != 0 & dt[, columnBasalvsML] != 0);
+length(de.common);
+head(tfit$genes$SYMBOL[de.common], n = 20);
+#limma::vennDiagram(dt[,1:2], circle.col = c("turquoise", "salmon"));
+TwoGroupVennDiagram(dt[, columnBasalvsLP:columnBasalvsML]);
+#limma::write.fit(tfit, dt, file = "Doc/results.txt");
+MArrayLMToFile(tfit, aTestResults = dt, filePath = "Doc/results.txt");
+```
 
+## Examining individual *DE* genes from top to bottom
+
+```{r de-top-genes, echo=TRUE}
 ## Examining individual DE genes from top to bottom
+#basal.vs.lp <- limma::topTreat(tfit, coef = 1, n = Inf);
+basal.vs.lp <- LinearModelFitToTopGenes(tfit, coefficient = columnBasalvsLP);
+head(basal.vs.lp);
+#basal.vs.ml <- limma::topTreat(tfit, coef = 2, n = Inf);
+basal.vs.ml <- LinearModelFitToTopGenes(tfit, coefficient = columnBasalvsML);
+head(basal.vs.ml);
+```
 
-## Useful graphical representations of differential expression results BasalvsLP
+## Useful graphical representations of *DE* results *BasalvsLP*
+
+```{r de-top-genes-graphs, echo=TRUE}
+PlotMeanDifferenceExpression(tfit, aColumn = columnBasalvsLP, aTestResults = dt);
+#***
+Glimma::glMDPlot(tfit, coef = columnBasalvsLP, status = dt, main = colnames(tfit)[columnBasalvsLP],
+        id.column = "ENTREZID", counts = x$counts, groups = group, launch = FALSE);
+```
+
+```{r de-top-genes-graph, echo=TRUE, cache = FALSE, error=TRUE}
+#knitr::opts_chunk$set(error = TRUE);
+library(gplots);
+basal.vs.lp.topgenes <- basal.vs.lp$ENTREZID[1:100];
+i <- which(v$genes$ENTREZID %in% basal.vs.lp.topgenes);
+mycol <- gplots::colorpanel(1000, "blue", "white", "red");
+gplots::heatmap.2(v$E[i, ], scale = "row",
+          labRow = v$genes$SYMBOL[i], labCol = group,
+          col = mycol, trace = "none", density.info = "none",
+          margin = c(8, 6), lhei = c(2, 10), dendrogram = "column");
+```
 
 # Gene set testing with camera
+
+```{r de-top-genes-set, echo=TRUE, cache = FALSE}
+#load(url("http://bioinf.wehi.edu.au/software/MSigDB/mouse_c2_v5p1.rdata")) ;
+load("Data/mouse_c2_v5p1.Rdata");
+#idx <- limma::ids2indices(Mm.c2, identifiers = rownames(v)) ;
+idx <- GeneIdsToGeneSets(Mm.c2, ids = rownames(v));
+# <- limma::camera(v, index = idx, design, contrast = contr.matrix[, columnBasalvsLP]) ;
+cam.BasalvsLP <- TestAccountingIntergeneCorrelation(anElist = v, indexList = idx, designMatrix = design,
+                                                    contrastMatrix = contr.matrix[, columnBasalvsLP]);
+head(cam.BasalvsLP,5);
+# <- limma::camera(v, index = idx, design, contrast = contr.matrix[, columnBasalvsML]) ;
+cam.BasalvsML <- TestAccountingIntergeneCorrelation(anElist = v, indexList = idx, designMatrix = design,
+                                                    contrastMatrix = contr.matrix[, columnBasalvsML]);
+head(cam.BasalvsML,5);
+# <- limma::camera(v, index = idx, design, contrast = contr.matrix[, columnLPvsML]) ;
+cam.LPvsML    <- TestAccountingIntergeneCorrelation(anElist = v, indexList = idx, designMatrix = design,
+                                                    contrastMatrix = contr.matrix[, columnLPvsML]);
+head(cam.LPvsML,5);
+# limma::barcodeplot(uArrayLinearModelebayes$t[, columnLPvsML], index = idx$LIM_MAMMARY_LUMINAL_MATURE_UP, 
+#             index2 = idx$LIM_MAMMARY_LUMINAL_MATURE_DN, main = "LPvsML");
+PlotBarcodeEnrichment(statsVector = uArrayLinearModelebayes$t[, columnLPvsML],
+                      indexVector = idx$LIM_MAMMARY_LUMINAL_MATURE_UP,
+                      indexNegVector = idx$LIM_MAMMARY_LUMINAL_MATURE_DN, mainTile = "LPvsML");
+```
+
 
