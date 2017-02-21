@@ -27,7 +27,7 @@ Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Icm.Microarray.RNASeq", "Ic
 EndProject
 Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "JoGEA.WorldBank", "JoGEA.WorldBank\JoGEA.WorldBank.rxproj", "{995453F9-44F3-45F7-B219-10454EBC54DA}"
 EndProject
-Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Daen.Export.Indicators", "Daen.Export.Indicators\Daen.Export.Indicators.rxproj", "{9F4A1BA3-A33E-47E2-93CC-945164D41176}"
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Dane.Export.Indicators", "Daen.Export.Indicators\Dane.Export.Indicators.rxproj", "{9F4A1BA3-A33E-47E2-93CC-945164D41176}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
