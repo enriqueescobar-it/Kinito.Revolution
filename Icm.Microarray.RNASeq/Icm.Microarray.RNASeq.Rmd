@@ -49,9 +49,59 @@ search();
 ls();
 ```
 
+# Abstract
+
+The ability to easily and efficiently analyse RNA-sequencing data is a key
+strength of the **Bioconductor** project. Starting with counts summarised at the
+gene-level, a typical analysis involves pre-processing, exploratory data
+analysis, differential expression testing and pathway analysis with the results
+obtained informing future experiments and validation studies. In this workflow
+article, we analyse RNA-sequencing data from the mouse mammary gland,
+demonstrating use of the popular **edgeR** package to import, organise, filter and
+normalise the data, followed by the **limma** package with its *voom* method,
+linear modelling and **empirical Bayes** moderation to assess differential
+expression and perform gene set testing. This pipeline is further enhanced by
+the **Glimma** package which enables interactive exploration of the results so
+that individual samples and genes can be examined by the user. The complete
+analysis offered by these three packages highlights the ease with which
+researchers can turn the raw counts from an RNA-sequencing experiment into
+biological insights using Bioconductor.
+
+
+# Introduction
+
+RNA-sequencing (RNA-seq) has become the primary technology used for gene expression profiling, with the genomewide
+detection of differentially expressed genes between two or more conditions of interest one of the most commonly
+asked questions by researchers.
+The **edgeR** and **limma** packages available from the **Bioconductor** project
+ offer a
+well-developed suite of statistical methods for dealing with this question for RNA-seq data. In this article, we describe
+an **edgeR** - **limma** workflow for analysing RNA-seq data that takes gene-level counts as its input, and moves through
+pre-processing and exploratory data analysis before obtaining lists of differentially expressed (DE) genes and gene
+signatures. This analysis is enhanced through the use of interactive graphics from the **Glimma** package
+, that allows for
+a more detailed exploration of the data at both the sample and gene-level than is possible using static R plots.
+The experiment analysed in this workflow is from Sheridan *et al*. (2015)
+ and consists of three cell populations (basal,
+luminal progenitor (LP) and mature luminal (ML)) sorted from the mammary glands of female virgin mice, each
+profiled in triplicate. RNA samples were sequenced across three batches on an Illumina HiSeq 2000 to obtain 100
+base-pair single-end reads. The analysis outlined in this article assumes that reads obtained from an RNA-seq experiment
+have been aligned to an appropriate reference genome and summarised into counts associated with gene-specific
+regions. In this instance, reads were aligned to the mouse reference genome (*mm10*) using the R based pipeline
+available in the **Rsubread** package (specifically the align function6
+ followed by featureCounts  for gene-level
+summarisation based on the in-built *mm10* RefSeq-based annotation). Count data for these samples can be downloaded
+from the Gene Expression Omnibus (GEO) using GEO Series accession number GSE63310. Further information on
+experimental design and sample preparation is also available from GEO under this accession number
+
 # Data packaging
 
 ## Reading
+
+To get started with this analysis, download the file **GSE63310_RAW.tar** available online from
+http://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE63310&format=file,
+and extract the relevant files from this archive. Each of these text files contains the raw gene-level counts for a given sample. Note that our analysis only includes the basal, LP and ML
+samples from this experiment (see associated file names below).
 
 ```{r data-packaging-reading}
 source(paste0("Lib/", projectName, ".Util.R"));
@@ -65,6 +115,11 @@ fileList <- c("Data/GSM1545535_10_6_5_11.txt",
            "Data/GSM1545544_JMS9-P7c.txt",
            "Data/GSM1545545_JMS9-P8c.txt");
 ```
+
+Whilst each of the nine text files can be read into R separately and combined into a matrix of counts, **edgeR** offers a
+convenient way to do this in one step using the readDGE function. The resulting DGEList-object contains a matrix
+of counts with 27,179 rows associated with unique Entrez gene identifiers (IDs) and nine columns associated with the
+individual samples in the experiment.
 
 # GeneNames *col1* & GeneCount *col3*
 
@@ -81,7 +136,20 @@ x <- GeneNameAndCountDGEList(fileList, geneColumns);
 dim(x);
 ```
 
+If the counts from all samples were stored in a single file, the data can be read into R and then converted into a
+DGEList-object using the DGEList function.
+
 ## Organising sample information
+
+For downstream analysis, sample-level information related to the experimental design needs to be associated with the
+columns of the counts matrix. This should include experimental variables, both biological and technical, that could
+have an effect on expression levels. Examples include cell type (basal, LP and ML in this experiment), genotype
+(wild-type, knock-out), phenotype (disease status, sex, age), sample treatment (drug, control) and batch information
+(date experiment was performed if samples were collected and analysed at distinct time points) to name just a few.
+Our DGEList-object contains a samples data frame that stores both cell type (or group) and batch (sequencing
+lane) information, each of which consists of three distinct levels. Note that within x$samples, library sizes are
+automatically calculated for each sample and normalisation factors are set to 1. For simplicity, we remove the GEO
+sample IDs (GSM*) from the column names of our DGEList-object x.
 
 ```{r data-packaging-info}
 ### shrink colnames remove from start to first underscore
@@ -104,12 +172,35 @@ x$samples;
 
 ## Gene annotations
 
+A second data frame named genes in the DGEList-object is used to store gene-level information associated with rows
+of the counts matrix. This information can be retrieved using organism specific packages such as **Mus.musculus**
+ for
+mouse (or **Homo.sapiens** for human) or the **biomaRt** package which interfaces the Ensembl genome databases in
+order to perform gene annotation. The type of information that can be retrieved includes gene symbols, gene names,
+chromosome names and locations, Entrez gene IDs, Refseq gene IDs and Ensembl gene IDs to name just a few.
+**biomaRt** primarily works off Ensembl gene IDs, whereas **Mus.musculus** packages information from various sources
+and allows users to choose between many different gene IDs as the key. The Entrez gene IDs available in our dataset
+were annotated using the **Mus.musculus** package to retrieve associated gene symbols and chromosome information
+
 ```{r data-packaging-annotations-lib, include=FALSE, echo=FALSE}
 #source("https://bioconductor.org/biocLite.R");
 #biocLite("Mus.musculus");
 #library(Mus.musculus);
 source(paste0("Lib/", "Mus.musculus.Util.R"));
 ```
+As with any gene ID, Entrez gene IDs may not map one-to-one to the gene information of interest. It is important
+to check for duplicated gene IDs and to understand the source of duplication before resolving them. Our gene
+annotation contains 28 genes that map to multiple chromosomes (e.g. gene Gm1987 is associated with “chr4” and
+“chr4_JH584294_random” and microRNA Mir5098 is associated with “chr2”, “chr5”, “chr8”, “chr11” and “chr17”).
+To resolve duplicate gene IDs one could combine all chromosome information from the multi-mapped genes, such
+that gene Gm1987 would be is assigned to “chr4 and chr4_JH584294_random”, or select one of the chromosomes to
+represent the gene with duplicate annotation. For simplicity we do the latter, keeping only the first occurrence of each
+gene ID.
+
+In this example, the gene order is the same in both the annotation and the data object. If this is not the case due to
+missing and/or rearranged gene IDs, the match function can be used to order genes correctly. The data frame of gene
+annotations is then added to the data object and neatly packaged in a DGEList-object containing raw count data with
+associated sample information and gene annotations.
 
 ```{r data-packaging-annotations, echo=TRUE}
 # loads library
@@ -140,13 +231,58 @@ x;
 
 ## Transformations from the raw-scale
 
+For differential expression and related analyses, gene expression is rarely considered at the level of raw counts since
+libraries sequenced at a greater depth will result in higher counts. Rather, it is common practice to transform raw counts
+onto a scale that accounts for such library size differences. Popular transformations include counts per million (CPM),
+log2
+-counts per million (log-CPM), reads per kilobase of transcript per million (RPKM), and fragments per kilobase of
+transcript per million (FPKM).
+In our analyses, CPM and log-CPM transformations are used regularly although they do not account for feature length
+differences which RPKM and FPKM values do. Whilst RPKM and FPKM values can just as well be used, CPM and
+log-CPM values can be calculated using a counts matrix alone and will suffice for the type of comparisons we are
+interested in. Assuming that there are no differences in isoform usage between conditions, differential expression
+analyses look at gene expression changes between conditions rather than comparing expression across multiple genes
+or drawing conclusions on absolute levels of expression. In other words, gene lengths remain constant for comparisons
+of interest and any observed differences are a result of changes in condition rather than changes in gene length.
+Here raw counts are converted to CPM and log-CPM values using the cpm function in **edgeR**, where logtransformations
+use a prior count of 0.25 to avoid taking the log of zero. RPKM values are just as easily calculated
+as CPM values using the rpkm function in **edgeR** if gene lengths are available.
+
 ```{r data-pre-processing-transformations}
 #simpleCountsPerMillion <- edgeR::cpm(x) ;
 simpleCountsPerMillion <- CountsPerMillion(x);
 #logCountsPerMillion <- edgeR::cpm(x, log = TRUE);
 logCountsPerMillion <- CountsPerMillion(x, TRUE);
+```
+## Removing genes that are lowly expressed
+
+All datasets will include a mix of genes that are expressed and those that are not expressed. Whilst it is of interest
+to examine genes that are expressed in one condition but not in another, some genes are unexpressed throughout all
+samples. In fact, 19% of genes in this dataset have zero counts across all nine samples.
+
+```{r data-pre-processing-rm}
 ## Removing genes that are lowly expressed
 table(rowSums(x$counts == 0) == 9);
+```
+Genes that are not expressed at a biologically meaningful level in any condition should be discarded to reduce the
+subset of genes to those that are of interest, and to reduce the number of tests carried out downstream when looking
+at differential expression. Upon examination of log-CPM values, it can be seen that a large proportion of genes within
+each sample is unexpressed or lowly-expressed (Figure 1A). Genes are deemed to be expressed if their CPM value is
+above a threshold (we use a nominal CPM value of 1), and unexpressed otherwise. A CPM value of 1 is equivalent to a
+log-CPM value of 0. Genes must be expressed in at least one group (or in at least three samples across the entire experiment,
+where three was chosen as this is the smallest group size) to be kept for downstream analysis.
+Although any sensible value can be used as the expression cutoff, typically a CPM value of 1 is used in our analyses
+as it separates expressed genes from unexpressed genes well for most datasets. Here, a CPM value of 1 means that a
+gene is “expressed” if it has at least 20 counts in the sample with the lowest sequencing depth (JMS9-P8c, library size
+≈20 million) or at least 76 counts in the sample with the greatest sequencing depth (JMS8-3, library size ≈76 million).
+If sequence reads are summarised by exons rather than genes and/or experiments have low sequencing depth, a lower
+CPM cutoff may be considered.
+
+Using this criterion, the number of genes is reduced to approximately half the number that we started with (14,165
+genes, Figure 1B). Note that subsetting the entire DGEList-object removes both the counts as well as the associated
+gene information. Code to produce Figure 1 is given below.
+
+```{r data-pre-processing-done}
 keep.exprs <- rowSums(simpleCountsPerMillion > 1) >= 3;
 x <- x[keep.exprs, , keep.lib.sizes = FALSE];
 dim(x);
@@ -177,7 +313,29 @@ for (i in 2:sampleCount){
 legend("topright", samplenames, text.col = pairedColors, bty = "n");
 ```
 
+**Figure 1.** The density of log-CPM values for raw pre-filtered data (A) and post-filtered data (B) are shown for each
+sample. Dotted vertical lines mark the log-CPM of zero threshold (equivalent to a CPM value of 1) used in the filtering
+step.
+
 ## Normalizing gene expression distributions
+
+During the sample preparation or sequencing process, external factors that are not of biological interest can affect the
+expression of individual samples. For example, samples processed in the first batch of an experiment can have higher
+expression overall when compared to samples processed in a second batch. It is assumed that all samples should have a
+similar range and distribution of expression values. Normalisation is required to ensure that the expression distributions
+of each sample are similar across the entire experiment.
+Any plot showing the per sample expression distributions, such as a density or boxplot, is useful in determining
+whether any samples are dissimilar to others. Distributions of log-CPM values are similar throughout all samples
+within this dataset (Figure 1B).
+Nonetheless, normalisation by the method of trimmed mean of M-values (TMM) is performed using the
+calcNormFactors function in **edgeR**. The normalisation factors calculated here are used as a scaling factor
+for the library sizes. When working with DGEList-objects, these normalisation factors are automatically stored in
+x$samples$norm.factors. For this dataset the effect of TMM-normalisation is mild, as evident in the magnitude
+of the scaling factors, which are all relatively close to 1.
+
+To give a better visual representation of the effects of normalisation, the data was duplicated then adjusted so that the
+counts of the first sample are reduced to 5% of their original values, and in the second sample they are inflated to be
+5-times larger.
 
 ```{r data-normalization, echo=TRUE}
 #x <- edgeR::calcNormFactors(x, method = "TMM");
@@ -202,7 +360,36 @@ boxplot(logCountsPerMillion, las = 2, col = pairedColors, main = "");
 title(main = "B. Example: Normalised data", ylab = "Log-cpm");
 ```
 
+**Figure 2.** It shows the expression distribution of samples for unnormalised and normalised data, where distributions are
+noticeably different pre-normalisation and are similar post-normalisation. Here the first sample has a small TMM
+scaling factor of 0.05, whereas the second sample has a large scaling factor of 6.13 – neither values are close to 1.
+
 ## Unsupervised clustering of samples
+
+In our opinion, one of the most important exploratory plots to examine for gene expression analyses is the
+multidimensional scaling (MDS) plot, or similar. The plot shows similarities and dissimilarities between samples in
+an unsupervised manner so that one can have an idea of the extent to which differential expression can be detected
+before carrying out formal tests. Ideally, samples would cluster well within the primary condition of interest, and
+any sample straying far from its group could be identified and followed up for sources of error or extra variation. If
+present, technical replicates should lie very close to one another.
+Such a plot can be made in **limma** using the plotMDS function. The first dimension represents the leadingfold-change
+that best separates samples and explains the largest proportion of variation in the data, with subsequent
+dimensions having a smaller effect and being orthogonal to the ones before it. When experimental design involves
+multiple factors, it is recommended that each factor is examined over several dimensions. If samples cluster by a
+given factor in any of these dimensions, it suggests that the factor contributes to expression differences and is worth
+including in the linear modelling. On the other hand, factors that show little or no effect may be left out of downstream
+analysis.
+In this dataset, samples can be seen to cluster well within experimental groups over dimension 1 and 2, and then
+separate by sequencing lane (sample batch) over dimension 3 (Figure 3). Keeping in mind that the first dimension
+explains the largest proportion of variation in the data, notice that the range of values over the dimensions become
+smaller as we move to higher dimensions. Whilst all samples cluster by groups, the largest transcriptional difference
+is observed between basal and LP, and basal and ML over dimension 1. For this reason, it is expected that pairwise
+comparisons between cell populations will result in a greater number of DE genes for comparisons involving basal samples, and relatively small numbers of DE genes when comparing ML to LP. Datasets where samples do not cluster
+by experimental group may show little or no evidence of differential expression in the downstream analysis.
+To create the MDS plots, we assign different colours to the factors of interest. Dimensions 1 and 2 are examined using
+the colour grouping defined by cell types.
+
+Dimensions 3 and 4 are examined using the colour grouping defined by sequencing lanes (batch).
 
 ```{r clustering-unsupervised, echo=TRUE}
 #logCountsPerMillion <- edgeR::cpm(x, log=TRUE);
@@ -234,10 +421,34 @@ library(Glimma);
 Glimma::glMDSPlot(logCountsPerMillion, labels = paste(group, lane, sep = "_"), groups = x$samples[,c(2,5)], launch = FALSE);
 ```
 
+**Figure 3.** MDS plots of log-CPM values over dimensions 1 and 2 with samples coloured and labeled by sample groups
+(A) and over dimensions 3 and 4 with samples coloured and labeled by sequencing lane (B). Distances on the plot
+correspond to the leading fold-change, which is the average (root-mean-square) log2
+-fold-change for the 500 genes
+most divergent between each pair of samples by default.
+
+Alternatively, the **Glimma** package offers the convenience of an interactive MDS plot where multiple dimensions can
+be explored. The glMDSPlot function generates an html page (that is opened in a browser if launch=TRUE) with an
+MDS plot in the left panel and a barplot showing the proportion of variation explained by each dimension in the right
+panel. Clicking on the bars of the bar plot changes the pair of dimensions plotted in the MDS plot, and hovering over
+the individual points reveals the sample label. The colour scheme can be changed as well to highlight cell population or
+sequencing lane (batch). An interactive MDS plot of this dataset can be found at http://bioinf.wehi.edu.au/folders/limmaWorkflow/glimma-plots/MDS-Plot.html
+
 # Differential Expression *DE* analysis
 
-
 ## Creating a design matrix and contrasts
+
+In this study, it is of interest to see which genes are expressed at different levels between the three cell populations
+profiled. In our analysis, linear models are fitted to the data with the assumption that the underlying data is
+normally distributed. To get started, a design matrix is set up with both the cell population and sequencing lane (batch)
+information.
+
+For a given experiment, there are usually several equivalent ways to set up an appropriate design matrix. For example,
+~0+group+lane removes the intercept from the first factor, group, but an intercept remains in the second factor
+lane. Alternatively, ~group+lane could be used to keep the intercepts in both group and lane. Understanding
+how to interpret the coefficients estimated in a given model is key here. We choose the first model for our analysis, as
+setting up model contrasts is more straight forward in the absence of an intercept for group. Contrasts for pairwise
+comparisons between cell populations are set up in **limma** using the makeContrasts function.
 
 ```{r de-analysis, echo=TRUE}
 ## Creating a design matrix and contrasts
@@ -257,15 +468,56 @@ columnBasalvsML <- 2;
 columnLPvsML <- 3;
 ```
 
+A key strength of **limma**’s linear modelling approach is the ability accommodate arbitrary experimental
+complexity. Simple designs, such as the one in this workflow, with cell type and batch, through to more complicated
+factorial designs and models with interaction terms can be handled relatively easily. Where experimental or technical
+effects can be modelled using a random effect, another possibility in **limma** is to estimate correlations using
+duplicateCorrelation by specifying a block argument for both this function and in the lmFit linear
+modelling step.
+
 ## Removing heteroscedascity from count data
 
-```{r de-rm-hetero, echo=TRUE}
+It has been shown that for RNA-seq count data, the variance is not independent of the mean13 – this is true of raw
+counts or when transformed to log-CPM values. Methods that model counts using a Negative Binomial distribution
+assume a quadratic mean-variance relationship. In **limma**, linear modelling is carried out on the log-CPM values which
+are assumed to be normally distributed and the mean-variance relationship is accommodated using precision weights
+calculated by the voom function.
+When operating on a DGEList-object, voom converts raw counts to log-CPM values by automatically extracting
+library sizes and normalisation factors from x itself. Additional normalisation to log-CPM values can be specified
+within voom using the normalize.method argument.
+The mean-variance relationship of log-CPM values for this dataset is shown in Figure 4A. Typically, the “voom-plot”
+shows a decreasing trend between the means and variances resulting from a combination of technical variation in
+the sequencing experiment and biological variation amongst the replicate samples from different cell populations.
+Experiments with high biological variation usually result in flatter trends, where variance values plateau at high
+expression values. Experiments with low biological variation tend to result in sharp decreasing trends.
+Moreover, the voom-plot provides a visual check on the level of filtering performed upstream. If filtering of
+lowly-expressed genes is insufficient, a drop in variance levels can be observed at the low end of the expression
+scale due to very small counts. If this is observed, one should return to the earlier filtering step and increase the
+expression threshold applied to the dataset.
+Where sample-level variation is evident from earlier inspections of the MDS plot, the voomWithQualityWeights
+function can be used to simultaneously incorporate sample-level weights together with the abundance dependent
+weights estimated by voom. For an example of this approach, see Liu et al. (2016).
+
+Note that the other data frames stored within the DGEList-object that contain gene- and sample-level information, are
+retained in the EList-object v created by voom. The v$genes data frame is equivalent to x$genes, v$targets
+is equivalent to x$samples, and the expression values stored in v$E is analogous to x$counts, albeit on a
+transformed scale. In addition to this, the voom EList-object has a matrix of precision weights v$weights and
+stores the design matrix in v$design.
+
+```{r de-rm-hetero, echo=FALSE}
 #v <- limma::voom(x, design, plot = TRUE);
 v <- PlotRNASeqDataReadyLinearModel(x, design);
 v;
 ```
 
 ## Fitting linear models for comparisons of interest
+
+Linear modelling in **limma** is carried out using the lmFit and contrasts.fit functions originally written for
+application to microarrays. The functions can be used for both microarray and RNA-seq data and fit a separate model
+to the expression values for each gene. Next, empirical Bayes moderation is carried out by borrowing information
+across all genes to obtain more precise estimates of gene-wise variability16. The model’s residual variances are plotted
+against average expression values in Figure 4B. It can be seen from this plot that the variance is no longer dependent
+on the mean expression level.
 
 ```{r de-fit-lm-comp, echo=TRUE}
 ## Fitting linear models for comparisons of interest
@@ -278,6 +530,26 @@ PlotMicroArrayLinearModelSigmaVsAverageLogExpression(uArrayLinearModelebayes);
 ```
 
 ## Examining the number of *DE* genes
+
+For a quick look at differential expression levels, the number of significantly up- and down-regulated genes can be
+summarised in a table. Significance is defined using an adjusted p-value cutoff that is set at 5% by default. For the
+comparison between expression levels in basal and LP, 4,127 genes are found to be down-regulated in basal relative
+to LP and 4,298 genes are up-regulated in basal relative to LP – a total of 8,425 DE genes. A total of 8,510 DE genes
+are found between basal and ML (4,338 down- and 4,172 up-regulated genes), and a total of 5,340 DE genes are
+found between LP and ML (2,895 down- and 2,445 up-regulated). The larger numbers of DE genes observed for
+comparisons involving the basal population are consistent with our observations from the MDS plots.
+
+Some studies require more than an adjusted p-value cutoff. For a stricter definition on significance, one may require
+log-fold-changes (log-FCs) to be above a minimum value. The treat method17 can be used to calculate p-values from
+empirical Bayes moderated t-statistics with a minimum log-FC requirement. The number of differentially expressed
+genes are reduced to a total of 3,135 DE genes for basal versus LP, 3,270 DE genes for basal versus ML, and 385 DE
+genes for LP versus ML when testing requires genes to have a log-FC that is significantly greater than 1 (equivalent to
+a 2-fold difference between cell types on the original scale).
+
+Genes that are DE in multiple comparisons can be extracted using the results from decideTests, where 0s represent
+genes that are not DE, 1s represent genes that are up-regulated, and -1s represent genes that are down-regulated. A
+total of 2,409 genes are DE in both basal versus LP and basal versus ML (Figure 5), twenty of which are listed below.
+The write.fit function can be used to extract and write results for all three comparisons to a single output file.
 
 ```{r de-nb-genes, echo=TRUE}
 ## Examining the number of DE genes
@@ -296,6 +568,10 @@ TwoGroupVennDiagram(dt[, columnBasalvsLP:columnBasalvsML]);
 #limma::write.fit(tfit, dt, file = "Doc/results.txt");
 MArrayLMToFile(tfit, aTestResults = dt, filePath = "Doc/results.txt");
 ```
+
+**Figure 5.** Venn diagram showing the number of genes DE in the comparison between basal versus LP only (left), basal
+versus ML only (right), and the number of genes that are DE in both comparisons (center). The number of genes that are
+not DE in either comparison are marked in the bottom-right.
 
 ## Examining individual *DE* genes from top to bottom
 
