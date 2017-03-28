@@ -15,5 +15,5 @@
   </ProjectExtensions>
   <Import Project="$(MSBuildUserExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\RTVS\Rules\rtvs.rules.props" Condition="Exists('$(MSBuildUserExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\RTVS\Rules\rtvs.rules.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\RTVS\Rules\rtvs.rules.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\RTVS\Rules\rtvs.rules.props') And !Exists('$(MSBuildUserExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\RTVS\Rules\rtvs.rules.props')" />
-  <Import Project="Daen.Export.Indicators.InMemory.Targets" Condition="Exists('Daen.Export.Indicators.InMemory.Targets')" />
+  <Import Project="Dane.Export.Indicators.InMemory.Targets" Condition="Exists('Dane.Export.Indicators.InMemory.Targets')" />
 </Project>
