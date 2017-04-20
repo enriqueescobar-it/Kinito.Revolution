@@ -29,6 +29,8 @@ Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "JoGEA.WorldBank", "JoGEA.Wo
 EndProject
 Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Dane.Export.Indicators", "Dane.Export.Indicators\Dane.Export.Indicators.rxproj", "{9F4A1BA3-A33E-47E2-93CC-945164D41176}"
 EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Rvesting", "Rvesting\Rvesting.rxproj", "{55150193-FACF-4546-89F7-95B8D5D5D5FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{9F4A1BA3-A33E-47E2-93CC-945164D41176}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F4A1BA3-A33E-47E2-93CC-945164D41176}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F4A1BA3-A33E-47E2-93CC-945164D41176}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55150193-FACF-4546-89F7-95B8D5D5D5FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55150193-FACF-4546-89F7-95B8D5D5D5FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55150193-FACF-4546-89F7-95B8D5D5D5FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55150193-FACF-4546-89F7-95B8D5D5D5FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
