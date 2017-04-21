@@ -122,12 +122,49 @@ metascore_data<-as.numeric(metascore_data)
 length(metascore_data)
 #Let's look at summary statistics
 summary(metascore_data)
-
-
-
-
-
-
+#Using CSS selectors to scrap the gross revenue section
+gross_data_html <- rvest::html_nodes(webpage,'.ghost~ .text-muted+ span')
+#Converting the gross revenue data to text
+gross_data <- rvest::html_text(gross_data_html)
+#Let's have a look at the votes data
+head(gross_data)
+#Data-Preprocessing: removing '$' and 'M' signs
+gross_data<-gsub("M","",gross_data)
+gross_data<-substring(gross_data,2,6)
+#Let's check the length of gross data
+length(gross_data)
+#Filling missing entries with NA
+for (i in c(17,39,49,52,57,64,66,73,76,77,80,87,88,89)){
+  a<-gross_data[1:(i-1)]
+  b<-gross_data[i:length(gross_data)]
+  gross_data<-append(a,list("NA"))
+  gross_data<-append(gross_data,b)
+}
+#Data-Preprocessing: converting gross to numerical
+gross_data<-as.numeric(gross_data)
+#Let's have another look at the length of gross data
+length(gross_data)
+summary(gross_data)
+#Combining all the lists to form a data frame
+movies_df<-data.frame(Rank = rank_data,
+                      Title = title_data,
+                      Description = description_data,
+                      Runtime = runtime_data,
+                      Genre = genre_data,
+                      Rating = rating_data,
+                      Metascore = metascore_data,
+                      Votes = votes_data,
+                      Gross_Earning_in_Mil = gross_data,
+                      Director = directors_data,
+                      Actor = actors_data)
+#Structure of the data frame
+str(movies_df)
+library('ggplot2')
+qplot(data = movies_df,Runtime,fill = Genre,bins = 30)
+ggplot(movies_df,aes(x=Runtime,y=Rating)) +
+geom_point(aes(size=Votes,col=Genre))
+ggplot(movies_df,aes(x=Runtime,y=Gross_Earning_in_Mil)) +
+geom_point(aes(size=Rating,col=Genre))
 
 
 
