@@ -1,0 +1,331 @@
+***************************************************************************************************************
+************** PROGRAMA PARA LA CREACIÓN DE VARIABLES DE IDENTIFICACIÓN DE POBLACIONES EN LA GEIH *************
+***************************************************************************************************************
+** 0. FACTOR DE EXPANSIÓN TRIMESTRAL
+
+gen fexp_trimestral=fex_c_2012/3
+
+** 1. POBLACIÓN OCUPADA
+
+gen ocupado=1 if p6240==1 | p6250==1 | p6260==1 | p6270==1
+label variable ocupado "Ocupados"
+
+** 3. POBLACIÓN DESOCUPADA
+
+gen desocupado=cond(p7250!=.,1,0)
+gen desocupado1 = 1 if p6340==1 & p6280==1 | p6351==1
+label variable desocupado "Desocupados"
+
+** 3.1 POBLACIÓN DESOCUPADA CESANTE Y ASPIRATE
+
+gen aspirante = 1 if p7310==1 & desocupado==1
+gen cesante = 1 if p7310==2 & desocupado==1
+label variable aspirante "Desocupados Aspirantes"
+label variable cesante "Desocupados Cesantes"
+
+** 3.2 POBLACIÓN DESOCUPADA EN DESEMPLEO OCULTO Y ABIERTO
+
+gen des_oculto = 1 if p6280==2 & p6351==1 & (p6310>=2 & p6310<=8) & desocupado==1
+label variable des_oculto "Desocupados Ocultos"
+
+gen des_abierto = 1 if des_oculto~=1 & desocupado==1
+label variable des_abierto "Desocupados Abiertos"
+
+** 4. POBLACIÓN INACTIVA
+
+gen inactivo=1 if p6240==5 | p6300==2 | (p6310>=9 & p6310<=13) | p6330==2 | p6340==2 | p6351==2
+label variable inactivo "Inactivos"
+
+** 4.1 Por tipo de inactividad
+
+gen tipo_inactividad=1 if p6240==3 & inactivo==1
+replace tipo_inactividad=2 if p6240==4 & inactivo==1
+replace tipo_inactividad=3 if (p6240==2 | p6240==5 | p6240==6) & inactivo==1
+label define etiqact 1 "Estudiando" 2 "Oficios Hogar" 3 "Otra"
+label value tipo_inactividad etiqact
+label variable tipo_inactividad "Tipo de Inactividad"
+
+** 5. POBLACIÓN EN EDAD DE TRABAJAR
+
+gen pet=1 if ocupado==1 | desocupado==1 | inactivo==1
+label variable pet "Población en edad de trabajar"
+
+** 6. POBLACIÓN ECONÓMICAMENTE ACTIVA
+
+gen pea=1 if ocupado==1 | desocupado==1
+label variable pea "Población Económicamente Activa"
+
+** 7. POBLACIÓN OCUPADA SUBEMPLEADA
+
+* 7.1 Subempleados Subjetivos por Insuficiencia de Hora
+gen ssub_hora=1 if  p7090==1 & p6850<48
+label variable ssub_hora "Subempleado Subjetivo_Horas"
+
+* 7.2 Subempleados Subjetivos por Ingresos
+gen ssub_ing=1 if p7130==1 & p7140s2==1
+label variable ssub_ing "Subempleado Subjetivo_Ingresos"
+
+* 7.3 Subempleados Subjetivos por Competencias
+gen ssub_compet=1 if p7130==1 & p7140s1==1
+label variable ssub_compet "Subempleado Subjetivo_Competencias"
+
+* 7.4 Total Subempleados Subjetivos:
+gen subsubjetivo=1 if ssub_hora==1 |  ssub_ing==1 | ssub_compet==1
+label variable subsubjetivo "Subempleado Subjetivo"
+
+* 7.5 Subempleados Objetivos por Insuficiencia de Horas
+gen sob_hora=1 if  p7090==1 & p6850<48 & p7110==1 & p7120==1
+label variable sob_hora "Subempleado Objetivo_Horas"
+
+* 7.6 Subempleados Objetivos por Ingresos
+gen sob_ing=1 if p7130==1 & p7140s2==1 & p7150==1 & p7160==1
+label variable sob_ing "Subempleado Objetivo_Ingresos"
+
+* 7.7 Subempleados Objetivos por Competencias
+gen sob_compet=1 if p7130==1 & p7140s1==1 & p7150==1 & p7160==1
+label variable sob_compet "Subempleado Objetivo_Competencias"
+
+* 7.8 Total Subempleados Objetivos:
+gen subobjetivo=1 if sob_hora==1 |  sob_ing==1 | sob_compet==1
+label variable subobjetivo "Subempleado Objetivo"
+
+** 8. POBLACIÓN OCUPADA INFORMAL
+
+*a.	Generar variable indicadora para todos los trabajadores, excepto los independientes profesionales y técnicos:
+gen indep_noprof=1 if oficio=="00" | oficio>="20"
+
+*b.	Generar variable indicadora para las empresas de hasta 5 trabajadores:
+gen empresa_5=1 if p6870==1 | p6870==2 | p6870==3
+
+*c.	Generar variable indicadora para los todos los independientes excepto profesionales y técnicos, en empresas de hasta 5 trabajadores:
+gen ctapropia_noprof_5=1 if indep_noprof==1 & empresa_5==1 & p6430==4
+
+*d.	Generar variable indicadora para los Ocupados Informales:
+
+gen informal=1 if empresa_5==1 & (p6430==1 | p6430==3 | p6430==5 | p6430==6 | p6430==7 | p6430==8) | ctapropia_noprof_5==1
+label variable informal "Ocupados Informales"
+
+drop indep_noprof empresa_5 ctapropia_noprof_5
+
+*d. Variable indicadora para los Ocupados Formales:
+gen formal=1 if ocupado==1 & informal~=1
+label variable formal "Ocupados Formales"
+
+** 9. POBLACIÓN TOTAL
+
+gen pob_total=1 if(p6040>=0 & p6040<=11) | pet==1
+label variable pob_total "Población Total"
+
+**Clasificación de Ocupaciones**
+
+**Para ocupados**
+
+destring oficio, gen (temp)
+gen temp1=1 if(temp>=1 & temp<=9)
+replace temp1=2 if(temp>=11 & temp<=19)
+replace temp1=3 if(temp>=20 & temp<=29)
+replace temp1=4 if(temp>=30 & temp<=39)
+replace temp1=5 if(temp>=40 & temp<=45)
+replace temp1=6 if(temp>=46 & temp<=49)
+replace temp1=7 if(temp>=50 & temp<=59)
+replace temp1=8 if(temp>=60 & temp<=69)
+replace temp1=9 if(temp>=70 & temp<=98)
+replace temp1=10 if(temp==99)
+replace temp1=0 if(temp==0)
+
+recode temp1 (1=1 "Incodificable")/*
+*/(2=2 "Profesional/Técnico 1")/*
+*/(3=3 "Profesional/Técnico 2")/*
+*/(4=4 "Directores/Funcionarios")/*
+*/(5=5 "Personal Administrativo")/*
+*/(6=6 "Comerciantes/Vendedores 1")/*
+*/(7=7 "Comerciantes/Vendedores 2")/*
+*/(8=8 "Trabaj Servicios")/*
+*/(9=9 "Agri-forestal")/*
+*/(10=10 "No agrícola")/*
+*/(0=0 "No clasificado"), gen (oficio_1)
+label var oficio_1 "Ocupación (codificado)"
+drop temp
+drop temp1
+
+**Para desocupados. Ocupación buscada**
+
+destring oficio1, gen (temp)
+gen temp1=1 if(temp>=1 & temp<=9)
+replace temp1=2 if(temp>=11 & temp<=19)
+replace temp1=3 if(temp>=20 & temp<=29)
+replace temp1=4 if(temp>=30 & temp<=39)
+replace temp1=5 if(temp>=40 & temp<=45)
+replace temp1=6 if(temp>=46 & temp<=49)
+replace temp1=7 if(temp>=50 & temp<=59)
+replace temp1=8 if(temp>=60 & temp<=69)
+replace temp1=9 if(temp>=70 & temp<=98)
+replace temp1=10 if(temp==99)
+replace temp1=0 if(temp==0)
+
+recode temp1 (1=1 "Incodificable")/*
+*/(2=2 "Profesional/Técnico 1")/*
+*/(3=3 "Profesional/Técnico 2")/*
+*/(4=4 "Directores/Funcionarios")/*
+*/(5=5 "Personal Administrativo")/*
+*/(6=6 "Comerciantes/Vendedores 1")/*
+*/(7=7 "Comerciantes/Vendedores 2")/*
+*/(8=8 "Trabaj Servicios")/*
+*/(9=9 "Agri-forestal")/*
+*/(10=10 "No agrícola")/*
+*/(0=0 "No clasificado"), gen (oficio1_m)
+label var oficio1_m "Ocupación buscada (codificado)"
+drop temp
+drop temp1
+
+**Para desocupados. Ocupación anterior**
+
+destring oficio2, gen (temp)
+gen temp1=1 if(temp>=1 & temp<=9)
+replace temp1=2 if(temp>=11 & temp<=19)
+replace temp1=3 if(temp>=20 & temp<=29)
+replace temp1=4 if(temp>=30 & temp<=39)
+replace temp1=5 if(temp>=40 & temp<=45)
+replace temp1=6 if(temp>=46 & temp<=49)
+replace temp1=7 if(temp>=50 & temp<=59)
+replace temp1=8 if(temp>=60 & temp<=69)
+replace temp1=9 if(temp>=70 & temp<=98)
+replace temp1=10 if(temp==99)
+replace temp1=0 if(temp==0)
+
+recode temp1 (1=1 "Incodificable")/*
+*/(2=2 "Profesional/Técnico 1")/*
+*/(3=3 "Profesional/Técnico 2")/*
+*/(4=4 "Directores/Funcionarios")/*
+*/(5=5 "Personal Administrativo")/*
+*/(6=6 "Comerciantes/Vendedores 1")/*
+*/(7=7 "Comerciantes/Vendedores 2")/*
+*/(8=8 "Trabaj Servicios")/*
+*/(9=9 "Agri-forestal")/*
+*/(10=10 "No agrícola")/*
+*/(0=0 "No clasificado"), gen (oficio2_m)
+label var oficio2_m "Ocupación anterior (codificado)"
+drop temp
+drop temp1
+
+**Rama de actividad económica para ocupados**
+
+label variable rama2d 	"Actividad economica de la empresa o negocio"
+gen p19_1=.
+replace p19_1=1 if rama2d>="01" & rama2d<="05"
+replace p19_1=2 if rama2d>="10" & rama2d<="14"
+replace p19_1=3 if rama2d>="15" & rama2d<="37"
+replace p19_1=4 if rama2d>="40" & rama2d<="41"
+replace p19_1=5 if rama2d=="45"	
+replace p19_1=6 if rama2d>="50" & rama2d<="55"
+replace p19_1=7 if rama2d>="60" & rama2d<="64"
+replace p19_1=8 if rama2d>="65" & rama2d<="67"
+replace p19_1=9 if rama2d>="70" & rama2d<="74"
+replace p19_1=10 if rama2d>="75" & rama2d<="99"
+replace p19_1=11 if rama2d=="00"
+
+label define rama 1 "Agropecuaria" 2 "Minas-Canteras" 3 "Industria Manufacturera" 4 "Electricidad/Gas/Agua" /*
+*/ 5 "Construcción" 6 "Comercio/Restaurates/Hoteles" 7 "Transporte/Comunicacioes" 8 "Establecimientos Financieros" /*
+*/ 9 "Actividades Inmobiliarias" 10 "Servicios" 11 "No informa"
+label value p19_1 rama
+label variable p19_1 "Actividad economica principal de la empresa o negocio (codificado)"
+rename p19_1 rama2d_m
+
+**Rama de actividad económica anterior (para desocupados**
+
+label variable rama2d_d "Rama de Actividad Anterior"
+gen p20_1=.
+replace p20_1=1 if rama2d_d>="01" & rama2d_d<="05"
+replace p20_1=2 if rama2d_d>="10" & rama2d_d<="14"
+replace p20_1=3 if rama2d_d>="15" & rama2d_d<="37"
+replace p20_1=4 if rama2d_d>="40" & rama2d_d<="41"
+replace p20_1=5 if rama2d_d=="45"	
+replace p20_1=6 if rama2d_d>="50" & rama2d_d<="55"
+replace p20_1=7 if rama2d_d>="60" & rama2d_d<="64"
+replace p20_1=8 if rama2d_d>="65" & rama2d_d<="67"
+replace p20_1=9 if rama2d_d>="70" & rama2d_d<="74"
+replace p20_1=10 if rama2d_d>="75" & rama2d_d<="99"
+replace p20_1=11 if rama2d_d=="00"
+
+label define ramdesocup 1 "Agropecuaria" 2 "Minas-Canteras" 3 "Industria Manufacturera" 4 "Electricidad/Gas/Agua" /*
+*/ 5 "Construcción" 6 "Comercio/Restaurates/Hoteles" 7 "Transporte/Comunicacioes" 8 "Establecimientos Financieros" /*
+*/ 9 "Actividades Inmobiliarias" 10 "Servicios" 11 "No informa"
+label value p20_1 ramdesocup
+label variable p20_1 "Actividad Económica Anterior (codificado)"
+rename p20_1 rama2d_d_m
+
+**programa para colocar labels a los departamentos y Areas Metropolitanas**
+
+destring dpto, gen (deptos)
+recode deptos (5=1 "Antioquia")/*
+*/(8=2 "Atlantico")/*
+*/(11=3 "Bogota")/*
+*/(13=4 "Bolivar")/*
+*/(15=5 "Boyaca")/*
+*/(17=6 "Caldas")/*
+*/(18=7 "Caqueta")/*
+*/(19=8 "Cauca")/*
+*/(20=9 "Cesar")/*
+*/(23=10 "Cordoba")/*
+*/(25=11 "Cundinamarca")/*
+*/(27=12 "Choco")/*
+*/(41=13 "Huila")/*
+*/(44=14 "Guajira")/*
+*/(47=15 "Magdalena")/*
+*/(50=16 "Meta")/*
+*/(52=17 "Narino")/*
+*/(54=18 "Nte Santander")/*
+*/(63=19 "Quindio")/*
+*/(66=20 "Risaralda")/*
+*/(68=21 "Santander")/*
+*/(70=22 "Sucre")/*
+*/(73=23 "Tolima")/*
+*/(76=24 "Valle"), gen (departamento)
+label var departamento "Departamentos"
+
+**programa para colocar labels a las areas metroplitanas**
+ 
+destring area, gen (temp2)
+recode temp2 (5=1 "Medellin y Valle de Aburra")/*
+*/(8=2 "Barranquilla")/*
+*/(11=3 "Bogota")/*
+*/(13=4 "Cartagena")/*
+*/(17=5 "Manizales")/*
+*/(23=6 "Monteria")/*
+*/(50=7 "Villlavicencio")/*
+*/(52=8 "Pasto")/*
+*/(54=9 "Cucuta")/*
+*/(66=10 "Pereira")/*
+*/(68=11 "Bucaramanga")/*
+*/(73=12 "Ibague")/*
+*/(76=13 "Cali")/*
+*/(15=14 "Tunja")/*
+*/(18=15 "Florencia")/*
+*/(19=16 "Popayán")/*
+*/(20=17 "Valledupar")/*
+*/(27=18 "Quibdó")/*
+*/(41=19 "Neiva")/*
+*/(44=20 "Riohacha")/*
+*/(47=21 "Santa Marta")/*
+*/(63=22 "Armenia")/*
+*/(70=23 "Sincelejo"), gen (ametro_1)
+label var ametro_1 "Area Metropolitana (codificada)"
+
+
+**programa para colocar labels a los departamentos de las areas metroplitanas**
+
+destring dpto, gen (deptos1)
+recode deptos (5=1 "Antioquia")/*
+*/(8=2 "Atlantico")/*
+*/(11=3 "Bogota")/*
+*/(13=4 "Bolivar")/*
+*/(17=5 "Caldas")/*
+*/(23=6 "Cordoba")/*
+*/(50=7 "Meta")/*
+*/(52=8 "Narino")/*
+*/(54=9 "Nte Santander")/*
+**/(66=10 "Risaralda")/*
+*/(68=11 "Santander")/*
+*/(73=12 "Tolima")/*
+*/(76=13 "Valle"), gen (departamento)
+label var departamento "Departamentos"

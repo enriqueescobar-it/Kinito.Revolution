@@ -1,0 +1,299 @@
+********* 1. POBLACIÓN TOTAL **************************
+
+
+** Poblacion total por sexo y rangos de edades
+table rangos_decenales p6020 if pob_total==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+gen rangos_decenales= 0
+replace rangos_decenales=1 if p6040
+
+**Poblacion total por sexo y estado civil
+table p6070 p6020 if pob_total==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**Poblacion total por sexo y posición en el hogar
+table p6050 p6020 if pob_total==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+
+********** 2. POBLACION EN EDAD DE TRABAJAR ************
+
+** PET por sexo y rangos de edades
+table rangos_quinquenales p6020 if pet==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+** Otra manera PET por sexo y edad (Oscar)
+table rangos_quinquenales p6020 [iw= fexp_trimestral], by(pet) f(%4.0fc) row col
+
+** PET por sexo y nivel educativo
+table p6210 p6020 if pet==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PET por sexo y estado civil
+table p6070 p6020 if pet==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PET por sexo y posición en el hogar
+table p6050 p6020 if pet==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+*********** 3. POBLACION ECONOMICAMENTE ACTIVA **********
+
+** PEA por sexo y rangos de edades
+table rangos_quinquenales p6020 if pea==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PEA por sexo y estado civil
+table p6070 p6020 if pea==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PEA por sexo y posición en el hogar
+table p6050 p6020 if pea==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PEA por sexo y nivel educativo más alto alcanzado
+table p6210 p6020 if pea==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+************ 4. POBLACION INACTIVA ***************************
+
+
+** PI por sexo y rangos de edades
+table rangos_quinquenales p6020 if inactivo==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+** PI por sexo y tipo de inactividad
+table tipo_inactividad p6020 if inactivo==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+** PI por rango de edad y tipo de inactividad
+table rangos_decenales tipo_inactividad if inactivo==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+table rangos_decenales p6020 tipo_inactividad if inactivo==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PI por sexo y estado civil
+table p6070 p6020 if inactivo==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PI por sexo y posición en el hogar
+table p6050 p6020 if inactivo==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+**PI por sexo y nivel educativo más alto alcanzado
+table p6210 p6020 if inactivo==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+
+************ 5. POBLACION OCUPADA ***********************
+
+
+** PO por sexo y rangos de edades
+table rangos_quinquenales p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+**PO por sexo y estado civil
+table p6070 p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PO por sexo y posición en el hogar
+table p6050 p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+**PO por sexo y nivel educativo más alto alcanzado
+table p6210 p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+**PO por sexo y posición ocupacional
+table p6430 p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+**PO por sexo y rama de actividad económica
+table rama2d_m p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+**PO por sexo y ocupación
+table oficio_m  p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PO por sexo y afiliación a pensiones
+table p6920 p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PO por sexo, edad y afiliación a pensiones
+table rangos_quinquenales p6920 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+table rangos_quinquenales p6920 p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PO por sexo y afiliación a salud
+table p6090 p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PO por sexo, edad y afiliación a salud
+table rangos_quinquenales p6090 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+table rangos_quinquenales p6090 p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+
+************ 6. POBLACION DESOCUPADA ***********************
+
+
+**PD Aspirante por sexo y nivel educativo más alto alcanzado
+table p6210 p6020 if aspirante==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PD Aspirante por sexo y rangos de edades
+table rangos_quinquenales p6020 if aspirante==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PD Aspirante por sexo y tiempo de busqueda de empleo
+table semanas_busqueda p6020 if aspirante==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+**PD Cesante por sexo y nivel educativo más alto alcanzado
+table p6210 p6020 if cesante==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PD Cesante por sexo y posición ocupacional anterior
+table p7350 p6020 if cesante==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PD Cesante por sexo y rama de actividad anterior
+table rama2d_d_m p6020 if cesante==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PD Cesante por sexo y rango de edad
+table rangos_quinquenales p6020 if cesante==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PD Cesante por sexo y tiempo de busqueda de empleo
+table semanas_busqueda p6020 if cesante==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+** PD, Aspirante y Cesante por sexo
+table p6020 if desocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+table p6020 if aspirante==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+table p6020 if cesante==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+** PD por sexo y rangos de edades
+table rangos_quinquenales p6020 if desocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PD por sexo y nivel educativo más alto alcanzado
+table p6210 p6020 if desocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PD por sexo y tiempo de busqueda de empleo
+table semanas_busqueda p6020 if desocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+
+**PD por sexo y posición en el hogar
+table p6050 p6020 if desocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+**PD por sexo y posición ocupacional anterior
+table p7350 p6020 if desocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+**PD por sexo y rama de actividad económica anterior
+table  rama2d_d_m p6020 if desocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+**PD por sexo y ocupación buscada
+table oficio1_m  p6020 if desocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+**PD por sexo y ocupación anterior
+table oficio2_m  p6020 if desocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+************ 7. TGP ***********************
+
+**Modo Yanira
+gen pea1=(pea==1)
+tab pea1 if pet==1 [fw=round(fexp_trimestral)]
+
+**Otro modo 1
+
+gen pea_dummy=(pea==1)*100
+
+**TGP por sexo y edad modo 1
+table rangos_quinquenales p6020 if pet==1 [pweight = fexp_trimestral], f(%4.2f) contents(mean pea_dummy) row col
+
+**TGP por sexo y edad modo Yanira
+bysort rangos_quinquenales  p6020: tab pea1 if pet==1 [fw=round(fexp_trimestral)]
+
+**TGP por sexo y nivel educativo
+table p6210 p6020 if pet==1 [pweight = fexp_trimestral], f(%4.2f) contents(mean pea_dummy) row col
+
+******************** 8. TO *******************
+
+gen ocupado_dummy=(ocupado==1)*100
+
+*TO total por Sexo y rango de edad
+table rangos_quinquenales p6020 if pet==1 [pweight = fexp_trimestral], f(%4.2f) contents(mean ocupado_dummy) row col
+
+*TO total por Sexo y nivel educativo
+table p6210 p6020 if pet==1 [pweight = fexp_trimestral], f(%4.2f) contents(mean ocupado_dummy) row col
+
+
+************************ 9. TD **************
+
+gen desocupado_dummy=(desocupado==1)*100
+
+*TD por Sexo y Nivel Educativo
+table p6210 p6020 if pea==1 [pweight = fexp_trimestral], f(%4.2f) contents(mean desocupado_dummy) row col
+
+*TD por Sexo y Rango de Edad
+table rangos_quinquenales p6020 if pea==1 [pweight = fexp_trimestral], f(%4.2f) contents(mean desocupado_dummy) row col
+
+
+************* 10. INFORMALIDAD ************
+
+gen var1 = 1 if (p6920==1)|(p6920==3)
+replace var1 = 2 if (p6920==2)
+
+recode var1 (1=1 "Formal")/*
+*/(2=2 "Informal"), gen (sector)
+label var sector "Formal/informal"
+drop var1
+
+*Ocupados por afiliación a pensiones y nivel educativo*
+
+table p6210 sector if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+*Ocupados por afiliación a pensiones y posición ocupacional*
+
+table p6430 sector if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+*Ocupados por afiliación a pensiones y rama de actividad económica*
+
+table rama2d_m sector if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+*Ocupados por afiliación a pensiones y sexo*
+
+table sector p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+*Ocupados por afiliación a pensiones y tipo de subempleo subjetivo*
+
+table sector ssub_hora p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+table sector ssub_ing p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+table sector ssub_compet p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+*Ocupados por afiliación a pensiones y tipo de subempleo objetivo*
+
+table sector sob_hora p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+table sector sob_ing p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+table sector sob_compet p6020 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+******** 11. OTROS *********
+tab ocupado [fw=round(fexp_trimestral)]
+
+
+table E002_m  B002 if ocupado==1 [pweight = fexp_trimestral], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+table p6020 if p6050==1 [pweight = fex_dpto_c], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+table p5090 if p6050==1 [pweight = fex_dpto_c], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+
+******** 12. TD Eje Cafetero *********
+
+gen eje = 2 
+replace eje = 1 if( i_dpto=="63")|( i_dpto=="66")|( i_dpto=="17") 
+
+gen desocupado_dummy=(desocupado==1)*100
+
+*TD por departamento
+table eje if pea==1 [fw = round(fex_c/12)], f(%4.2f) contents(mean desocupado_dummy) row col
+
+**PD por departamento
+table eje if desocupado==1 [fw = round(fex_c/12)], f(%10,0fc) cellwidth(12) stubwidth(20) row col
+
+************* 13. INFORMALIDAD EJE CAFETERO ************
+
+gen var1 = 1 if (p6920==1)|(p6920==3)
+replace var1 = 2 if (p6920==2)
+
+recode var1 (1=1 "Formal")/*
+*/(2=2 "Informal"), gen (sector)
+label var sector "Formal/informal"
+drop var1
+
+*Ocupados por afiliación a pensiones y departamento*
+
+table eje sector if ocupado==1 [fw = round(fex_c/12)], f(%10,0fc) cellwidth(12) stubwidth(20) row col
