@@ -8,10 +8,10 @@ write(paste0(c("Repository ...\t", localRepository), sep = "", collapse = ""), s
 projectSolution <- "Kinito.Revolution";
 write(paste0(c("Solution .....\t", projectSolution), sep = "", collapse = ""), stdout());
 # project is the project's name
-projectName <- "Daen.Export.Indicators";
+projectName <- "Dane.Export.Indicators";
 write(paste0(c("Project ......\t", projectName), sep = "", collapse = ""), stdout());
 # namespace
-projectNamespace <- "Daen.Export.Indicators";
+projectNamespace <- "Dane.Export.Indicators";
 projectNamespace <- if (projectSolution == projectName) projectSolution else paste0(projectSolution, ".", projectName);
 write(paste0(c("Namespace ....\t", projectNamespace), sep = "", collapse = ""), stdout());
 # common
