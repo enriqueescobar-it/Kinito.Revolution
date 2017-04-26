@@ -11,4 +11,7 @@ rm(lastDir);
 
 for (i in seq(along = fileList)) {
   cat(paste0(i, "\t", fileList[i], "\n"));
+  if(!file.exists(fileList[i])) cat("aca");
+  #library(data.table);
+  #df <- read.table(file=fileList[i], header=TRUE);
 }
