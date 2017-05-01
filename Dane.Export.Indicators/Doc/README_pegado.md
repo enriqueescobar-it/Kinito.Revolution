@@ -1,10 +1,10 @@
 # PROGRAMA PARA PEGAR BASES DE DATOS DE LOS REGISTROS DE LA GEIH
 
-Kinito Revolution
+## Kinito Revolution
 
-### PEGADO CABECERAS
+## PEGADO CABECERAS
 
-#### JULIO DE 2012
+### JULIO DE 2012
 
 1. Abrir el archivo del registro 10 y pegarle horizontalmente las bases de los registros 50, 60, 70, 80, 90 y 95:
 
