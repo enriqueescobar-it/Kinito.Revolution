@@ -12,22 +12,21 @@ rm(lastDir);
 
 for (i in seq(along = fileList)) {
   oldFile <- fileList[i];
-  cat(paste0("old\t", oldFile, "\n"));
-  newFile <- RmAccent(oldFile);
-  cat(paste0("new\t", newFile, "\n"));
-  newFileList[i] <- newFile;
   if(!file.exists(oldFile)) {
     cat("ERROR|FilenameFormatError: Cannot read file\n");
   } else {
-     #CopyFullnameFiles(oldFilePath = oldFile, newFilePath = newFile);
+    cat(paste0("old\t", oldFile, "\n"));
+    newFile <- RmAccent(oldFile);
+    cat(paste0("new\t", newFile, "\n"));
+    newFileList[i] <- newFile;
   }
   rm(oldFile);
   rm(newFile);
 }
 rm(fileList);
 rm(i);
-
-df <- DaneTabbedFileToDF(aFilePath = newFileList[1]);
-View(df);
+newFileList
+#df <- DaneTabbedFileToDF(aFilePath = newFileList[1]);
+#View(df);
 
 

@@ -51,7 +51,11 @@ GetFullnameFiles <- function(aDir = ""){
   
   ArgumentCheck::finishArgCheck(argumentCheck);
   
-  return(base::list.files(aDir, all.files = TRUE, full.names = TRUE)[-c(1, 2)]);
+  fileList <-
+    base::list.files(aDir, all.files = TRUE, pattern=".txt", full.names = TRUE)[-c(1, 2)];
+  fileList <- fileList[!grepl(" ", fileList)];
+  
+  return(fileList);
 }
 
 CopyFullnameFiles <- function(oldFilePath = "", newFilePath = "") {
