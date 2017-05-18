@@ -31,6 +31,8 @@ Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Rvesting", "Rvesting\Rvesti
 EndProject
 Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Dane.Export.Indicators", "Dane.Export.Indicators\Dane.Export.Indicators.rxproj", "{9A3925A9-CD42-4F2C-B7E7-22BC81FCE03A}"
 EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Algorithm.t-SNE", "Algorithm.t-SNE\Algorithm.t-SNE.rxproj", "{EC070914-3749-438B-BE08-E048142BB1B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{9A3925A9-CD42-4F2C-B7E7-22BC81FCE03A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A3925A9-CD42-4F2C-B7E7-22BC81FCE03A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A3925A9-CD42-4F2C-B7E7-22BC81FCE03A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC070914-3749-438B-BE08-E048142BB1B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC070914-3749-438B-BE08-E048142BB1B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC070914-3749-438B-BE08-E048142BB1B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC070914-3749-438B-BE08-E048142BB1B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
