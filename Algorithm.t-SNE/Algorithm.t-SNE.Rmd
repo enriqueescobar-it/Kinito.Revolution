@@ -1,20 +1,244 @@
 ---
-title: "Untitled"
+title: "Algorithm.t-SNE"
+author: "Enrique ESCOBAR"
+date: "20 May 2017"
 output: html_document
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and Microsoft Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Introduction
 
-When you click the **R Tools | Publish | Preview** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Imagine you get a dataset with hundreds of features (variables) and have little understanding about the domain the data belongs to. You are expected to identify hidden patterns in the data, explore and analyze the dataset. And not just that, you have to find out if there is a pattern in the data – is it signal or is it just noise?
 
-```{r}
-summary(cars)
+Does that thought make you uncomfortable? It made my hands sweat when I came across this situation for the first time. Do you wonder how to explore a multidimensional dataset? It is one of the frequently asked question by many data scientists. In this article, I will take you through a very powerful way to exactly do this.
+
+## What about PCA?
+
+By now, some of you would be screaming “I’ll use PCA for dimensionality reduction and visualization”. Well, you are right! PCA is definitely a good choice for dimensionality reduction and visualization for datasets with a large number of features. But, what if you could use something more advanced than PCA? (If you don’t know PCA, I would strongly recommend to read this article first)
+
+What if you could easily search for a pattern in non-linear style? In this article, I will tell you about a new algorithm called t-SNE (2008), which is much more effective than PCA (1933). I will take you through the basics of t-SNE algorithm first and then will walk you through why t-SNE is a good fit for dimensionality reduction algorithms.
+
+You will also, get hands-on knowledge for using t-SNE in both R and Python.
+
+# What is t-SNE?
+
+(t-SNE) t-Distributed Stochastic Neighbor Embedding is a non-linear dimensionality reduction algorithm used for exploring high-dimensional data. It maps multi-dimensional data to two or more dimensions suitable for human observation. With help of the t-SNE algorithms, you may have to plot fewer exploratory data analysis plots next time you work with high dimensional data.
+
+# What is dimensionality reduction?
+
+In order to understand how t-SNE works, let’s first understand what is dimensionality reduction?
+
+Well, in simple terms, dimensionality reduction is the technique of representing multi-dimensional data (data with multiple features having a correlation with each other) in 2 or 3 dimensions.
+
+Some of you might question why do we need Dimensionality Reduction when we can plot the data using scatter plots, histograms & boxplots and make sense of the pattern in data using descriptive statistics. 
+
+Well, even if you can understand the patterns in data and present it on simple charts, it is still difficult for anyone without statistics background to make sense of it. Also, if you have hundreds of features, you have to study thousands of charts before you can make sense of this data. (Read more about dimensionality reduction here)
+
+With the help of dimensionality reduction algorithm, you will be able to present the data explicitly.
+
+# How does t-SNE fit in the dimensionality reduction algorithm space?
+
+Now that you have an understanding of what is dimensionality reduction, let’s look at how we can use t-SNE algorithm for reducing dimensions. 
+
+Following are a few dimensionality reduction algorithms that you can check out:
+
+* PCA (linear)
+* t-SNE (non-parametric/ nonlinear)
+* Sammon mapping (nonlinear)
+* Isomap (nonlinear)
+* LLE (nonlinear)
+* CCA (nonlinear)
+* SNE (nonlinear)
+* MVU (nonlinear)
+* Laplacian Eigenmaps (nonlinear)
+
+The good news is that you need to study only two of the algorithms mentioned above to effectively visualize data in lower dimensions, PCA and t-SNE.
+
+## Limitations of PCA
+
+PCA is a linear algorithm. It will not be able to interpret complex polynomial relationship between features. On the other hand, t-SNE is based on probability distributions with random walk on neighborhood graphs to find the structure within the data.
+
+A major problem with, linear dimensionality reduction algorithms is that they concentrate on placing dissimilar data points far apart in a lower dimension representation. But in order to represent high dimension data on low dimension, non-linear manifold, it is important that similar datapoints must be represented close together, which is not what linear dimensionality reduction algorithms do.
+
+Now, you have a brief understanding of what PCA endeavors to do.
+
+Local approaches seek to map nearby points on the manifold to nearby points in the low-dimensional representation. Global approaches on the other hand attempt to preserve geometry at all scales, i.e mapping nearby points to nearby points and far away points to far away points  
+
+It is important to know that most of the nonlinear techniques other than t-SNE are not capable of retaining both the local and global structure of the data at the same time.
+
+# Algorithmic details of t-SNE (optional read)
+
+This section is for the people interested in understanding the algorithm in depth. You can safely skip this section if you do not want to go through the math in detail.
+
+Let’s understand why you should know about t-SNE and the algorithmic details of t-SNE.  t-SNE is an improvement on the Stochastic Neighbor Embedding (SNE) algorithm.
+
+## Algorithm
+
+### Step 1
+
+Stochastic Neighbor Embedding (SNE) starts by converting the high-dimensional Euclidean distances between data points into conditional probabilities that represent similarities. The similarity of datapoint  to datapoint  is the conditional probability,  ,  would pick as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian centered at  . 
+
+For nearby datapoints,  is relatively high, whereas for widely separated datapoints,  will be almost infinitesimal (for reasonable values of the variance of the Gaussian, ). Mathematically, the conditional probability  is given by
+
+
+
+where  is the variance of the Gaussian that is centered on datapoint 
+
+If you are not interested in the math, think about it in this way, the algorithm starts by converting the shortest distance (a straight line) between the points into probability of similarity of points. Where, the similarity between points is: the conditional probability that   would pick  as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian (normal distribution) centered at .
+
+### Step 2
+
+For the low-dimensional counterparts  and  of the high-dimensional datapoints  and   it is possible to compute a similar conditional probability, which we denote by .
+
+
+
+Note that, pi|i and pj|j are set to zero as we only want to model pair wise similarity.
+
+In simple terms step 1 and step2 calculate the conditional probability of similarity between a pair of points in
+
+* High dimensional space
+* In low dimensional space
+
+For the sake of simplicity, try to understand this in detail. 
+
+Let us map 3D space to 2D space. What step1 and step2 are doing is calculating the probability of similarity of points in 3D space and calculating the probability of similarity of points in the corresponding 2D space.  
+
+Logically, the conditional probabilities  and must be equal for a perfect representation of the similarity of the datapoints in the different dimensional spaces, i.e the difference between  and  must be zero for the perfect replication of the plot in high and low dimensions.
+
+By this logic SNE attempts to minimize this difference of conditional probability.
+
+### Step 3
+
+Now here is the difference between the SNE and t-SNE algorithms. 
+
+To measure the minimization of sum of difference of conditional probability SNE minimizes the sum of Kullback-Leibler divergences overall data points using a gradient descent method. We must know that KL divergences are asymmetric in nature.
+
+In other words, the SNE cost function focuses on retaining the local structure of the data in the map (for reasonable values of the variance of the Gaussian in the high-dimensional space,).
+
+Additionally, it is very difficult (computationally inefficient) to optimize this cost function.
+
+So t-SNE also tries to minimize the sum of the difference in conditional probabilities. But it does that by using the symmetric version of the SNE cost function, with simple gradients. Also, t-SNE employs a heavy-tailed distribution in the low-dimensional space to alleviate both the crowding problem (the area of the two-dimensional map that is available to accommodate moderately distant data points will not be nearly large enough compared with the area available to accommodate nearby data points)  and the optimization problems of SNE.
+
+### Step 4
+
+If we see the equation to calculate the conditional probability, we have left out the variance from the discussion as of now. The remaining parameter to be selected is the variance of the student’s t-distribution that is centered over each high-dimensional datapoint . It is not likely that there is a single value of that is optimal for all data points in the data set because the density of the data is likely to vary. In dense regions, a smaller value of  is usually more appropriate than in sparser regions. Any particular value of induces a probability distribution,  , over all of the other data points. This distribution has an 
+
+This distribution has an entropy which increases as increases. t-SNE performs a binary search for the value of  that produces a  with a fixed perplexity that is specified by  the user. The perplexity is defined as
+
+
+
+where H() is the Shannon entropy of  measured in bits 
+
+
+
+The perplexity can be interpreted as a smooth measure of the effective number of neighbors. The performance of SNE is fairly robust to changes in the perplexity, and typical values are between 5 and 50.
+
+The minimization of the cost function is performed using gradient decent. And physically, the gradient may be interpreted as the resultant force created by a set of springs between the map point and all other map points  . All springs exert a force along the direction ( – ). The spring between  and repels or attracts the map points depending on whether the distance between the two in the map is too small or too large to represent the similarities between the two high-dimensional datapoints. The force exerted by the spring between and  is proportional to its length, and also proportional to its stiffness, which is the mismatch (pj|i – qj|i + p i| j − q i| j ) between the pairwise similarities of the data points and the map points[1].-
+
+## Time and Space Complexity
+
+Now that we have understood the algorithm, it is time to analyze its performance. As you might have observed, that the algorithm computes pairwise conditional probabilities and tries to minimize the sum of the difference of the probabilities in higher and lower dimensions. This involves a lot of calculations and computations. So the algorithm is quite heavy on the system resources.
+
+t-SNE has a quadratic time and space complexity in the number of data points. This makes it particularly slow and resource draining while applying it to data sets comprising of more than 10,000 observations.
+
+# What does t-SNE actually do?
+
+After we have looked into the mathematical description of how does the algorithms works, to sum up, what we have learned above. Here is a brief explanation of how t-SNE works.  
+
+It’s quite simple actually, t-SNE a non-linear dimensionality reduction algorithm finds patterns in the data by identifying observed clusters based on similarity of data points with multiple features. But it is not a clustering algorithm it is a dimensionality reduction algorithm. This is because it maps the multi-dimensional data to a lower dimensional space, the input features are no longer identifiable. Thus you cannot make any inference based only on the output of t-SNE. So essentially it is mainly a data exploration and visualization technique.
+
+But t-SNE can be used in the process of classification and clustering by using its output as the input feature for other classification algorithms.
+
+# Use cases
+
+You may ask, what are the use cases of such an algorithm. t-SNE can be used on almost all high dimensional data sets. But it is extensively applied in Image processing, NLP, genomic data and speech processing. It has been utilized for improving the analysis of brain and heart scans. Below are a few examples:
+
+## Facial Expression Recognition
+
+A lot of progress has been made on FER and many algorithms like PCA have been studied for FER. But, FER still remains a challenge due to the difficulties of dimension reduction and classification. t-Stochastic Neighbor Embedding (t-SNE) is used for reducing the high-dimensional data into a relatively low-dimensional subspace and then using other algorithms like AdaBoostM2, Random Forests, Logistic Regression, NNs and others as multi-classifier for the expression classification.
+
+In one such attempt for facial recognition based on the Japanese Female Facial Expression (JAFFE) database with t-SNE and AdaBoostM2. Experimental results showed that the proposed new algorithm applied to FER gained the better performance compared with those traditional algorithms, such as PCA, LDA, LLE and SNE.[2]
+
+The flowchart for implementing such a combination on the data could be as follows:
+
+Preprocessing → normalization → t-SNE→ classification algorithm
+
+                      PCA      LDA    LLE     SNE    t-SNE
+
+SVM               73.5%  74.3%  84.7%  89.6%  90.3%
+
+AdaboostM2   75.4%  75.9%  87.7%  90.6%  94.5%
+
+## Identifying Tumor subpopulations (Medical Imaging)
+
+Mass spectrometry imaging (MSI) is a technology that simultaneously provides the spatial distribution for hundreds of biomolecules directly from tissue. Spatially mapped t-distributed stochastic neighbor embedding (t-SNE), a nonlinear visualization of the data that is able to better resolve the biomolecular intratumor heterogeneity.
+
+In an unbiased manner, t-SNE can uncover tumor subpopulations that are statistically linked to patient survival in gastric cancer and metastasis status in primary tumors of breast cancer. Survival analysis performed on each t-SNE clusters will provide significantly useful results.
+
+## Text comparison using wordvec
+
+Word vector representations capture many linguistic properties such as gender, tense, plurality and even semantic concepts like “capital city of”. Using dimensionality reduction, a 2D map can be computed where semantically similar words are close to each other. This combination of techniques can be used to provide a bird’s-eye view of different text sources, including text summaries and their source material. This enables users to explore a text source like a geographical map.
+
+# t-SNE compared to other dimensionality reduction algorithms
+
+While comparing the performance of t-SNE with other algorithms, we will compare t-SNE with other algorithms based on the achieved accuracy rather than the time and resource requirements with relation to accuracy.
+
+t-SNE outputs provide better results than PCA and other linear dimensionality reduction models. This is because a linear method such as classical scaling is not good at modeling curved manifolds. It focuses on preserving the distances between widely separated data points rather than on preserving the distances between nearby data points.
+
+The Gaussian kernel employed in the high-dimensional space by t-SNE defines a soft border between the local and global structure of the data. And for pairs of data points that are close together relative to the standard deviation of the Gaussian, the importance of modeling their separations is almost independent of the magnitudes of those separations. Moreover, t-SNE determines the local neighborhood size for each datapoint separately based on the local density of the data (by forcing each conditional probability distribution to have the same perplexity)[1]. This is because the algorithm defines a soft border between the local and global structure of the data.  And unlike other non-linear dimensionality reduction algorithms, it performs better than any of them.
+
+# R implementation
+
+Let’s implement the t-SNE algorithm on MNIST handwritten digit database. This is one of the most explored dataset for image processing.
+
+* parametrization
+
+https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/20083801/TSNE1.png
+
+* code
+
+MNIST data can be downloaded from the MNIST website and can be converted into a csv file with small amount of code.For this example, please download the following preprocessed MNIST data.
+
+https://drive.google.com/file/d/0B6E7D59TV2zWYlJLZHdGeUYydlk/view?usp=sharing
+
+The “Rtsne” package has an implementation of t-SNE in R. The “Rtsne” package can be installed in R using the following command typed in the R console.
+
+```{r project setup, include=FALSE, echo=TRUE}
+library(Rtsne);
 ```
 
-You can also embed plots, for example:
+Data input
 
-```{r, echo=FALSE}
-plot(cars)
+```{r project input, include=FALSE, echo=TRUE}
+train <- read.csv("E:/Disk_X/Kinito.Revolution/Algorithm.t-SNE/Data/train.csv");
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Data curation
+
+```{r project curation, include=FALSE, echo=TRUE}
+labelList <- train$label;
+train$label <- as.factor(train$label);
+```
+
+Data preparation
+
+```{r project preparation, include=FALSE, echo=TRUE}
+colorList = rainbow(length(unique(train$label)));
+names(colorList) = unique(train$label);
+```
+
+Data tSNE
+
+```{r project tSNE, include=FALSE, echo=TRUE}
+tsne <- Rtsne::Rtsne(train[, -1], dims = 2, perplexity = 30, verbose = TRUE,
+                     max_iter = 500);
+```
+
+
+Data plotting
+
+```{r project plotting, include=FALSE, echo=TRUE}
+tsneMainTitle <- "Algorithm t-SNE";
+plot(tsne$Y, t = 'n', main = tsneMainTitle);
+text(tsne$Y, labels = train$label, col = colorList[train$label]);
+```
+
