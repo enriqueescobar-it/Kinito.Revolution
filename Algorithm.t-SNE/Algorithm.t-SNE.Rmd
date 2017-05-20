@@ -202,33 +202,33 @@ https://drive.google.com/file/d/0B6E7D59TV2zWYlJLZHdGeUYydlk/view?usp=sharing
 
 The “Rtsne” package has an implementation of t-SNE in R. The “Rtsne” package can be installed in R using the following command typed in the R console.
 
-```{r project setup, include=FALSE, echo=TRUE}
+```{r project setup, echo=TRUE}
 library(Rtsne);
 ```
 
 Data input
 
-```{r project input, include=FALSE, echo=TRUE}
+```{r project input, include=TRUE, echo=TRUE}
 train <- read.csv("E:/Disk_X/Kinito.Revolution/Algorithm.t-SNE/Data/train.csv");
 ```
 
 Data curation
 
-```{r project curation, include=FALSE, echo=TRUE}
+```{r project curation, include=TRUE, echo=TRUE}
 labelList <- train$label;
 train$label <- as.factor(train$label);
 ```
 
 Data preparation
 
-```{r project preparation, include=FALSE, echo=TRUE}
+```{r project preparation, include=TRUE, echo=TRUE}
 colorList = rainbow(length(unique(train$label)));
 names(colorList) = unique(train$label);
 ```
 
 Data tSNE
 
-```{r project tSNE, include=FALSE, echo=TRUE}
+```{r project tSNE, include=TRUE, echo=TRUE}
 tsne <- Rtsne::Rtsne(train[, -1], dims = 2, perplexity = 30, verbose = TRUE,
                      max_iter = 500);
 ```
@@ -236,7 +236,7 @@ tsne <- Rtsne::Rtsne(train[, -1], dims = 2, perplexity = 30, verbose = TRUE,
 
 Data plotting
 
-```{r project plotting, include=FALSE, echo=TRUE}
+```{r project plotting, include=TRUE, echo=TRUE}
 tsneMainTitle <- "Algorithm t-SNE";
 plot(tsne$Y, t = 'n', main = tsneMainTitle);
 text(tsne$Y, labels = train$label, col = colorList[train$label]);
