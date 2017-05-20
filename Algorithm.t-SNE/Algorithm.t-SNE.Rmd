@@ -75,21 +75,21 @@ Let’s understand why you should know about t-SNE and the algorithmic details o
 
 ### Step 1
 
-Stochastic Neighbor Embedding (SNE) starts by converting the high-dimensional Euclidean distances between data points into conditional probabilities that represent similarities. The similarity of datapoint  to datapoint  is the conditional probability,  ,  would pick as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian centered at  . 
+Stochastic Neighbor Embedding (SNE) starts by converting the high-dimensional Euclidean distances between data points into conditional probabilities that represent similarities. The similarity of datapoint https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070012/xi.png to datapoint https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21064623/xj.png is the conditional probability, https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21065958/pjli.png , https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070012/xi.png would pick https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21064623/xj.png as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian centered at https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070012/xi.png.
 
-For nearby datapoints,  is relatively high, whereas for widely separated datapoints,  will be almost infinitesimal (for reasonable values of the variance of the Gaussian, ). Mathematically, the conditional probability  is given by
+For nearby datapoints, https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21065958/pjli.png is relatively high, whereas for widely separated datapoints, https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21065958/pjli.png will be almost infinitesimal (for reasonable values of the variance of the Gaussian, https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18122537/x3.png). Mathematically, the conditional probability https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21065958/pjli.png is given by
 
+https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/17113403/TSN1.png
 
+where https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18122537/x3.png is the variance of the Gaussian that is centered on datapoint https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070012/xi.png
 
-where  is the variance of the Gaussian that is centered on datapoint 
-
-If you are not interested in the math, think about it in this way, the algorithm starts by converting the shortest distance (a straight line) between the points into probability of similarity of points. Where, the similarity between points is: the conditional probability that   would pick  as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian (normal distribution) centered at .
+If you are not interested in the math, think about it in this way, the algorithm starts by converting the shortest distance (a straight line) between the points into probability of similarity of points. Where, the similarity between points is: the conditional probability that  https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070012/xi.png would pick https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21064623/xj.png as its neighbor if neighbors were picked in proportion to their probability density under a Gaussian (normal distribution) centered at https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070012/xi.png.
 
 ### Step 2
 
-For the low-dimensional counterparts  and  of the high-dimensional datapoints  and   it is possible to compute a similar conditional probability, which we denote by .
+For the low-dimensional counterparts https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070035/yi.png and https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070039/yj.png of the high-dimensional datapoints https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070012/xi.png and https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21064623/xj.png it is possible to compute a similar conditional probability, which we denote by https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21064959/qjli.png.
 
-
+https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/17113456/TSN2.png
 
 Note that, pi|i and pj|j are set to zero as we only want to model pair wise similarity.
 
@@ -102,7 +102,7 @@ For the sake of simplicity, try to understand this in detail.
 
 Let us map 3D space to 2D space. What step1 and step2 are doing is calculating the probability of similarity of points in 3D space and calculating the probability of similarity of points in the corresponding 2D space.  
 
-Logically, the conditional probabilities  and must be equal for a perfect representation of the similarity of the datapoints in the different dimensional spaces, i.e the difference between  and  must be zero for the perfect replication of the plot in high and low dimensions.
+Logically, the conditional probabilities https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21065958/pjli.png and https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21064959/qjli.png must be equal for a perfect representation of the similarity of the datapoints in the different dimensional spaces, i.e the difference between https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21065958/pjli.png and  https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21064959/qjli.png must be zero for the perfect replication of the plot in high and low dimensions.
 
 By this logic SNE attempts to minimize this difference of conditional probability.
 
@@ -112,7 +112,7 @@ Now here is the difference between the SNE and t-SNE algorithms.
 
 To measure the minimization of sum of difference of conditional probability SNE minimizes the sum of Kullback-Leibler divergences overall data points using a gradient descent method. We must know that KL divergences are asymmetric in nature.
 
-In other words, the SNE cost function focuses on retaining the local structure of the data in the map (for reasonable values of the variance of the Gaussian in the high-dimensional space,).
+In other words, the SNE cost function focuses on retaining the local structure of the data in the map (for reasonable values of the variance of the Gaussian in the high-dimensional space,https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18122537/x3.png).
 
 Additionally, it is very difficult (computationally inefficient) to optimize this cost function.
 
@@ -120,19 +120,19 @@ So t-SNE also tries to minimize the sum of the difference in conditional probabi
 
 ### Step 4
 
-If we see the equation to calculate the conditional probability, we have left out the variance from the discussion as of now. The remaining parameter to be selected is the variance of the student’s t-distribution that is centered over each high-dimensional datapoint . It is not likely that there is a single value of that is optimal for all data points in the data set because the density of the data is likely to vary. In dense regions, a smaller value of  is usually more appropriate than in sparser regions. Any particular value of induces a probability distribution,  , over all of the other data points. This distribution has an 
+If we see the equation to calculate the conditional probability, we have left out the variance from the discussion as of now. The remaining parameter to be selected is the variance https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18122537/x3.png of the student’s t-distribution that is centered over each high-dimensional datapoint https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070012/xi.png. It is not likely that there is a single value of https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18122537/x3.png that is optimal for all data points in the data set because the density of the data is likely to vary. In dense regions, a smaller value of https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18122537/x3.png is usually more appropriate than in sparser regions. Any particular value of https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18122537/x3.png induces a probability distribution, https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18130133/x6.png , over all of the other data points. This distribution has an 
 
-This distribution has an entropy which increases as increases. t-SNE performs a binary search for the value of  that produces a  with a fixed perplexity that is specified by  the user. The perplexity is defined as
+This distribution has an entropy which increases as https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18122537/x3.png increases. t-SNE performs a binary search for the value of https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18122537/x3.png that produces a https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18130133/x6.png with a fixed perplexity that is specified by https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18122537/x3.png the user. The perplexity is defined as
 
+https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/17113730/TSN3.png
 
+where H(https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18130133/x6.png) is the Shannon entropy of https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/18130133/x6.png measured in bits 
 
-where H() is the Shannon entropy of  measured in bits 
-
-
+https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/17113922/TSN4.png
 
 The perplexity can be interpreted as a smooth measure of the effective number of neighbors. The performance of SNE is fairly robust to changes in the perplexity, and typical values are between 5 and 50.
 
-The minimization of the cost function is performed using gradient decent. And physically, the gradient may be interpreted as the resultant force created by a set of springs between the map point and all other map points  . All springs exert a force along the direction ( – ). The spring between  and repels or attracts the map points depending on whether the distance between the two in the map is too small or too large to represent the similarities between the two high-dimensional datapoints. The force exerted by the spring between and  is proportional to its length, and also proportional to its stiffness, which is the mismatch (pj|i – qj|i + p i| j − q i| j ) between the pairwise similarities of the data points and the map points[1].-
+The minimization of the cost function is performed using gradient decent. And physically, the gradient may be interpreted as the resultant force created by a set of springs between the map point https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070035/yi.png and all other map points https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070039/yj.png . All springs exert a force along the direction ( https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070035/yi.png – https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070039/yj.png ). The spring between https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070035/yi.png and https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070039/yj.png repels or attracts the map points depending on whether the distance between the two in the map is too small or too large to represent the similarities between the two high-dimensional datapoints. The force exerted by the spring between https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070035/yi.png and https://s3-ap-south-1.amazonaws.com/av-blog-media/wp-content/uploads/2017/01/21070039/yj.png is proportional to its length, and also proportional to its stiffness, which is the mismatch (pj|i – qj|i + p i| j − q i| j ) between the pairwise similarities of the data points and the map points[1].-
 
 ## Time and Space Complexity
 
