@@ -7,6 +7,8 @@ output: html_document
 
 http://sqlite.awardspace.info/syntax/sqliteodbc.htm
 
+http://sqlitebrowser.org/
+
 http://www.sqliteexpert.com/features.html
 
 https://eggerapps.at/mdbviewer/docs/en/convert-access-to-sqlite.html
