@@ -7,6 +7,12 @@ output: html_document
 
 http://sqlite.awardspace.info/syntax/sqliteodbc.htm
 
+http://www.sqliteexpert.com/features.html
+
+https://eggerapps.at/mdbviewer/docs/en/convert-access-to-sqlite.html
+
+http://www.sobolsoft.com/accesssqlite/
+
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and Microsoft Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
 When you click the **R Tools | Publish | Preview** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
