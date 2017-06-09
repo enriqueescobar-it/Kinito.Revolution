@@ -7,11 +7,11 @@ GO
 EXEC sys.sp_dropextendedproperty @name=N'MS_Description' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AreaCaracteristicas', @level2type=N'COLUMN',@level2name=N'Id'
 GO
 
-/****** Object:  Table [dbo].[AreaCaracteristicas]    Script Date: 2017-06-09 12:01:17 ******/
+/****** Object:  Table [dbo].[AreaCaracteristicas]    Script Date: 2017-06-09 16:09:38 ******/
 DROP TABLE [dbo].[AreaCaracteristicas]
 GO
 
-/****** Object:  Table [dbo].[AreaCaracteristicas]    Script Date: 2017-06-09 12:01:17 ******/
+/****** Object:  Table [dbo].[AreaCaracteristicas]    Script Date: 2017-06-09 16:09:38 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -24,7 +24,7 @@ CREATE TABLE [dbo].[AreaCaracteristicas](
 	[Secuencia_p] [int] NOT NULL,
 	[Month] [smallint] NOT NULL,
 	[Year] [int] NOT NULL,
-	[Quarter] [smallint] NOT NULL,
+	[Quarter] [nchar](2) NOT NULL,
 	[Orden] [int] NOT NULL,
 	[Hogar] [int] NOT NULL,
 	[Regis] [int] NOT NULL,
@@ -63,5 +63,4 @@ GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'AreaCaracteristicas' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AreaCaracteristicas'
 GO
-
 
