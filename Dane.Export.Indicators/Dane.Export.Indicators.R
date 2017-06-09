@@ -1,7 +1,7 @@
 #
 source(paste0("Lib/", projectName, ".Util.R"));
 #
-rawDir <- "Raw";
+rawDir <- "Data";
 dirList <- GetFullnameDirectories(rawDir);
 lastDir <- tail(dirList, n = 1);
 rm(dirList);

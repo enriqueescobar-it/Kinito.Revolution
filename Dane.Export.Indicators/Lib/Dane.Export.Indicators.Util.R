@@ -50,9 +50,8 @@ GetFullnameFiles <- function(aDir = ""){
   }
   
   ArgumentCheck::finishArgCheck(argumentCheck);
-  
   fileList <-
-    base::list.files(aDir, all.files = TRUE, pattern=".txt", full.names = TRUE)[-c(1, 2)];
+    base::list.files(aDir, all.files = TRUE, pattern = ".txt", full.names = TRUE); #[-c(1)]; #, 2)];
   fileList <- fileList[!grepl(" ", fileList)];
   
   return(fileList);
@@ -77,9 +76,9 @@ RmAccent <- function(aString = "") {
                            'ì'='i', 'í'='i', 'î'='i', 'ï'='i',
                            'Ù'='U', 'Ú'='U', 'Û'='U', 'Ü'='U',
                            'ù'='u', 'ú'='u', 'û'='u', 'ü'='u',
-                           #'Ỳ'='Y',
+                           # 'Ỳ'='Y',
                            'Ý'='Y', 'Ŷ'='Y', 'Ÿ'='Y',
-                           #'ỳ'='y',
+                           # 'ỳ'='y',
                            'ý'='y', 'ŷ'='y', 'ÿ'='y',
                            'Ò'='O', 'Ó'='O', 'Ô'='O', 'Ö'='O', 'Õ'='O', 'Ø'='O',
                            'ò'='o', 'ó'='o', 'ô'='o', 'õ'='o', 'ö'='o', 'ø'='o', 'ð'='o');
@@ -103,3 +102,10 @@ DaneTabbedFileToDF <- function(aFilePath = "") {
   
   return(readr::read_delim(aFilePath, "\t", escape_double = FALSE, na = "NA", trim_ws = TRUE));
 }
+
+
+# Area_Caracteristicas_generales_Personas_ <-
+#   read_delim("Data/01-2016.txt/Area-Caracteristicas_generales_Personas_.txt", 
+#                                            "\t", escape_double = FALSE, na = "NA", trim_ws = TRUE);
+
+
