@@ -7,11 +7,11 @@ GO
 EXEC sys.sp_dropextendedproperty @name=N'MS_Description' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AreaCaracteristicas', @level2type=N'COLUMN',@level2name=N'Id'
 GO
 
-/****** Object:  Table [dbo].[AreaCaracteristicas]    Script Date: 2017-06-09 16:09:38 ******/
+/****** Object:  Table [dbo].[AreaCaracteristicas]    Script Date: 2017-06-11 17:53:30 ******/
 DROP TABLE [dbo].[AreaCaracteristicas]
 GO
 
-/****** Object:  Table [dbo].[AreaCaracteristicas]    Script Date: 2017-06-09 16:09:38 ******/
+/****** Object:  Table [dbo].[AreaCaracteristicas]    Script Date: 2017-06-11 17:53:30 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -54,7 +54,12 @@ CREATE TABLE [dbo].[AreaCaracteristicas](
 	[Mes] [nchar](2) NOT NULL,
 	[p6269] [int] NULL,
 	[Dpto] [int] NOT NULL,
-	[Fex_c_2011] [real] NOT NULL
+	[Fex_c_2011] [real] NOT NULL,
+ CONSTRAINT [PK_CompositeKey] PRIMARY KEY CLUSTERED 
+(
+	[Directorio] ASC,
+	[Secuencia_p] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 
@@ -63,4 +68,5 @@ GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'AreaCaracteristicas' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'AreaCaracteristicas'
 GO
+
 
