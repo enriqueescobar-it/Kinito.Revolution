@@ -2,7 +2,7 @@ library(RODBC);
 
 InsertTibbleToTable <- function(aTibble = tibble::as_tibble(NULL), aTable = ""){
   
-  #aTibble <- head(aTibble);
+  aTibble <- head(aTibble);
   odbcConnector <- RODBC::odbcConnect("Odbc64", uid = "danegeihdbadmin", pwd = "Chest3r!");
   RODBC::sqlQuery(odbcConnector, "USE DaneGeih;");
   # sqlSave(odbcConnector, aTibble, tablename = aTable, append = TRUE);
@@ -11,7 +11,7 @@ InsertTibbleToTable <- function(aTibble = tibble::as_tibble(NULL), aTable = ""){
   aString <- RODBC::sqlQuery(odbcConnector, aString);
   aString <- paste(as.character(aString[[1]])[-1], sep = '', collapse = ',');
   aString <- paste0("INSERT INTO ", aTable, " (", aString, ") VALUES\n(");
-  aQuery <- "MsSql/CreateDB-DaneGeih_Insert-AreaCaracteristicas.sql";
+  #aQuery <- "MsSql/CreateDB-DaneGeih_Insert-AreaCaracteristicas.sql";
   #fileConnector <- file(aQuery);
   start_time <- Sys.time();
   for(i in 1:nrow(aTibble)) {
@@ -19,18 +19,18 @@ InsertTibbleToTable <- function(aTibble = tibble::as_tibble(NULL), aTable = ""){
     row <- paste0(row, ");\n");
     row <- gsub("NA", "NULL", row);
     row <- paste0(aString, row);
-    #print(row);
+    print(row);
     # aQuery <- paste0(aQuery, row);
-    aResult <- RODBC::sqlQuery(odbcConnector, row, errors = TRUE);
+    #aResult <- RODBC::sqlQuery(odbcConnector, row, errors = TRUE);
     #cat(aResult);
     #write(row, file = aQuery, append = TRUE);
-    rm(row); rm(aResult);
+    rm(row); #rm(aResult);
   }
   end_time <- Sys.time();
   laps_time <- end_time - start_time;
   print(laps_time);
-  rm(start_time); rm(end_time); rm(laps_time); rm(aQuery);
-  close(odbcConnector);
+  rm(start_time); rm(end_time); rm(laps_time); #rm(aQuery);
+  #close(odbcConnector);
   #close(fileConnector);
 }
 # url = "Server=localhost;Database=TEST_RSQLSERVER;Trusted_Connection=True;"
