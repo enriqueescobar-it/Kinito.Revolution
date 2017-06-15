@@ -22,9 +22,10 @@ InsertTibbleToTable <- function(aTibble = tibble::as_tibble(NULL), aTable = ""){
     #print(row);
     # aQuery <- paste0(aQuery, row);
     aResult <- RODBC::sqlQuery(odbcConnector, row, errors = TRUE);
-    #cat(aResult);
+    # cat(aResult);
     #write(row, file = aQuery, append = TRUE);
-    rm(row); rm(aResult);
+    rm(row);
+    rm(aResult);
   }
   end_time <- Sys.time();
   laps_time <- end_time - start_time;

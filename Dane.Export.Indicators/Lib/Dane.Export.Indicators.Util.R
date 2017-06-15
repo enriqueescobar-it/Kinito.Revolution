@@ -104,6 +104,7 @@ DaneTabbedFileToTibble <- function(aFilePath = "") {
   
   aTibble <- readr::read_delim(aFilePath, "\t", escape_double = FALSE, na = "null", trim_ws = TRUE);
   aTibble[aTibble==""] <- "NA";
+  aTibble[aTibble=="."] <- "NA";
   aTibble <- tibble::as_tibble(aTibble);
   
   return(aTibble);

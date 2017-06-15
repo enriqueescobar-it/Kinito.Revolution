@@ -28,7 +28,8 @@ for (i in seq(along = fileList)) {
   newFileList[i] <- newFile;
   #aTable <- "Area-Caracteristicas";
   #aTable <- "Area-Fuerza";
-  aTable <- "Area-Desocupados";
+  #aTable <- "Area-Desocupados";
+  aTable <- "Area-Inactivos";
   
   if (grepl(aTable, newFileList[i])) {
     cat(newFileList[i]);
