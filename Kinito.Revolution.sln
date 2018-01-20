@@ -33,6 +33,8 @@ Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Dane.Export.Indicators", "D
 EndProject
 Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "Algorithm.t-SNE", "Algorithm.t-SNE\Algorithm.t-SNE.rxproj", "{EC070914-3749-438B-BE08-E048142BB1B6}"
 EndProject
+Project("{DA7A21FA-8162-4350-AD77-A8D1B671F3ED}") = "NetAnalyzeVisualize", "NetAnalyzeVisualize\NetAnalyzeVisualize.rxproj", "{B76B68B8-5D33-4059-843C-ABB0ABB22CCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{EC070914-3749-438B-BE08-E048142BB1B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC070914-3749-438B-BE08-E048142BB1B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC070914-3749-438B-BE08-E048142BB1B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B76B68B8-5D33-4059-843C-ABB0ABB22CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B76B68B8-5D33-4059-843C-ABB0ABB22CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B76B68B8-5D33-4059-843C-ABB0ABB22CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B76B68B8-5D33-4059-843C-ABB0ABB22CCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
