@@ -74,3 +74,20 @@ This section identifies when to invert a matrix, and how to find the inverse of 
 ### Linear dependency
 
 In this last video we talk about the linear dependency of vectors - whether the given vectors all lie in single plane or not - and see how linear dependency defines whether the inverse of a matrix exists.
+
+## Probability
+
+Now that you’ve completed your study of vectors and matrices, let's discuss probability. Probability enables machines to manage outcomes and outputs. 
+
+The following topics will be covered:
+* Axioms of probability
+* Probability represented with Venn diagrams
+* Conditional probability
+* Bayes’ rule
+* Independent events and notation
+* Random variables
+* Chebyshev’s inequality
+* Entropy
+* Continuous random variables and probability density function
+* The Gaussian curve
+* Building machine learning models
