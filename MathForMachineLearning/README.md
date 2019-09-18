@@ -18,6 +18,8 @@
 
 #### L2 norm
 
+![MathForMachineLearning-Vectors_L2norm](MathForMachineLearning-Vectors_L2norm.png "Vectors_L2norm")
+
 #### L norm comparison
 
 ![MathForMachineLearning-Vectors_Lnorm_comparison](MathForMachineLearning-Vectors_Lnorm_comparison.png "Vectors_Lnorm_comparison")
