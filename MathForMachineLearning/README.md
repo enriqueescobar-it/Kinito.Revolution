@@ -102,6 +102,8 @@ Probabilty: Fraction of times (occurrebnces) we see an event
 
 ### Probability Visualization
 
+![MathForMachineLearning-Probability_Viz_general](MathForMachineLearning-Probability_Viz_general.png "Probability_Viz_general")
+
 ### Conditional probability
 
 
