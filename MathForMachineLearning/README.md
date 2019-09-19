@@ -106,5 +106,7 @@ Probabilty: Fraction of times (occurrebnces) we see an event
 
 ### Conditional probability
 
+![MathForMachineLearning-Probability_Conditional_schema](MathForMachineLearning-Probability_Conditional_schema.png "Probability_Conditional_schema")
 
+![MathForMachineLearning-Probability_Conditional_definition](MathForMachineLearning-Probability_Conditional_definition.png "Probability_Conditional_definition")
 
