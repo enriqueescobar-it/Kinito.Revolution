@@ -112,4 +112,9 @@ Probabilty: Fraction of times (occurrebnces) we see an event
 
 ### Bayes'Rule
 
+### Independence
+
+Sigma of probabilities if they are independent.
+
+
 
