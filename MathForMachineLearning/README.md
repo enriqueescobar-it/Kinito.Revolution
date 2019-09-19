@@ -91,3 +91,18 @@ The following topics will be covered:
 * Continuous random variables and probability density function
 * The Gaussian curve
 * Building machine learning models
+
+### Probability Terminology
+
+Sample Space: All observations, set of all outcomes
+Event: Subset of your Sample Space
+Probabilty: Fraction of times (occurrebnces) we see an event
+
+### Probability axioms -to call it probability-
+
+### Probability Visualization
+
+### Conditional probability
+
+
+
