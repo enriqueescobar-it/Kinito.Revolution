@@ -110,3 +110,6 @@ Probabilty: Fraction of times (occurrebnces) we see an event
 
 ![MathForMachineLearning-Probability_Conditional_definition](MathForMachineLearning-Probability_Conditional_definition.png "Probability_Conditional_definition")
 
+### Bayes'Rule
+
+
