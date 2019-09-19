@@ -112,9 +112,52 @@ Probabilty: Fraction of times (occurrebnces) we see an event
 
 ### Bayes'Rule
 
+![MathForMachineLearning-Probability_BayesRule](MathForMachineLearning-Probability_BayesRule.png "Probability_BayesRule")
+
+![MathForMachineLearning-Probability_BayesRuleFormula](MathForMachineLearning-Probability_BayesRuleFormula.png "Probability_BayesRuleFormula")
+
 ### Independence
 
 Sigma of probabilities if they are independent.
 
+### Discrete Random Variables
 
+### Entropy
+
+![MathForMachineLearning-Probability_EntropyLogic](MathForMachineLearning-Probability_EntropyLogic.png "Probability_EntropyLogic")
+
+![MathForMachineLearning-Probability_EntropyDefinition](MathForMachineLearning-Probability_EntropyDefinition.png "Probability_EntropyDefinition")
+
+![MathForMachineLearning-Probability_EntropyUnitConversion](MathForMachineLearning-Probability_EntropyUnitConversion.png "Probability_EntropyUnitConversion")
+
+### Continuous Random Variables
+
+P{ D = 1.7 } = 0
+
+P{ D e [1.7, 1.8] } > 0
+
+Probability density function
+
+![MathForMachineLearning-Probability_DensityFunction](MathForMachineLearning-Probability_DensityFunction.png "Probability_DensityFunction")
+
+![MathForMachineLearning-Probability_Gaussian_MaximunEntropyDistribution](MathForMachineLearning-Probability_Gaussian_MaximunEntropyDistribution.png "Probability_Gaussian_MaximunEntropyDistribution")
+
+![MathForMachineLearning-Probability_Gaussian_CentralLimitTheorem](MathForMachineLearning-Probability_Gaussian_CentralLimitTheorem.png "Probability_Gaussian_CentralLimitTheorem")
+
+### A Word on Building Models
+
+![MathForMachineLearning-Probability_BuildingModels_MaximumLikelihoodEstimation](MathForMachineLearning-Probability_BuildingModels_MaximumLikelihoodEstimation.png "Probability_BuildingModels_MaximumLikelihoodEstimation")
+
+## Univariate Derivative Calculus
+
+### Maximum Likelihood Estimation: A Motivation for Calculus
+
+![MathForMachineLearning-UnivariateDerivative_MaximumLikelihoodEstimation](MathForMachineLearning-UnivariateDerivative_MaximumLikelihoodEstimation.png "UnivariateDerivative_MaximumLikelihoodEstimation")
+
+* p is the probability of getting heads
+* 1-p is the probability of getting tails
+* Pp(H H H T T H T T H T H T T) = P6(1-p)7
+* P = NbHeads / NbFlips = 6 / 13
+
+![MathForMachineLearning-UnivariateDerivative_Example](MathForMachineLearning-UnivariateDerivative_Example.png "UnivariateDerivative_Example")
 
