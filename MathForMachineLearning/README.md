@@ -161,3 +161,20 @@ Probability density function
 
 ![MathForMachineLearning-UnivariateDerivative_Example](MathForMachineLearning-UnivariateDerivative_Example.png "UnivariateDerivative_Example")
 
+### Derivatives
+
+* (f(x) + g(x))' = f'(x) + g'(x)
+* (f(x) * g(x))' = f(x) * g'(x) + f'(x) * g(x)
+* (f(g(x)))' = f'(g(x)) * g'(x)
+
+### Second derivatives
+
+![MathForMachineLearning-UnivariateDerivative_Rules](MathForMachineLearning-UnivariateDerivative_Rules.png "UnivariateDerivative_Rules")
+
+![MathForMachineLearning-UnivariateDerivative_Seconds](MathForMachineLearning-UnivariateDerivative_Seconds.png "UnivariateDerivative_Rules")
+
+![MathForMachineLearning-UnivariateDerivative_Seconds_](MathForMachineLearning-UnivariateDerivative_Seconds_.png "UnivariateDerivative_Seconds")
+
+### Gradient descent
+
+
