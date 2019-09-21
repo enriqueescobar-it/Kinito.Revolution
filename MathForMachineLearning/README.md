@@ -177,4 +177,59 @@ Probability density function
 
 ### Gradient descent
 
+![MathForMachineLearning-UnivariateDerivative_GradientDescent](MathForMachineLearning-UnivariateDerivative_GradientDescent.png "UnivariateDerivative_GradientDescent")
+
+![MathForMachineLearning-UnivariateDerivative_GradientDescent](MathForMachineLearning-UnivariateDerivative_GradientDescent.png "UnivariateDerivative_GradientDescentMax")
+
+![MathForMachineLearning-UnivariateDerivative_GradientDescent](MathForMachineLearning-UnivariateDerivative_GradientDescent.png "UnivariateDerivative_GradientDescentMid")
+
+![MathForMachineLearning-UnivariateDerivative_GradientDescent](MathForMachineLearning-UnivariateDerivative_GradientDescent.png "UnivariateDerivative_GradientDescentMin")
+
+### Newton's method
+
+### Summary
+
+## Multivariate Derivative Calculus
+
+![MathForMachineLearning-MultivariateDerivative_Intuition](MathForMachineLearning-MultivariateDerivative_Intuition.png "MultivariateDerivative_Intuition")
+
+### Partial Derivatives
+
+For n variables calculate derivative for each variable putting the other variables as constants.
+
+![MathForMachineLearning-MultivariateDerivative_Partials](MathForMachineLearning-MultivariateDerivative_Partials.png "MultivariateDerivative_Partials")
+
+### Gradient
+
+![MathForMachineLearning-MultivariateDerivative_Gradient](MathForMachineLearning-MultivariateDerivative_Gradient.png "MultivariateDerivative_Gradient")
+
+D(Vector(n elements)) = Vector(D(n elements)) 
+
+D(Matrix(n * m)) = Matrix(D(n * m))
+
+![MathForMachineLearning-MultivariateDerivative_GradientProps](MathForMachineLearning-MultivariateDerivative_GradientProps.png "MultivariateDerivative_GradientProps")
+
+### Matrix Calculus
+
+Calculate derivatives
+
+### Second derivatives
+
+Hessian H(f(x)) = Matrix(f''(x))
+
+![MathForMachineLearning-MultivariateDerivative_Hessian](MathForMachineLearning-MultivariateDerivative_Hessian.png "MultivariateDerivative_Hessian")
+
+### Newton's method
+
+Avoid in 2D and focus on Hessian Descent
+
+![MathForMachineLearning-MultivariateDerivative_NewtonMethod](MathForMachineLearning-MultivariateDerivative_NewtonMethod.png "MultivariateDerivative_NewtonMethod")
+
+### Convexity
+
+Convex are perfect and easy to resolve. Special simple case.
+
+## Summary
+
+![MathForMachineLearning-MultivariateDerivative_Summary](MathForMachineLearning-MultivariateDerivative_Summary.png "MultivariateDerivative_Summary")
 
