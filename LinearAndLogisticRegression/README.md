@@ -50,7 +50,7 @@ Use matrices
 
 ### Optimization
 
-img
+![LinearAndLogisticRegression-LeastSquaresMinimization_Facts](LinearAndLogisticRegression-LeastSquaresMinimization_Facts.png "LeastSquaresMinimization_Facts]")
 
 ### Ordinary Least Squares (OLS) Pros and Cons
 
@@ -64,7 +64,59 @@ Cons:
 * influenced by outliers
 * (X Transposed X)exp -1 need not exist
 
+## Linear Regression: A probabilistic approach
 
+* The definition of a probabilistic approach
+* Maximum Likelihood Estimate (MLE)
+* MLE for the case of continuous probability with probability density function
+* Gaussian MLE
+* OLS as MLE
+* Reformulate OLS model
+* OLS likelihood function
+* Minimizing MSE = Maximizing MLE
+* Improvements in MLE
 
+### Maximum Likelihood Estimate (MLE)
 
+In an OLS model, the choice of least squares is arbitrary.
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_MLE](LinearAndLogisticRegression-LeastSquaresMinimization_MLE.png "LeastSquaresMinimization_MLE]")
+
+Why are we only choosing the power of 2, and not the sum of cubes or other degree values?
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_MLEtheta](LinearAndLogisticRegression-LeastSquaresMinimization_MLEtheta.png "LeastSquaresMinimization_MLEtheta]")
+
+### Continuous Probability
+
+#### Discrete Random Variables: Sum of two dice
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbDiscreteRandomVar](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbDiscreteRandomVar.png "LeastSquaresMinimization_ContProbDiscreteRandomVar]")
+
+#### Continuous Random Variable: Probability density function
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar.png "LeastSquaresMinimization_ContProbContinuousRandomVar]")
+
+Probability Density Function for Continuous Random Variables
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF.png "LeastSquaresMinimization_ContProbContinuousRandomVar_PDF]")
+
+#### Gaussian Random Variables
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar.png "LeastSquaresMinimization_ContProbGaussianRandomVar]")
+
+Probability Density Function for Gaussian Random Variables
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar_PDF](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar_PDF.png "LeastSquaresMinimization_ContProbGaussianRandomVar_PDF]")
+
+...
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF_](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF_.png "LeastSquaresMinimization_ContProbContinuousRandomVar_PDF_]")
+
+### Gaussian Maximum Likelihood Estimate (MLE)
+
+Maximize L => minimize sum of squared errors
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_GaussianMLE](LinearAndLogisticRegression-LeastSquaresMinimization_GaussianMLE.png "LeastSquaresMinimization_GaussianMLE]")
+
+### Ordinary Least Squares (OLS) as Maximum Likelihood Estimation (MLE)
 
