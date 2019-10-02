@@ -120,3 +120,31 @@ Maximize L => minimize sum of squared errors
 
 ### Ordinary Least Squares (OLS) as Maximum Likelihood Estimation (MLE)
 
+Model
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_OLSasMLE](LinearAndLogisticRegression-LeastSquaresMinimization_OLSasMLE.png "LeastSquaresMinimization_OLSasMLE]")
+
+### Ordinary Least Squares (OLS) Likelihood Function
+
+Matrix notation
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_OLSlikelihoodFonc](LinearAndLogisticRegression-LeastSquaresMinimization_OLSlikelihoodFonc.png "LeastSquaresMinimization_OLSlikelihoodFonc]")
+
+### Minimize MSE (mean squared error) <-> MLE
+
+![LinearAndLogisticRegression-LeastSquaresMinimization_MSEasMLE](LinearAndLogisticRegression-LeastSquaresMinimization_MSEasMLE.png "LeastSquaresMinimization_MSEasMLE]")
+
+### The MLE Point of View
+
+* Define the model
+* Discover parameters fitting data giving highest probability
+* MLE is minimum log likelihood function
+* As Least Squared solution approach : MSE
+
+### Improvements in Maximum Likelihood Estimate (MLE)
+
+
+Column A | Column B | Column C | Column D
+---------|----------|----------|---------
+ ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSym](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSym.png "LeastSquaresMinimization_MLEimprovementsSym]") | ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsIndep](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsIndep.png "LeastSquaresMinimization_MLEimprovementsIndep]") | ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsOutlier](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsOutlier.png "LeastSquaresMinimization_MLEimprovementsOutlier]") | ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSingle](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSingle.png "LeastSquaresMinimization_MLEimprovementsSingle]")
+ Symmetric errors distributed around the prediction. Normal distribution then model valid | Less error in extremes. It can be modeled as function of x. Errors are not independent of x. MLE does not fit | Errors distributed symmetric but outliers. Ignore outlier or modify the error model | If ignore outlier, a single value of x has many predictions => output independent of input. Not normal, not independent. Model does not fit
