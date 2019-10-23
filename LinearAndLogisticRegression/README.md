@@ -50,7 +50,7 @@ Use matrices
 
 ### Optimization
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_Facts](LinearAndLogisticRegression-LeastSquaresMinimization_Facts.png "LeastSquaresMinimization_Facts]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_Facts](LinearAndLogisticRegression-LeastSquaresMinimization_Facts.png "LeastSquaresMinimization_Facts")
 
 ### Ordinary Least Squares (OLS) Pros and Cons
 
@@ -80,59 +80,59 @@ Cons:
 
 In an OLS model, the choice of least squares is arbitrary.
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_MLE](LinearAndLogisticRegression-LeastSquaresMinimization_MLE.png "LeastSquaresMinimization_MLE]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_MLE](LinearAndLogisticRegression-LeastSquaresMinimization_MLE.png "LeastSquaresMinimization_MLE")
 
 Why are we only choosing the power of 2, and not the sum of cubes or other degree values?
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_MLEtheta](LinearAndLogisticRegression-LeastSquaresMinimization_MLEtheta.png "LeastSquaresMinimization_MLEtheta]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_MLEtheta](LinearAndLogisticRegression-LeastSquaresMinimization_MLEtheta.png "LeastSquaresMinimization_MLEtheta")
 
 ### Continuous Probability
 
 #### Discrete Random Variables: Sum of two dice
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbDiscreteRandomVar](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbDiscreteRandomVar.png "LeastSquaresMinimization_ContProbDiscreteRandomVar]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbDiscreteRandomVar](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbDiscreteRandomVar.png "LeastSquaresMinimization_ContProbDiscreteRandomVar")
 
 #### Continuous Random Variable: Probability density function
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar.png "LeastSquaresMinimization_ContProbContinuousRandomVar]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar.png "LeastSquaresMinimization_ContProbContinuousRandomVar")
 
 Probability Density Function for Continuous Random Variables
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF.png "LeastSquaresMinimization_ContProbContinuousRandomVar_PDF]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF.png "LeastSquaresMinimization_ContProbContinuousRandomVar_PDF")
 
 #### Gaussian Random Variables
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar.png "LeastSquaresMinimization_ContProbGaussianRandomVar]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar.png "LeastSquaresMinimization_ContProbGaussianRandomVar")
 
 Probability Density Function for Gaussian Random Variables
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar_PDF](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar_PDF.png "LeastSquaresMinimization_ContProbGaussianRandomVar_PDF]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar_PDF](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbGaussianRandomVar_PDF.png "LeastSquaresMinimization_ContProbGaussianRandomVar_PDF")
 
 ...
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF_](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF_.png "LeastSquaresMinimization_ContProbContinuousRandomVar_PDF_]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF_](LinearAndLogisticRegression-LeastSquaresMinimization_ContProbContinuousRandomVar_PDF_.png "LeastSquaresMinimization_ContProbContinuousRandomVar_PDF_")
 
 ### Gaussian Maximum Likelihood Estimate (MLE)
 
 Maximize L => minimize sum of squared errors
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_GaussianMLE](LinearAndLogisticRegression-LeastSquaresMinimization_GaussianMLE.png "LeastSquaresMinimization_GaussianMLE]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_GaussianMLE](LinearAndLogisticRegression-LeastSquaresMinimization_GaussianMLE.png "LeastSquaresMinimization_GaussianMLE")
 
 ### Ordinary Least Squares (OLS) as Maximum Likelihood Estimation (MLE)
 
 Model
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_OLSasMLE](LinearAndLogisticRegression-LeastSquaresMinimization_OLSasMLE.png "LeastSquaresMinimization_OLSasMLE]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_OLSasMLE](LinearAndLogisticRegression-LeastSquaresMinimization_OLSasMLE.png "LeastSquaresMinimization_OLSasMLE")
 
 ### Ordinary Least Squares (OLS) Likelihood Function
 
 Matrix notation
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_OLSlikelihoodFonc](LinearAndLogisticRegression-LeastSquaresMinimization_OLSlikelihoodFonc.png "LeastSquaresMinimization_OLSlikelihoodFonc]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_OLSlikelihoodFonc](LinearAndLogisticRegression-LeastSquaresMinimization_OLSlikelihoodFonc.png "LeastSquaresMinimization_OLSlikelihoodFonc")
 
 ### Minimize MSE (mean squared error) <-> MLE
 
-![LinearAndLogisticRegression-LeastSquaresMinimization_MSEasMLE](LinearAndLogisticRegression-LeastSquaresMinimization_MSEasMLE.png "LeastSquaresMinimization_MSEasMLE]")
+![LinearAndLogisticRegression-LeastSquaresMinimization_MSEasMLE](LinearAndLogisticRegression-LeastSquaresMinimization_MSEasMLE.png "LeastSquaresMinimization_MSEasMLE")
 
 ### The MLE Point of View
 
@@ -143,8 +143,32 @@ Matrix notation
 
 ### Improvements in Maximum Likelihood Estimate (MLE)
 
+Error model not correct => use different error model
+Errors are not independent with x => transform independent variable x
 
 Column A | Column B | Column C | Column D
 ---------|----------|----------|---------
- ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSym](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSym.png "LeastSquaresMinimization_MLEimprovementsSym]") | ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsIndep](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsIndep.png "LeastSquaresMinimization_MLEimprovementsIndep]") | ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsOutlier](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsOutlier.png "LeastSquaresMinimization_MLEimprovementsOutlier]") | ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSingle](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSingle.png "LeastSquaresMinimization_MLEimprovementsSingle]")
+ ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSym](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSym.png "LeastSquaresMinimization_MLEimprovementsSym") | ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsIndep](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsIndep.png "LeastSquaresMinimization_MLEimprovementsIndep") | ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsOutlier](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsOutlier.png "LeastSquaresMinimization_MLEimprovementsOutlier") | ![LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSingle](LinearAndLogisticRegression-LeastSquaresMinimization_MLEimprovementsSingle.png "LeastSquaresMinimization_MLEimprovementsSingle")
  Symmetric errors distributed around the prediction. Normal distribution then model valid | Less error in extremes. It can be modeled as function of x. Errors are not independent of x. MLE does not fit | Errors distributed symmetric but outliers. Ignore outlier or modify the error model | If ignore outlier, a single value of x has many predictions => output independent of input. Not normal, not independent. Model does not fit
+
+## Assumptions of OLS, Nonlinear OLS, Regularization, and Cross-Validation
+
+* Assumptions of linear regression
+* Concept of residuals
+* Extensions of linearity
+* Extreme learning machines
+* Overfitting
+* Regularizations
+* Other issues
+
+### Assumptions of Linear Regression
+
+Model is linear
+Errors are independent and normally distributed
+X transposed X is invertible
+
+### Beyond Linearity
+
+We discuss residuals and their plots, OLS models when the relationship between data matrix (X) and output function (Y) is nonlinear, and different basis functions that are used to expand features.
+
+### Extreme Learning Machines
